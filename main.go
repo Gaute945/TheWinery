@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 )
 
 var db *sql.DB
@@ -19,16 +20,22 @@ type Album struct {
 }
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	DBUSER := os.Getenv("DBUSER")
+	DBPASS := os.Getenv("DBPASS")
+
 	// Capture connection properties.
 	cfg := mysql.NewConfig()
-	cfg.User = os.Getenv("DBUSER")
-	cfg.Passwd = os.Getenv("DBPASS")
+	cfg.User = DBUSER
+	cfg.Passwd = DBPASS
 	cfg.Net = "tcp"
 	cfg.Addr = "127.0.0.1:3306"
 	cfg.DBName = "TheWinery"
 
 	// Get a database handle.
-	var err error
 	db, err = sql.Open("mysql", cfg.FormatDSN())
 	if err != nil {
 		log.Fatal(err)
@@ -44,6 +51,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	fmt.Printf("Albums found: %v\n", albums)
 }
 
