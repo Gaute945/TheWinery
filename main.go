@@ -3,12 +3,12 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
 
@@ -48,53 +48,23 @@ func main() {
 	if pingErr != nil {
 		log.Fatal(pingErr)
 	}
-	fmt.Println("Connected!")
+	fmt.Println("Connected to db")
 
-	albums, err := albumsByArtist("John Coltrane")
-	if err != nil {
-		log.Fatal(err)
-	}
+	r := mux.NewRouter()
 
-	fmt.Printf("Albums found: %v\n", albums)
+	r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		title := vars["title"]
+		page := vars["page"]
 
-	root := func(w http.ResponseWriter, _ *http.Request) {
-		io.WriteString(w, "Hello from root page!\n")
-	}
+		fmt.Fprintf(w, "You've requested the book: %s on page %s\n", title, page)
+	})
 
-	p1 := func(w http.ResponseWriter, _ *http.Request) {
-		io.WriteString(w, "Hello from page1!\n")
-	}
+	fs := http.FileServer(http.Dir("static/"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	p2 := func(w http.ResponseWriter, _ *http.Request) {
-		io.WriteString(w, "Hello from page2!\n")
-	}
-
-	http.HandleFunc("/", root)
-	http.HandleFunc("/p1", p1)
-	http.HandleFunc("/p2", p2)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Printf("Listening at port 8080\n")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
 
-// albumsByArtist queries for albums that have the specified artist name.
-func albumsByArtist(name string) ([]Albums, error) {
-	// An albums slice to hold data from returned rows.
-	var albums []Albums
-
-	rows, err := db.Query("SELECT * FROM albums WHERE artist = ?", name)
-	if err != nil {
-		return nil, fmt.Errorf("albumsByArtist %q: %v", name, err)
-	}
-	defer rows.Close()
-	// Loop through rows, using Scan to assign column data to struct fields.
-	for rows.Next() {
-		var alb Albums
-		if err := rows.Scan(&alb.ID, &alb.Title, &alb.Artist, &alb.Price); err != nil {
-			return nil, fmt.Errorf("albumsByArtist %q: %v", name, err)
-		}
-		albums = append(albums, alb)
-	}
-	if err := rows.Err(); err != nil {
-		return nil, fmt.Errorf("albumsByArtist %q: %v", name, err)
-	}
-	return albums, nil
-}
+// rows, err := db.Query("SELECT * FROM albums WHERE artist = ?", name)
