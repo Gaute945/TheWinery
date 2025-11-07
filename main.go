@@ -3,22 +3,26 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
 
 var db *sql.DB
 
-type Albums struct {
-	ID     int64
-	Title  string
-	Artist string
-	Price  float32
+type wine struct {
+	// fill from database
+	name    string
+	vintage int
+}
+
+type rootPage struct {
+	PageTitle string
+	Wines     []wine
 }
 
 func main() {
@@ -50,21 +54,34 @@ func main() {
 	}
 	fmt.Println("Connected to db")
 
-	r := mux.NewRouter()
-
-	r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		title := vars["title"]
-		page := vars["page"]
-
-		fmt.Fprintf(w, "You've requested the book: %s on page %s\n", title, page)
+	roottmpl := template.Must(template.ParseFiles("root.html"))
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		data := rootPage{
+			PageTitle: "Wines",
+			Wines: []wine{
+				{name: "Clos de la Coulée de Serrant", vintage: 2019},
+				{name: "Barolo Cannubi", vintage: 2016},
+				{name: "Riesling Kabinett", vintage: 2021},
+			},
+		}
+		roottmpl.Execute(w, data)
 	})
+	fmt.Printf("Listing on port 8080")
+	http.ListenAndServe(":8080", nil)
 
-	fs := http.FileServer(http.Dir("static/"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	// r := mux.NewRouter()
 
-	fmt.Printf("Listening at port 8080\n")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	// r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
+	// 	vars := mux.Vars(r)
+	// 	title := vars["title"]
+	// 	page := vars["page"]
+
+	// 	fmt.Fprintf(w, "You've requested the book: %s on page %s\n", title, page)
+	// })
+
+	// fs := http.FileServer(http.Dir("static/"))
+	// http.Handle("/static/", http.StripPrefix("/static/", fs))
+	// log.Fatal(http.ListenAndServe(":8080", r))
 }
 
 // rows, err := db.Query("SELECT * FROM albums WHERE artist = ?", name)
