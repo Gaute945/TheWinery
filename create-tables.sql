@@ -9,7 +9,7 @@ CREATE TABLE wines (
     vintage INT(4),
     taste TEXT,
     color TEXT,
-    smell TEXT,
+    aroma TEXT,
     acidity DECIMAL(4,2),
     sweetness DECIMAL(6,2),
     price DECIMAL(7,2),
@@ -19,7 +19,7 @@ CREATE TABLE wines (
 
 INSERT INTO wines (
     title, grape, origin, producer, vintage,
-    taste, color, smell, acidity, sweetness, price, iSwinescale
+    taste, color, aroma, acidity, sweetness, price, iSwinescale
 ) VALUES
     (
         'Clos de la Coulée de Serrant',

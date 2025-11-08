@@ -14,10 +14,21 @@ import (
 
 var db *sql.DB
 
+// must be uppercase for template and pointer for nullable field
 type wine struct {
-	// fill from database
-	name    string
-	vintage int
+	ID          int
+	Title       string
+	Grape       *string
+	Origin      *string
+	Producer    *string
+	Vintage     *int
+	Taste       *string
+	Color       *string
+	Smell       *string
+	Acidity     *float64
+	Sweetness   *float64
+	Price       *float64
+	ISWineScale float64
 }
 
 type rootPage struct {
@@ -56,12 +67,13 @@ func main() {
 
 	roottmpl := template.Must(template.ParseFiles("root.html"))
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		v := 2019
 		data := rootPage{
 			PageTitle: "Wines",
 			Wines: []wine{
-				{name: "Clos de la Coulée de Serrant", vintage: 2019},
-				{name: "Barolo Cannubi", vintage: 2016},
-				{name: "Riesling Kabinett", vintage: 2021},
+				{Title: "Clos de la Coulée de Serrant", Vintage: &v},
+				{Title: "Barolo Cannubi", Vintage: &v},
+				{Title: "Riesling Kabinett", Vintage: &v},
 			},
 		}
 		roottmpl.Execute(w, data)
