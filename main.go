@@ -15,8 +15,8 @@ import (
 var db *sql.DB
 
 // must be uppercase for template and pointer for nullable field
-type wine struct {
-	ID          int
+type Wine struct {
+	Id          int
 	Title       string
 	Grape       *string
 	Origin      *string
@@ -24,7 +24,7 @@ type wine struct {
 	Vintage     *int
 	Taste       *string
 	Color       *string
-	Smell       *string
+	Aroma       *string
 	Acidity     *float64
 	Sweetness   *float64
 	Price       *float64
@@ -33,7 +33,7 @@ type wine struct {
 
 type rootPage struct {
 	PageTitle string
-	Wines     []wine
+	Wines     []Wine
 }
 
 func main() {
@@ -65,16 +65,37 @@ func main() {
 	}
 	fmt.Println("Connected to db")
 
+	rows, err := db.Query("SELECT Id, Title, Grape, Origin, Producer, Vintage, Taste, Color, Aroma, Acidity, Sweetness, Price, ISwinescale FROM wines")
+	defer rows.Close()
+
+	var Wines []Wine
+	for rows.Next() {
+		var wi Wine
+		rows.Scan(
+			&wi.Id,
+			&wi.Title,
+			&wi.Grape,
+			&wi.Origin,
+			&wi.Producer,
+			&wi.Vintage,
+			&wi.Taste,
+			&wi.Color,
+			&wi.Aroma,
+			&wi.Acidity,
+			&wi.Sweetness,
+			&wi.Price,
+			&wi.ISWineScale) // check err
+		Wines = append(Wines, wi)
+	}
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	roottmpl := template.Must(template.ParseFiles("root.html"))
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		v := 2019
 		data := rootPage{
 			PageTitle: "Wines",
-			Wines: []wine{
-				{Title: "Clos de la Coulée de Serrant", Vintage: &v},
-				{Title: "Barolo Cannubi", Vintage: &v},
-				{Title: "Riesling Kabinett", Vintage: &v},
-			},
+			Wines:     Wines,
 		}
 		roottmpl.Execute(w, data)
 	})

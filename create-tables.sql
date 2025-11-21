@@ -1,25 +1,25 @@
 DROP TABLE IF EXISTS wines;
 
 CREATE TABLE wines (
-    id INT AUTO_INCREMENT NOT NULL,
-    title VARCHAR(128) NOT NULL,
-    grape VARCHAR(128),
-    origin VARCHAR(256),
-    producer VARCHAR(128),
-    vintage INT(4),
-    taste TEXT,
-    color TEXT,
-    aroma TEXT,
-    acidity DECIMAL(4,2),
-    sweetness DECIMAL(6,2),
-    price DECIMAL(7,2),
-    iSwinescale DECIMAL(3,1) NOT NULL,
-    PRIMARY KEY (id)
+    Id INT AUTO_INCREMENT NOT NULL,
+    Title VARCHAR(128) NOT NULL,
+    Grape VARCHAR(128),
+    Origin VARCHAR(256),
+    Producer VARCHAR(128),
+    Vintage INT(4),
+    Taste TEXT,
+    Color TEXT,
+    Aroma TEXT,
+    Acidity DECIMAL(4,2),
+    Sweetness DECIMAL(6,2),
+    Price DECIMAL(7,2),
+    ISwinescale DECIMAL(3,1) NOT NULL,
+    PRIMARY KEY (Id)
 );
 
 INSERT INTO wines (
-    title, grape, origin, producer, vintage,
-    taste, color, aroma, acidity, sweetness, price, iSwinescale
+    Title, Grape, Origin, Producer, Vintage,
+    Taste, Color, Aroma, Acidity, Sweetness, Price, ISwinescale
 ) VALUES
     (
         'Clos de la Coulée de Serrant',
