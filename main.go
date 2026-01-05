@@ -36,6 +36,12 @@ type rootPage struct {
 	Wines     []Wine
 }
 
+type ContactDetails struct {
+	Email   string
+	Subject string
+	Message string
+}
+
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -101,20 +107,4 @@ func main() {
 	})
 	fmt.Printf("Listing on port 8080")
 	http.ListenAndServe(":8080", nil)
-
-	// r := mux.NewRouter()
-
-	// r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
-	// 	vars := mux.Vars(r)
-	// 	title := vars["title"]
-	// 	page := vars["page"]
-
-	// 	fmt.Fprintf(w, "You've requested the book: %s on page %s\n", title, page)
-	// })
-
-	// fs := http.FileServer(http.Dir("static/"))
-	// http.Handle("/static/", http.StripPrefix("/static/", fs))
-	// log.Fatal(http.ListenAndServe(":8080", r))
 }
-
-// rows, err := db.Query("SELECT * FROM albums WHERE artist = ?", name)
