@@ -1,0 +1,32 @@
+{{if .Success}}
+    <h1>Thanks for your message!</h1>
+{{else}}
+    <h1>Add to the winyard</h1>
+    <form method="POST">
+        <label>Name:</label><br />
+        <input type="text" name="title" required><br />
+        <label>Grape:</label><br />
+        <input type="text" name="grape"><br />
+        <label>Origin:</label><br />
+        <input type="text" name="origin"><br />
+        <label>Producer:</label><br />
+        <input type="text" name="producer"><br />
+        <label>Vintage:</label><br />
+        <input type="number" name="vintage"><br />
+        <label>Taste:</label><br />
+        <input type="text" name="taste"><br />
+        <label>Color:</label><br />
+        <input type="text" name="color"><br />
+        <label>Aroma:</label><br />
+        <input type="text" name="aroma"><br />
+        <label>Acidity:</label><br />
+        <input type="number" name="acidity" step="0.01"><br />
+        <label>Sweetness:</label><br />
+        <input type="number" name="sweetness" step="0.01"><br />
+        <label>Price:</label><br />
+        <input type="number" name="price" step="0.01"><br />
+        <label>ISWineScale:</label><br />
+        <input type="number" name="isWineScale" step="0.01" required><br />
+        <input type="submit">
+    </form>
+{{end}}

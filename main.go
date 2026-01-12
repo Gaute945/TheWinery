@@ -36,10 +36,19 @@ type rootPage struct {
 	Wines     []Wine
 }
 
-type ContactDetails struct {
-	Email   string
-	Subject string
-	Message string
+type ContactDetails struct { // issue with types, num saved as string and insecure
+	Title       string
+	Grape       string
+	Origin      string
+	Producer    string
+	Vintage     string
+	Taste       string
+	Color       string
+	Aroma       string
+	Acidity     string
+	Sweetness   string
+	Price       string
+	ISWineScale string
 }
 
 func main() {
@@ -105,6 +114,37 @@ func main() {
 		}
 		roottmpl.Execute(w, data)
 	})
+
+	formtmpl := template.Must(template.ParseFiles("forms.html"))
+
+	http.HandleFunc("/add", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			formtmpl.Execute(w, nil)
+			return
+		}
+
+		details := ContactDetails{
+			Title:       r.FormValue("title"),
+			Grape:       r.FormValue("grape"),
+			Origin:      r.FormValue("origin"),
+			Producer:    r.FormValue("producer"),
+			Vintage:     r.FormValue("vintage"),
+			Taste:       r.FormValue("taste"),
+			Color:       r.FormValue("color"),
+			Aroma:       r.FormValue("aroma"),
+			Acidity:     r.FormValue("acidity"),
+			Sweetness:   r.FormValue("sweetness"),
+			Price:       r.FormValue("price"),
+			ISWineScale: r.FormValue("isWineScale"),
+		}
+
+		// do something with details
+
+		fmt.Print(details)
+
+		formtmpl.Execute(w, struct{ Success bool }{true})
+	})
+
 	fmt.Printf("Listing on port 8080")
 	http.ListenAndServe(":8080", nil)
 }

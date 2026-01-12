@@ -5,7 +5,7 @@
 2. edit page
 3. proper units on data
 4. images
-5. user accounts
+5. user accounts / auth
 6. real data
 7. sorting
 
