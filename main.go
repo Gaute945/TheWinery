@@ -17,12 +17,12 @@ var db *sql.DB
 
 // must be uppercase for template and pointer for nullable field
 type Wine struct {
-	Id          int
+	Id          int64
 	Title       string
 	Grape       *string
 	Origin      *string
 	Producer    *string
-	Vintage     *int
+	Vintage     *int64
 	Taste       *string
 	Color       *string
 	Aroma       *string
@@ -37,19 +37,50 @@ type rootPage struct {
 	Wines     []Wine
 }
 
-type ContactDetails struct { // issue with types, num saved as string and insecure
-	Title       string
-	Grape       string
-	Origin      string
-	Producer    string
-	Vintage     int
-	Taste       string
-	Color       string
-	Aroma       string
-	Acidity     float64
-	Sweetness   float64
-	Price       float64
-	ISWineScale float64
+type ContactDetails struct {
+	Title       sql.NullString
+	Grape       sql.NullString
+	Origin      sql.NullString
+	Producer    sql.NullString
+	Vintage     sql.NullInt64
+	Taste       sql.NullString
+	Color       sql.NullString
+	Aroma       sql.NullString
+	Acidity     sql.NullFloat64
+	Sweetness   sql.NullFloat64
+	Price       sql.NullFloat64
+	ISWineScale sql.NullFloat64
+}
+
+func isEmptyString(s string) sql.NullString {
+	if s == "" {
+		return sql.NullString{Valid: false}
+	}
+	return sql.NullString{Valid: true}
+}
+
+func isEmptyInt(i string) sql.NullInt64 {
+	if i == "" {
+		return sql.NullInt64{Valid: false}
+	}
+
+	a, err := strconv.ParseInt(i, 10, 64)
+	if err != nil {
+		return sql.NullInt64{Valid: false}
+	}
+	return sql.NullInt64{Int64: a, Valid: true}
+}
+
+func isEmptyFloat(f string) sql.NullFloat64 {
+	if f == "" {
+		return sql.NullFloat64{Valid: false}
+	}
+
+	a, err := strconv.ParseFloat(f, 64)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return sql.NullFloat64{Float64: a, Valid: true}
 }
 
 func main() {
@@ -83,6 +114,9 @@ func main() {
 	}
 
 	rows, err := db.Query("SELECT Id, Title, Grape, Origin, Producer, Vintage, Taste, Color, Aroma, Acidity, Sweetness, Price, ISwinescale FROM wines")
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer rows.Close()
 
 	var Wines []Wine
@@ -101,11 +135,8 @@ func main() {
 			&wi.Acidity,
 			&wi.Sweetness,
 			&wi.Price,
-			&wi.ISWineScale) // check err
+			&wi.ISWineScale)
 		Wines = append(Wines, wi)
-	}
-	if err != nil {
-		log.Fatal(err)
 	}
 
 	roottmpl := template.Must(template.ParseFiles("root.html"))
@@ -126,65 +157,22 @@ func main() {
 		}
 
 		// sanetize/fix input
-		// strconv.Atoi can't take empty strings
+		details := ContactDetails{}
+		details.Title = isEmptyString(r.FormValue("title"))
+		details.Grape = isEmptyString(r.FormValue("grape"))
+		details.Origin = isEmptyString(r.FormValue("origin"))
+		details.Producer = isEmptyString(r.FormValue("producer"))
+		details.Vintage = isEmptyInt(r.FormValue("vintage"))
+		details.Taste = isEmptyString(r.FormValue("taste"))
+		details.Color = isEmptyString(r.FormValue("color"))
+		details.Aroma = isEmptyString(r.FormValue("aroma"))
+		details.Acidity = isEmptyFloat(r.FormValue("acidity"))
+		details.Sweetness = isEmptyFloat(r.FormValue("sweetness"))
+		details.Price = isEmptyFloat(r.FormValue("price"))
+		details.ISWineScale = isEmptyFloat(r.FormValue("isWineScale"))
 
-		func emptyString(string name)  {
-			if (r.FormValue(name) = "") {
-				r.FormValue(name) = NULL
-			}
-			return r.FormValue(name)
-		}
-
-		Vintage, err := strconv.Atoi()
-		if err != nil {
-			log.Fatal(err)
-		}
-		Acidity, err := strconv.Atoi(r.FormValue("acidity"))
-		if err != nil {
-			log.Fatal(err)
-		}
-		Sweetness, err := strconv.Atoi(r.FormValue("sweetness"))
-		if err != nil {
-			log.Fatal(err)
-		}
-		Price, err := strconv.Atoi(r.FormValue("price"))
-		if err != nil {
-			log.Fatal(err)
-		}
-		ISWineScale, err := strconv.Atoi(r.FormValue("isWineScale"))
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		details := ContactDetails{
-			Title:       r.FormValue("title"),
-			Grape:       r.FormValue("grape"),
-			Origin:      r.FormValue("origin"),
-			Producer:    r.FormValue("producer"),
-			Vintage:     Vintage,
-			Taste:       r.FormValue("taste"),
-			Color:       r.FormValue("color"),
-			Aroma:       r.FormValue("aroma"),
-			Acidity:     float64(Acidity),
-			Sweetness:   float64(Sweetness),
-			Price:       float64(Price),
-			ISWineScale: float64(ISWineScale),
-		}
-
-		// do something with details
 		// Inserts our data into the users table and returns with the result and a possible error.
 		// The result contains information about the last inserted id (which was auto-generated for us) and the count of rows this query affected.
-
-		// result, err := db.Exec(`
-		// INSERT INTO users (
-		// username,
-		// password,
-		// created_at
-		// ) VALUES (?, ?, ?)`,
-		// username,
-		// password,
-		// createdAt)
-
 		result, err := db.Exec(`
 		INSERT INTO wines (Title, Grape, Origin, Producer, Vintage, Taste, Color, Aroma, Acidity, Sweetness, Price, ISWineScale
 		) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -212,6 +200,6 @@ func main() {
 
 	port := "8080"
 
-	fmt.Printf("Listing on port " + port)
+	fmt.Print("Listing on port " + port)
 	http.ListenAndServe(":"+port, nil)
 }
