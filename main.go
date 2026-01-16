@@ -56,7 +56,7 @@ func isEmptyString(s string) sql.NullString {
 	if s == "" {
 		return sql.NullString{Valid: false}
 	}
-	return sql.NullString{Valid: true}
+	return sql.NullString{String: s, Valid: true}
 }
 
 func isEmptyInt(i string) sql.NullInt64 {
@@ -66,6 +66,7 @@ func isEmptyInt(i string) sql.NullInt64 {
 
 	a, err := strconv.ParseInt(i, 10, 64)
 	if err != nil {
+		log.Fatal(err)
 		return sql.NullInt64{Valid: false}
 	}
 	return sql.NullInt64{Int64: a, Valid: true}
@@ -79,6 +80,7 @@ func isEmptyFloat(f string) sql.NullFloat64 {
 	a, err := strconv.ParseFloat(f, 64)
 	if err != nil {
 		log.Fatal(err)
+		return sql.NullFloat64{Valid: false}
 	}
 	return sql.NullFloat64{Float64: a, Valid: true}
 }
