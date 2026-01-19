@@ -10,10 +10,13 @@
                 Taste: {{.Taste}} <br>
                 Color: {{.Color}} <br>
                 Aroma: {{.Aroma}} <br>
-                Acidity: {{.Acidity}} <br>
-                Sweetness: {{.Sweetness}} <br>
-                Price: {{.Price}} <br>
+                Acidity: {{.Acidity}} g/ml <br>
+                Sweetness: {{.Sweetness}} g/ml <br>
+                Price: {{.Price}} kr <br>
                 ISWineScale: {{.ISWineScale}}
             </p></li>
+            <button>
+                <a href="/edit" + {{.Id}}>Edit</a>
+            </button>
     {{end}}
 </ul>

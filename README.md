@@ -1,9 +1,9 @@
 # TheWinery
 
 ## TODO (in priority)
-1. upload page
+1. ~~upload page~~
 2. edit page
-3. proper units on data
+3. ~~proper units on data~~
 4. images
 5. user accounts / auth
 6. real data
