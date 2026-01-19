@@ -194,10 +194,19 @@ func main() {
 			log.Fatal(err)
 		}
 
-		id, err := result.LastInsertId()
-		fmt.Println(id)
+		Id, err := result.LastInsertId()
+		fmt.Println(Id)
 
 		formtmpl.Execute(w, struct{ Success bool }{true})
+	})
+
+	http.HandleFunc("/edit{Id}", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			formtmpl.Execute(w, nil)
+			return
+		}
+
+		db.Query()
 	})
 
 	port := "8080"

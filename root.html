@@ -13,10 +13,11 @@
                 Acidity: {{.Acidity}} g/ml <br>
                 Sweetness: {{.Sweetness}} g/ml <br>
                 Price: {{.Price}} kr <br>
-                ISWineScale: {{.ISWineScale}}
+                ISWineScale: {{.ISWineScale}} <br>
+                Id: {{.Id}}
             </p></li>
             <button>
-                <a href="/edit" + {{.Id}}>Edit</a>
+                <a href="/edit{{.Id}}">Edit</a>
             </button>
     {{end}}
 </ul>
