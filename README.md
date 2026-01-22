@@ -2,6 +2,7 @@
 
 ## TODO (in priority)
 1. ~~upload page~~
+2. optimize (I'm going insane)
 2. edit page
 3. ~~proper units on data~~
 4. images

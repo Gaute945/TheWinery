@@ -10,6 +10,7 @@ import (
 	"strconv"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
 
@@ -141,20 +142,21 @@ func main() {
 		Wines = append(Wines, wi)
 	}
 
-	roottmpl := template.Must(template.ParseFiles("root.html"))
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	r := mux.NewRouter()
+
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("root.html"))
 		data := rootPage{
 			PageTitle: "Wines",
 			Wines:     Wines,
 		}
-		roottmpl.Execute(w, data)
+		tmpl.Execute(w, data)
 	})
 
-	formtmpl := template.Must(template.ParseFiles("forms.html"))
-
-	http.HandleFunc("/add", func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/add", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("add.html"))
 		if r.Method != http.MethodPost {
-			formtmpl.Execute(w, nil)
+			tmpl.Execute(w, nil)
 			return
 		}
 
@@ -197,20 +199,45 @@ func main() {
 		Id, err := result.LastInsertId()
 		fmt.Println(Id)
 
-		formtmpl.Execute(w, struct{ Success bool }{true})
+		tmpl.Execute(w, struct{ Success bool }{true})
 	})
 
-	http.HandleFunc("/edit{Id}", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodGet {
-			formtmpl.Execute(w, nil)
+	// /edit/Id
+
+	r.HandleFunc("/edit/{Id}", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("edit.html"))
+
+		// validate and sanetize "Id"
+		vars := mux.Vars(r)
+		Idstring := vars["Id"]
+		Id, err := strconv.Atoi(Idstring)
+		if err != nil {
+			http.Error(w, "Invalid Id", http.StatusBadRequest)
 			return
 		}
 
-		db.Query()
+		// calling db for Title
+		rows, err := db.Query("SELECT Title FROM wines WHERE Id = ?", Id)
+		if err != nil {
+			log.Fatal(err)
+			return
+		}
+
+		defer rows.Close()
+		for rows.Next() {
+			var Title string
+			if err := rows.Scan(&Title); err != nil {
+				log.Println("scan error:", err)
+				return
+			}
+			fmt.Print(Title)
+		}
+
+		tmpl.Execute(w, vars)
 	})
 
 	port := "8080"
 
 	fmt.Print("Listing on port " + port)
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":"+port, r)
 }
