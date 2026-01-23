@@ -9,54 +9,27 @@ import (
 	"github.com/gorilla/mux"
 )
 
-/*func isEmptyString(s string) sql.NullString {
-	if s == "" {
-		return sql.NullString{Valid: false}
-	}
-	return sql.NullString{String: s, Valid: true}
-}
-
-func isEmptyInt(i string) sql.NullInt64 {
-	if i == "" {
-		return sql.NullInt64{Valid: false}
-	}
-
-	a, err := strconv.ParseInt(i, 10, 64)
-	if err != nil {
-		log.Fatal(err)
-		return sql.NullInt64{Valid: false}
-	}
-	return sql.NullInt64{Int64: a, Valid: true}
-}
-
-func isEmptyFloat(f string) sql.NullFloat64 {
-	if f == "" {
-		return sql.NullFloat64{Valid: false}
-	}
-
-	a, err := strconv.ParseFloat(f, 64)
-	if err != nil {
-		log.Fatal(err)
-		return sql.NullFloat64{Valid: false}
-	}
-	return sql.NullFloat64{Float64: a, Valid: true}
-}*/
-
 func main() {
-	connectToDb()
+	err := ConnectToDb()
 	if err != nil {
 		log.Fatal(err)
 	} else {
 		println("Connected to db")
 	}
 
-	ReadAll()
+	err, wines := ReadAll()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("root.html"))
-		ReadAll()
+		err, wines = ReadAll()
+		if err != nil {
+			log.Fatal(err)
+		}
 		tmpl.Execute(w, wines)
 	})
 
@@ -67,23 +40,12 @@ func main() {
 			return
 		}
 
-		// http handler
-		// sanetize/fix input
-		wine := Wine{}
-		wine.Title = isEmptyString(r.FormValue("title"))
-		wine.Grape = isEmptyString(r.FormValue("grape"))
-		wine.Origin = isEmptyString(r.FormValue("origin"))
-		wine.Producer = isEmptyString(r.FormValue("producer"))
-		wine.Vintage = isEmptyInt(r.FormValue("vintage"))
-		wine.Taste = isEmptyString(r.FormValue("taste"))
-		wine.Color = isEmptyString(r.FormValue("color"))
-		wine.Aroma = isEmptyString(r.FormValue("aroma"))
-		wine.Acidity = isEmptyFloat(r.FormValue("acidity"))
-		wine.Sweetness = isEmptyFloat(r.FormValue("sweetness"))
-		wine.Price = isEmptyFloat(r.FormValue("price"))
-		wine.ISWineScale = isEmptyFloat(r.FormValue("isWineScale"))
+		err, wine := FormToWine(r)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-		Create(wine)
+		err = Create(wine)
 		if err != nil {
 			log.Fatal(err)
 		}

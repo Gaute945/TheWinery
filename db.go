@@ -4,10 +4,44 @@ import (
 	"database/sql"
 	"log"
 	"os"
+	"strconv"
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 )
+
+func IsEmptyString(s string) sql.NullString {
+	if s == "" {
+		return sql.NullString{Valid: false}
+	}
+	return sql.NullString{String: s, Valid: true}
+}
+
+func IsEmptyInt(i string) sql.NullInt64 {
+	if i == "" {
+		return sql.NullInt64{Valid: false}
+	}
+
+	a, err := strconv.ParseInt(i, 10, 64)
+	if err != nil {
+		log.Fatal(err)
+		return sql.NullInt64{Valid: false}
+	}
+	return sql.NullInt64{Int64: a, Valid: true}
+}
+
+func IsEmptyFloat(f string) sql.NullFloat64 {
+	if f == "" {
+		return sql.NullFloat64{Valid: false}
+	}
+
+	a, err := strconv.ParseFloat(f, 64)
+	if err != nil {
+		log.Fatal(err)
+		return sql.NullFloat64{Valid: false}
+	}
+	return sql.NullFloat64{Float64: a, Valid: true}
+}
 
 // must be uppercase for global scope and pointer for nullable field
 type Wine struct {
@@ -31,7 +65,7 @@ var db *sql.DB
 // functions is called by http handler
 // http methods is banned
 
-func connectToDb() (err error) {
+func ConnectToDb() (err error) {
 	err = godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
@@ -81,12 +115,12 @@ func Create(wine Wine) (err error) {
 
 func ReadOne(id int64) (err error, wine Wine) {
 	// db.exec(select * from wines where id = ?, id)
-	// return err, wine
+
+	return err, wine
 }
 
-func ReadAll() (err error, wines Wine) {
+func ReadAll() (err error, wines []Wine) {
 	// db.exec(select * from wines)
-	// return err, wines
 
 	rows, err := db.Query("SELECT Id, Title, Grape, Origin, Producer, Vintage, Taste, Color, Aroma, Acidity, Sweetness, Price, ISwinescale FROM wines")
 	if err != nil {
@@ -95,21 +129,22 @@ func ReadAll() (err error, wines Wine) {
 	defer rows.Close()
 
 	for rows.Next() {
+		var w Wine
 		rows.Scan(
-			wines.Id,
-			wines.Title,
-			&wines.Grape,
-			&wines.Origin,
-			&wines.Producer,
-			&wines.Vintage,
-			&wines.Taste,
-			&wines.Color,
-			&wines.Aroma,
-			&wines.Acidity,
-			&wines.Sweetness,
-			&wines.Price,
-			wines.ISWineScale)
-		wines = append(wines, wines)
+			&w.Id,
+			&w.Title,
+			&w.Grape,
+			&w.Origin,
+			&w.Producer,
+			&w.Vintage,
+			&w.Taste,
+			&w.Color,
+			&w.Aroma,
+			&w.Acidity,
+			&w.Sweetness,
+			&w.Price,
+			&w.ISWineScale)
+		wines = append(wines, w)
 	}
 	return err, wines
 }
@@ -117,9 +152,14 @@ func ReadAll() (err error, wines Wine) {
 func Update(id int64) (err error) {
 	// db.exec(insert into wines where id = ?, id)
 	// return err
+
+	err = nil
+	return err
 }
 
 func Delete(id int64) (err error) {
 	// db.exec(drop wine where id = ?, id)
 	// return err
+
+	return err
 }
