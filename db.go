@@ -43,23 +43,6 @@ func IsEmptyFloat(f string) sql.NullFloat64 {
 	return sql.NullFloat64{Float64: a, Valid: true}
 }
 
-// must be uppercase for global scope and pointer for nullable field
-type Wine struct {
-	Id          int64
-	Title       string
-	Grape       *string
-	Origin      *string
-	Producer    *string
-	Vintage     *int64
-	Taste       *string
-	Color       *string
-	Aroma       *string
-	Acidity     *float64
-	Sweetness   *float64
-	Price       *float64
-	ISWineScale float64
-}
-
 var db *sql.DB
 
 // functions is called by http handler
@@ -92,12 +75,7 @@ func ConnectToDb() (err error) {
 	return err
 }
 
-func Create(wine Wine) (err error) {
-	// rows, result := db.exec(insert into wines ? ? ? ? ? ?, Title Grape Origin)
-	// for(next(scan(rows)))
-	// err = nil
-	// return (err)
-
+func Create(wine Wine) (err error, success bool) {
 	result, err := db.Exec(
 		`INSERT INTO wines (
 		Title, Grape, Origin, Producer, Vintage, 
@@ -109,28 +87,31 @@ func Create(wine Wine) (err error) {
 		wine.Color, wine.Aroma, wine.Acidity,
 		wine.Sweetness, wine.Price, wine.ISWineScale,
 	)
-	print(result.RowsAffected())
-	return err
-}
-
-func ReadOne(id int64) (err error, wine Wine) {
-	// db.exec(select * from wines where id = ?, id)
-
-	return err, wine
-}
-
-func ReadAll() (err error, wines []Wine) {
-	// db.exec(select * from wines)
-
-	rows, err := db.Query("SELECT Id, Title, Grape, Origin, Producer, Vintage, Taste, Color, Aroma, Acidity, Sweetness, Price, ISwinescale FROM wines")
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer rows.Close()
 
-	for rows.Next() {
+	rowsAffected, err := result.RowsAffected()
+	if (rowsAffected != 0) && (err == nil) {
+		success = true
+	} else {
+		log.Fatal(err)
+	}
+
+	return err, success
+}
+
+func ReadOne(id int64) (err error, wine []Wine) {
+	row, err := db.Query(`SELECT * FROM wines WHERE Id = ?`, id)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer row.Close()
+
+	for row.Next() {
 		var w Wine
-		rows.Scan(
+		err := row.Scan(
 			&w.Id,
 			&w.Title,
 			&w.Grape,
@@ -144,12 +125,61 @@ func ReadAll() (err error, wines []Wine) {
 			&w.Sweetness,
 			&w.Price,
 			&w.ISWineScale)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		wine = append(wine, w)
+	}
+
+	err = row.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return err, wine
+}
+
+func ReadAll() (err error, wines []Wine) {
+	rows, err := db.Query("SELECT * FROM wines")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var w Wine
+		err := rows.Scan(
+			&w.Id,
+			&w.Title,
+			&w.Grape,
+			&w.Origin,
+			&w.Producer,
+			&w.Vintage,
+			&w.Taste,
+			&w.Color,
+			&w.Aroma,
+			&w.Acidity,
+			&w.Sweetness,
+			&w.Price,
+			&w.ISWineScale)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		wines = append(wines, w)
 	}
+
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	return err, wines
 }
 
-func Update(id int64) (err error) {
+func Update(id int64, changes []string) (err error) {
 	// db.exec(insert into wines where id = ?, id)
 	// return err
 

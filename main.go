@@ -9,6 +9,23 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// must be uppercase for global scope and pointer for nullable field
+type Wine struct {
+	Id          int64
+	Title       string   `form:"title"`
+	Grape       *string  `form:"grape"`
+	Origin      *string  `form:"origin"`
+	Producer    *string  `form:"producer"`
+	Vintage     *int64   `form:"vintage"`
+	Taste       *string  `form:"taste"`
+	Color       *string  `form:"color"`
+	Aroma       *string  `form:"aroma"`
+	Acidity     *float64 `form:"acidity"`
+	Sweetness   *float64 `form:"sweetness"`
+	Price       *float64 `form:"price"`
+	ISWineScale float64  `form:"isWineScale"`
+}
+
 func main() {
 	err := ConnectToDb()
 	if err != nil {
@@ -17,24 +34,30 @@ func main() {
 		println("Connected to db")
 	}
 
-	err, wines := ReadAll()
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("root.html"))
-		err, wines = ReadAll()
+		tmpl := template.Must(template.ParseFiles("Templates/root.html"))
+		err, wines := ReadAll()
 		if err != nil {
 			log.Fatal(err)
 		}
-		tmpl.Execute(w, wines)
+
+		data := struct {
+			PageTitle string
+			Wines     []Wine
+		}{
+			PageTitle: "Wineyard",
+			Wines:     wines,
+		}
+
+		if err := tmpl.Execute(w, data); err != nil {
+			log.Println(err)
+		}
 	})
 
 	r.HandleFunc("/add", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("add.html"))
+		tmpl := template.Must(template.ParseFiles("Templates/add.html"))
 		if r.Method != http.MethodPost {
 			tmpl.Execute(w, nil)
 			return
@@ -45,8 +68,8 @@ func main() {
 			log.Fatal(err)
 		}
 
-		err = Create(wine)
-		if err != nil {
+		err, success := Create(wine)
+		if err != nil || !success {
 			log.Fatal(err)
 		}
 
@@ -56,7 +79,7 @@ func main() {
 	// /edit/Id
 
 	/*r.HandleFunc("/edit/{Id}", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("edit.html"))
+		tmpl := template.Must(template.ParseFiles("Templates/edit.html"))
 
 		// validate and sanetize "Id"
 		vars := mux.Vars(r)
