@@ -101,17 +101,21 @@ func Create(wine Wine) (err error, success bool) {
 	return err, success
 }
 
-func ReadOne(id int64) (err error, wine []Wine) {
-	row, err := db.Query(`SELECT * FROM wines WHERE Id = ?`, id)
+func ReadOne(id int64) (err error, wine Wine) {
+	// Query the database and scan the values into out variables. Don't forget to check for errors.
+	//query := `SELECT * FROM wines WHERE id = ?`
+	//err := db.QueryRow(query, 1).Scan(&id, &username, &password, &createdAt)}
+
+	query := ("SELECT * FROM wines WHERE id = ?")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer row.Close()
+	defer rows.Close()
 
-	for row.Next() {
+	for rows.Next() {
 		var w Wine
-		err := row.Scan(
+		err := rows.Scan(
 			&w.Id,
 			&w.Title,
 			&w.Grape,
@@ -129,15 +133,15 @@ func ReadOne(id int64) (err error, wine []Wine) {
 			log.Fatal(err)
 		}
 
-		wine = append(wine, w)
+		wines = append(wines, w)
 	}
 
-	err = row.Err()
+	err = rows.Err()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	return err, wine
+	return err, wines
 }
 
 func ReadAll() (err error, wines []Wine) {

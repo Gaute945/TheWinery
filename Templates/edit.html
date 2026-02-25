@@ -1,11 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>/edit</title>
-</head>
-<body>
-    <p>/edit/{{.Id}}</p>
-</body>
-</html>
+{{if .Success}}
+    <h1>Thanks for your message!</h1>
+{{else}}
+    <h1>{{.PageTitle}}</h1>
+    <form method="POST">
+        <label>{{.Wines.Title}}:</label><br />
+        <input type="text" name="title" required maxlength="256"><br />
+        <label>Grape:</label><br />
+        <input type="text" name="grape" maxlength="256"><br />
+        <label>Origin:</label><br />
+        <input type="text" name="origin" maxlength="256"><br />
+        <label>Producer:</label><br />
+        <input type="text" name="producer" maxlength="256"><br />
+        <label>Vintage:</label><br />
+        <input type="number" name="vintage" min="0" max="2026"><br />
+        <label>Taste:</label><br />
+        <input type="text" name="taste" maxlength="256"><br />
+        <label>Color:</label><br />
+        <input type="text" name="color" maxlength="256"><br />
+        <label>Aroma:</label><br />
+        <input type="text" name="aroma" maxlength="256"><br />
+        <label>Acidity: g/ml</label><br /> 
+        <input type="number" name="acidity" step="0.01" min="0" max="99.99"><br />
+        <label>Sweetness: g/ml</label><br />
+        <input type="number" name="sweetness" step="0.01" min="0" max="99.99"><br />
+        <label>Price: kr</label><br />
+        <input type="number" name="price" step="0.01" min="0" max="99999.99"><br />
+        <label>ISWineScale:</label><br />
+        <input type="number" name="isWineScale" step="0.1" min="0" max="10.0" required><br />
+        <input type="submit">
+    </form>
+{{end}}

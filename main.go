@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -27,6 +28,9 @@ type Wine struct {
 }
 
 func main() {
+	// fix function to return: "data, err" not "data, err"
+	// add http handlers in http.go in form of: r.HandleFunc("/", HomeHandler)
+
 	err := ConnectToDb()
 	if err != nil {
 		log.Fatal(err)
@@ -78,37 +82,44 @@ func main() {
 
 	// /edit/Id
 
-	/*r.HandleFunc("/edit/{Id}", func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/edit/{Id}", func(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("Templates/edit.html"))
+		Id, err := strconv.ParseInt(mux.Vars(r)["Id"], 10, 64)
 
-		// validate and sanetize "Id"
-		vars := mux.Vars(r)
-		Idstring := vars["Id"]
-		Id, err := strconv.Atoi(Idstring)
-		if err != nil {
-			http.Error(w, "Invalid Id", http.StatusBadRequest)
+		if r.Method != http.MethodPost {
+			err, wines := ReadOne(Id)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			data := struct {
+				PageTitle string
+				Wines     Wine
+				Success   bool
+			}{
+				PageTitle: "Edit the winyard",
+				Wines:     wines,
+				Success:   false,
+			}
+
+			tmpl.Execute(w, data)
 			return
 		}
 
-		// calling db for Title
-		rows, err := db.Query("SELECT Title FROM wines WHERE Id = ?", Id)
+		println("post request")
+
+		err, wine := FormToWine(r)
 		if err != nil {
 			log.Fatal(err)
-			return
 		}
 
-		defer rows.Close()
-		for rows.Next() {
-			var Title string
-			if err := rows.Scan(&Title); err != nil {
-				log.Println("scan error:", err)
-				return
-			}
-			fmt.Print(Title)
+		err, success := Create(wine)
+		if err != nil || !success {
+			log.Fatal(err)
 		}
 
-		tmpl.Execute(w, vars)
-	}) db*/
+		tmpl.Execute(w, struct{ Success bool }{true})
+	})
 
 	port := "8080"
 
