@@ -2,8 +2,10 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"os"
+	"reflect"
 	"strconv"
 
 	"github.com/go-sql-driver/mysql"
@@ -75,7 +77,22 @@ func ConnectToDb() (err error) {
 	return err
 }
 
+// sanetize
+func Fining(wine Wine) (err error, finedWine Wine) {
+	v := reflect.ValueOf(wine)
+	t := v.Type()
+
+	for i := 0; i < v.NumField(); i++ {
+		field := t.Field(i)
+		value := v.Field(i).Interface()
+		fmt.Printf("%s: %v\n", field.Name, value)
+	}
+
+	return err, finedWine
+}
+
 func Create(wine Wine) (err error, success bool) {
+	Fining(wine)
 	result, err := db.Exec(
 		`INSERT INTO wines (
 		Title, Grape, Origin, Producer, Vintage, 
@@ -101,47 +118,41 @@ func Create(wine Wine) (err error, success bool) {
 	return err, success
 }
 
-func ReadOne(id int64) (err error, wine Wine) {
-	// Query the database and scan the values into out variables. Don't forget to check for errors.
-	//query := `SELECT * FROM wines WHERE id = ?`
-	//err := db.QueryRow(query, 1).Scan(&id, &username, &password, &createdAt)}
+func ReadOne(Id int64) (err error, wine Wine) {
+	row := db.QueryRow("SELECT * FROM wines WHERE Id = ?", Id)
+	if err == sql.ErrNoRows {
+		println("ErrNoRows")
+		log.Fatal(err)
+	}
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
-	query := ("SELECT * FROM wines WHERE id = ?")
+	err = row.Scan(
+		&wine.Id,
+		&wine.Title,
+		&wine.Grape,
+		&wine.Origin,
+		&wine.Producer,
+		&wine.Vintage,
+		&wine.Taste,
+		&wine.Color,
+		&wine.Aroma,
+		&wine.Acidity,
+		&wine.Sweetness,
+		&wine.Price,
+		&wine.ISWineScale)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer rows.Close()
-
-	for rows.Next() {
-		var w Wine
-		err := rows.Scan(
-			&w.Id,
-			&w.Title,
-			&w.Grape,
-			&w.Origin,
-			&w.Producer,
-			&w.Vintage,
-			&w.Taste,
-			&w.Color,
-			&w.Aroma,
-			&w.Acidity,
-			&w.Sweetness,
-			&w.Price,
-			&w.ISWineScale)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		wines = append(wines, w)
-	}
-
-	err = rows.Err()
+	err = row.Err()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	return err, wines
+	return err, wine
 }
 
 func ReadAll() (err error, wines []Wine) {
