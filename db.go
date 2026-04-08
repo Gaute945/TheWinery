@@ -124,10 +124,6 @@ func ReadOne(Id int64) (err error, wine Wine) {
 		println("ErrNoRows")
 		log.Fatal(err)
 	}
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
 
 	err = row.Scan(
 		&wine.Id,
@@ -194,10 +190,11 @@ func ReadAll() (err error, wines []Wine) {
 	return err, wines
 }
 
-func Update(id int64, changes []string) (err error) {
+func Update(wine Wine) (bool success, err error) {
 	// db.exec(insert into wines where id = ?, id)
 	// return err
 
+	success = false
 	err = nil
 	return err
 }

@@ -3,30 +3,30 @@
 {{else}}
     <h1>{{.PageTitle}}</h1>
     <form method="POST">
-        <label>{{.Wines.Title}}:</label><br />
-        <input type="text" name="title" required maxlength="256"><br />
-        <label>Grape:</label><br />
+        <label>Title: {{.Wines.Title}}:</label><br />
+        <input type="text" name="title" maxlength="256"><br />
+        <label>Grape: {{.Wines.Grape}}</label><br />
         <input type="text" name="grape" maxlength="256"><br />
-        <label>Origin:</label><br />
+        <label>Origin: {{.Wines.Origin}}</label><br />
         <input type="text" name="origin" maxlength="256"><br />
-        <label>Producer:</label><br />
+        <label>Producer: {{.Wines.Producer}}</label><br />
         <input type="text" name="producer" maxlength="256"><br />
-        <label>Vintage:</label><br />
+        <label>Vintage: {{.Wines.Vintage}}</label><br />
         <input type="number" name="vintage" min="0" max="2026"><br />
-        <label>Taste:</label><br />
+        <label>Taste: {{.Wines.Taste}}</label><br />
         <input type="text" name="taste" maxlength="256"><br />
-        <label>Color:</label><br />
+        <label>Color: {{.Wines.Color}}</label><br />
         <input type="text" name="color" maxlength="256"><br />
-        <label>Aroma:</label><br />
+        <label>Aroma: {{.Wines.Aroma}}</label><br />
         <input type="text" name="aroma" maxlength="256"><br />
-        <label>Acidity: g/ml</label><br /> 
+        <label>Acidity: g/ml {{.Wines.Acidity}}</label><br /> 
         <input type="number" name="acidity" step="0.01" min="0" max="99.99"><br />
-        <label>Sweetness: g/ml</label><br />
+        <label>Sweetness: g/ml {{.Wines.Sweetness}}</label><br />
         <input type="number" name="sweetness" step="0.01" min="0" max="99.99"><br />
-        <label>Price: kr</label><br />
+        <label>Price: kr {{.Wines.Price}}</label><br />
         <input type="number" name="price" step="0.01" min="0" max="99999.99"><br />
-        <label>ISWineScale:</label><br />
-        <input type="number" name="isWineScale" step="0.1" min="0" max="10.0" required><br />
+        <label>ISWineScale: {{.Wines.ISWineScale}}</label><br />
+        <input type="number" name="isWineScale" step="0.1" min="0" max="10.0"><br />
         <input type="submit">
     </form>
 {{end}}

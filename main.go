@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -82,46 +83,44 @@ func main() {
 	})
 
 	// /edit/Id
-	/*
-		r.HandleFunc("/edit/{Id}", func(w http.ResponseWriter, r *http.Request) {
-			tmpl := template.Must(template.ParseFiles("Templates/edit.html"))
-			Id, err := strconv.ParseInt(mux.Vars(r)["Id"], 10, 64)
+	r.HandleFunc("/edit/{Id}", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("Templates/edit.html"))
+		Id, err := strconv.ParseInt(mux.Vars(r)["Id"], 10, 64)
 
-			if r.Method != http.MethodPost {
-				err, wines := ReadOne(Id)
-				if err != nil {
-					log.Fatal(err)
-				}
-
-				data := struct {
-					PageTitle string
-					Wines     Wine
-					Success   bool
-				}{
-					PageTitle: "Edit the winyard",
-					Wines:     wines,
-					Success:   false,
-				}
-
-				tmpl.Execute(w, data)
-				return
-			}
-
-			println("post request")
-
-			err, wine := FormToWine(r)
+		if r.Method != http.MethodPost {
+			err, wines := ReadOne(Id)
 			if err != nil {
 				log.Fatal(err)
 			}
 
-			err, success := Create(wine)
-			if err != nil || !success {
-				log.Fatal(err)
+			data := struct {
+				PageTitle string
+				Wines     Wine
+				Success   bool
+			}{
+				PageTitle: "Edit the winyard",
+				Wines:     wines,
+				Success:   false,
 			}
 
-			tmpl.Execute(w, struct{ Success bool }{true})
-		})
-	*/
+			tmpl.Execute(w, data)
+			return
+		}
+
+		println("post request")
+
+		err, wine := FormToWine(r)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		success, err := Update(wine)
+		if err != nil || !success {
+			log.Fatal(err)
+		}
+
+		tmpl.Execute(w, struct{ Success bool }{true})
+	})
 
 	port := "8080"
 
