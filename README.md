@@ -2,7 +2,7 @@
 
 ## TODO (in priority)
 1. ~~upload page~~
-2. optimize (I'm going insane)
+2. ~~optimize (I'm going insane)~~
 2. edit page
 3. ~~proper units on data~~
 4. images
@@ -18,25 +18,25 @@ systemctl start mariadb
 
 ### db and user setup
 sudo mariadb   
-CREATE DATABASE TheWinery   
+CREATE DATABASE TheWinery;
 CREATE USER 'JohnDoe'@'localhost' IDENTIFIED BY 'some_pass';   
-GRANT ALL PRIVILEGES ON mydb.* TO 'JohnDoe'@'localhost';
+GRANT ALL PRIVILEGES ON TheWinery.* TO 'JohnDoe'@'localhost';
 
 ### source the example db
 mariadb -u JohnDoe -p   
 USE TheWinery;   
-SOURCE /full/path/to/dump.sql;
+SOURCE create-tables.sql;
 
 ### .env config
 nano .env   
 DBUSER=JohnDoe   
-DBPASS=some_pass   
-DBNAME=TheWinery
+DBPASS=some_pass
 
 ### running
 go run .   
 localhost:8080
 
 ### misc
+I would appreciate having a dialog if you want to make a pull request, Discord: gauteg
 '/c' to exit from '->'   
 'exit' to exit normally

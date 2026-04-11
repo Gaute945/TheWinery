@@ -57,7 +57,6 @@ func ConnectToDb() (err error) {
 	}
 	DBUSER := os.Getenv("DBUSER")
 	DBPASS := os.Getenv("DBPASS")
-	DBNAME := os.Getenv("DBNAME")
 
 	// Capture connection properties.
 	cfg := mysql.NewConfig()
@@ -65,7 +64,7 @@ func ConnectToDb() (err error) {
 	cfg.Passwd = DBPASS
 	cfg.Net = "tcp"
 	cfg.Addr = "127.0.0.1:3306"
-	cfg.DBName = DBNAME
+	cfg.DBName = "TheWinery"
 
 	// Get a database handle.
 	db, err = sql.Open("mysql", cfg.FormatDSN())
