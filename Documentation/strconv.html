@@ -1,0 +1,3605 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="responsive" data-local="" style="--js-unit-header-height: 8.807291984558105rem; --js-sticky-header-height: 3.5rem; --js-unit-header-top: -5.3072919845581055rem;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <script>
+      window.addEventListener('error', window.__err=function f(e){f.p=f.p||[];f.p.push(e)});
+    </script>
+    <script>
+      (function() {
+        const theme = document.cookie.match(/prefers-color-scheme=(light|dark|auto)/)?.[1]
+        if (theme) {
+          document.querySelector('html').setAttribute('data-theme', theme);
+        }
+      }())
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Package strconv implements conversions to and from string representations of basic data types.">
+    
+    <meta class="js-gtmID" data-gtmid="GTM-W8MVQXG">
+    <link rel="shortcut icon" href="https://pkg.go.dev/static/shared/icon/favicon.ico">
+    
+  
+    <link rel="canonical" href="https://pkg.go.dev/strconv">
+  
+
+    <link href="strconv_files/frontend.min.css" rel="stylesheet">
+    
+    <link rel="search" type="application/opensearchdescription+xml" href="https://pkg.go.dev/opensearch.xml" title="Go Packages">
+    
+    
+  <title>strconv package - strconv - Go Packages</title>
+
+    
+  <link href="strconv_files/unit.min.css" rel="stylesheet">
+  
+  <link href="strconv_files/main.min.css" rel="stylesheet">
+
+
+  <script src="strconv_files/dialog-polyfill.js"></script><script src="strconv_files/frontend.js" type="module" async="" defer="defer"></script><script src="strconv_files/google-analytics_analytics.js" type="module" async="" defer="defer"></script><script src="strconv_files/main.js" type="module" async="" defer="defer"></script><script src="strconv_files/unit.js" type="module" async="" defer="defer"></script></head>
+  <body>
+    
+    <script>
+      function loadScript(src, mod = true) {
+        let s = document.createElement('script');
+        s.src = src;
+        if (mod) {
+          s.type = 'module';
+          s.async = true;
+          s.defer = true
+        }
+        document.head.appendChild(s);
+      }
+      loadScript("/third_party/dialog-polyfill/dialog-polyfill.js", false)
+      loadScript("/static/frontend/frontend.js");
+    </script>
+    
+  <header class="go-Header go-Header--full js-siteHeader"><div></div>
+    <div class="go-Header-inner go-Header-inner--dark">
+      <nav class="go-Header-nav">
+        <a href="https://go.dev/" class="js-headerLogo" data-gtmc="nav link" data-test-id="go-header-logo-link" role="heading" aria-level="1">
+          <img class="go-Header-logo" src="strconv_files/go-white.svg" alt="Go">
+        </a>
+         <div class="skip-navigation-wrapper">
+            <a class="skip-to-content-link" aria-label="Skip to main content" href="#main-content"> Skip to Main Content </a>
+          </div>
+        <div class="go-Header-rightContent">
+          
+<div class="go-SearchForm js-searchForm">
+  <form class="go-InputGroup go-ShortcutKey go-SearchForm-form" action="/search" data-shortcut="/" data-shortcut-alt="search" data-gtmc="search form" aria-label="Search for a package" role="search">
+    <input name="q" class="go-Input js-searchFocus" aria-label="Search for a package" type="search" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search packages or symbols">
+    <input name="m" hidden="">
+    <button class="go-Button go-Button--inverted" aria-label="Submit search">
+      <img class="go-Icon" height="24" width="24" src="strconv_files/search_gm_grey_24dp.svg" alt="">
+    </button>
+  </form>
+  <button class="go-SearchForm-expandSearch js-expandSearch" data-gtmc="nav button" aria-label="Open search" data-test-id="expand-search">
+    <img class="go-Icon go-Icon--inverted" height="24" width="24" src="strconv_files/search_gm_grey_24dp.svg" alt="">
+
+  </button>
+</div>
+
+          <ul class="go-Header-menu">
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="#" data-gtmc="nav link">
+                Why Go
+                <img class="go-Icon" height="24" width="24" src="strconv_files/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon">
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--why js-desktop-submenu-hover" aria-label="submenu">
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/solutions#case-studies">
+                        <span>Case Studies</span>
+                      </a>
+                    </div>
+                    <p>Common problems companies solve with Go</p>
+                  </li>
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/solutions#use-cases">
+                        <span>Use Cases</span>
+                      </a>
+                    </div>
+                    <p>Stories about how and why companies use Go</p>
+                  </li>
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/security/">
+                        <span>Security</span>
+                      </a>
+                    </div>
+                    <p>How Go can help keep you secure by default</p>
+                  </li>
+              </ul>
+            </li>
+            <li class="go-Header-menuItem">
+              <a href="https://go.dev/learn/" data-gtmc="nav link">Learn</a>
+            </li>
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="#" data-gtmc="nav link">
+                Docs
+                <img class="go-Icon" height="24" width="24" src="strconv_files/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon">
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--docs js-desktop-submenu-hover" aria-label="submenu">
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/effective_go">
+                      <span>Effective Go</span>
+                    </a>
+                  </div>
+                  <p>Tips for writing clear, performant, and idiomatic Go code</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/">
+                      <span>Go User Manual</span>
+                    </a>
+                  </div>
+                  <p>A complete introduction to building software with Go</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://pkg.go.dev/std">
+                      <span>Standard library</span>
+                    </a>
+                  </div>
+                  <p>Reference documentation for Go's standard library</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/devel/release">
+                      <span>Release Notes</span>
+                    </a>
+                  </div>
+                  <p>Learn what's new in each Go release</p>
+                </li>
+              </ul>
+            </li>
+            <li class="go-Header-menuItem go-Header-menuItem--active">
+              <a href="https://pkg.go.dev/" data-gtmc="nav link">Packages</a>
+            </li>
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="#" data-gtmc="nav link">
+                Community
+                <img class="go-Icon" height="24" width="24" src="strconv_files/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon">
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--community js-desktop-submenu-hover" aria-label="submenu">
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/talks/">
+                      <span>Recorded Talks</span>
+                    </a>
+                  </div>
+                  <p>Videos from prior events</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://www.meetup.com/pro/go">
+                      <span>Meetups</span>
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="strconv_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </div>
+                  <p>Meet other local Go developers</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://github.com/golang/go/wiki/Conferences">
+                      <span>Conferences</span>
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="strconv_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </div>
+                  <p>Learn and network with Go developers from around the world</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/blog">
+                      <span>Go blog</span>
+                    </a>
+                  </div>
+                  <p>The Go project's official blog.</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/help">
+                      <span>Go project</span>
+                    </a>
+                  </div>
+                  <p>Get help and stay informed from Go</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    Get connected
+                  </div>
+                  <p></p>
+                  <div class="go-Header-socialIcons">
+                      <a class="go-Header-socialIcon" aria-label="Get connected with google-groups (Opens in new window)" title="Get connected with google-groups (Opens in new window)" href="https://groups.google.com/g/golang-nuts">
+                        <img src="strconv_files/google-groups.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with github (Opens in new window)" title="Get connected with github (Opens in new window)" href="https://github.com/golang">
+                        <img src="strconv_files/github.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with twitter (Opens in new window)" title="Get connected with twitter (Opens in new window)" href="https://twitter.com/golang">
+                        <img src="strconv_files/twitter.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with reddit (Opens in new window)" title="Get connected with reddit (Opens in new window)" href="https://www.reddit.com/r/golang/">
+                        <img src="strconv_files/reddit.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with slack (Opens in new window)" title="Get connected with slack (Opens in new window)" href="https://invite.slack.golangbridge.org/">
+                        <img src="strconv_files/slack.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with stack-overflow (Opens in new window)" title="" href="https://stackoverflow.com/collectives/go">
+                        <img src="strconv_files/stack-overflow.svg">
+                      </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <button class="go-Header-navOpen js-headerMenuButton go-Header-navOpen--white" data-gtmc="nav button" aria-label="Open navigation">
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <aside class="go-NavigationDrawer js-header">
+    <nav class="go-NavigationDrawer-nav">
+      <div class="go-NavigationDrawer-header">
+        <a href="https://go.dev/" tabindex="-1">
+          <img class="go-NavigationDrawer-logo" src="strconv_files/go-blue.svg" alt="Go.">
+        </a>
+      </div>
+      <ul class="go-NavigationDrawer-list">
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="#" tabindex="-1">
+              <span>Why Go</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="strconv_files/navigate_next_gm_grey_24dp.svg" alt="">
+              </i>
+            </a>
+
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="#" tabindex="-1">
+                    <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="strconv_files/navigate_before_gm_grey_24dp.svg" alt="">
+                      </i>
+                      Why Go
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/solutions#case-studies" tabindex="-1">
+                      Case Studies
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/solutions#use-cases" tabindex="-1">
+                      Use Cases
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/security/" tabindex="-1">
+                      Security
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="go-NavigationDrawer-listItem">
+            <a href="https://go.dev/learn/" tabindex="-1">Learn</a>
+          </li>
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="#" tabindex="-1">
+              <span>Docs</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="strconv_files/navigate_next_gm_grey_24dp.svg" alt="">
+              </i>
+            </a>
+
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="#" tabindex="-1"><i class="material-icons">
+                    <img class="go-Icon" height="24" width="24" src="strconv_files/navigate_before_gm_grey_24dp.svg" alt="">
+                    </i>
+                    Docs
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/effective_go" tabindex="-1">
+                      Effective Go
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/" tabindex="-1">
+                      Go User Manual
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://pkg.go.dev/std" tabindex="-1">
+                      Standard library
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/devel/release" tabindex="-1">
+                      Release Notes
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="go-NavigationDrawer-listItem go-NavigationDrawer-listItem--active">
+            <a href="https://pkg.go.dev/" tabindex="-1">Packages</a>
+          </li>
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="#" tabindex="-1">
+              <span>Community</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="strconv_files/navigate_next_gm_grey_24dp.svg" alt="">
+              </i>
+            </a>
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="#" tabindex="-1">
+                    <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="strconv_files/navigate_before_gm_grey_24dp.svg" alt="">
+                    </i>
+                    Community
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/talks/" tabindex="-1">
+                      Recorded Talks
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://www.meetup.com/pro/go" tabindex="-1">
+                      Meetups
+                      <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="strconv_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://github.com/golang/go/wiki/Conferences" tabindex="-1">
+                      Conferences
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="strconv_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/blog" tabindex="-1">
+                      Go blog
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/help" tabindex="-1">
+                      Go project
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <div>Get connected</div>
+                    <div class="go-Header-socialIcons">
+                        <a class="go-Header-socialIcon" href="https://groups.google.com/g/golang-nuts" tabindex="-1"><img src="strconv_files/google-groups.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://github.com/golang" tabindex="-1"><img src="strconv_files/github.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://twitter.com/golang" tabindex="-1"><img src="strconv_files/twitter.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://www.reddit.com/r/golang/" tabindex="-1"><img src="strconv_files/reddit.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://invite.slack.golangbridge.org/" tabindex="-1"><img src="strconv_files/slack.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://stackoverflow.com/collectives/go" tabindex="-1"><img src="strconv_files/stack-overflow.svg"></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="go-NavigationDrawer-scrim js-scrim" role="presentation"></div>
+
+    
+  <main class="go-Main" id="main-content">
+    <div class="go-Main-banner" role="alert"></div>
+    <header class="go-Main-header js-mainHeader">
+  
+  
+  <nav class="go-Main-headerBreadcrumb go-Breadcrumb" aria-label="Breadcrumb" data-test-id="UnitHeader-breadcrumb">
+    <ol>
+      
+        
+          <li data-test-id="UnitHeader-breadcrumbItem">
+            <a href="https://pkg.go.dev/" data-gtmc="breadcrumb link">Discover Packages</a>
+          </li>
+        
+          <li data-test-id="UnitHeader-breadcrumbItem">
+            <a href="https://pkg.go.dev/std" data-gtmc="breadcrumb link">Standard library</a>
+          </li>
+        
+        <li>
+          <a href="https://pkg.go.dev/strconv@go1.26.2" data-gtmc="breadcrumb link" aria-current="location" data-test-id="UnitHeader-breadcrumbCurrent">
+            strconv
+          </a>
+          
+            <button class="go-Button go-Button--inline go-Clipboard js-clipboard" title="Copy path to clipboard.
+
+strconv" aria-label="Copy Path to Clipboard" data-to-copy="strconv" data-gtmc="breadcrumbs button">
+              <img class="go-Icon go-Icon--accented" height="24" width="24" src="strconv_files/content_copy_gm_grey_24dp.svg" alt="">
+            </button>
+          
+        
+      </li>
+    </ol>
+  </nav>
+
+  <div class="go-Main-headerContent">
+    
+  <div class="go-Main-headerTitle js-stickyHeader">
+    <a class="go-Main-headerLogo" href="https://go.dev/" aria-hidden="true" tabindex="-1" data-gtmc="header link" aria-label="Link to Go Homepage">
+      <img height="78" width="207" src="strconv_files/go-blue.svg" alt="Go">
+    </a>
+    <h1 class="UnitHeader-titleHeading" data-test-id="UnitHeader-title">strconv</h1>
+    
+      <span class="go-Chip go-Chip--inverted">package</span>
+    
+      <span class="go-Chip go-Chip--inverted">standard library</span>
+    
+    
+      
+        <button class="go-Button go-Button--inline go-Clipboard js-clipboard" title="Copy path to clipboard.
+
+strconv" aria-label="Copy Path to Clipboard" data-to-copy="strconv" data-gtmc="title button" tabindex="-1">
+          <img class="go-Icon go-Icon--accented" height="24" width="24" src="strconv_files/content_copy_gm_grey_24dp.svg" alt="">
+        </button>
+      
+    
+  </div>
+
+    
+      
+  <div class="go-Main-headerDetails">
+    
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-version">
+    <a href="https://pkg.go.dev/strconv?tab=versions" aria-label="Version: go1.26.2" data-gtmc="header link" aria-describedby="version-description">
+      <span class="go-textSubtle" aria-hidden="true">Version: </span>
+        go1.26.2
+    </a>
+    <div class="screen-reader-only" id="version-description" hidden="">
+      Opens a new window with list of versions in this module.
+    </div>
+    
+    <span class="DetailsHeader-badge--latest" data-test-id="UnitHeader-minorVersionBanner">
+      <span class="go-Chip DetailsHeader-span--latest">Latest</span>
+      <span class="go-Chip DetailsHeader-span--notAtLatest">
+        Latest
+        
+  <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+    <summary>
+      <img class="go-Icon go-Icon--inverted" height="24" width="24" src="strconv_files/alert_gm_grey_24dp.svg" alt="Warning">
+    </summary>
+    <p>This package is not in the latest version of its module.</p>
+  </details>
+
+      </span>
+      <a href="https://pkg.go.dev/strconv" aria-label="Go to Latest Version" data-gtmc="header link">
+        <span class="go-Chip go-Chip--alert DetailsHeader-span--goToLatest">Go to latest</span>
+      </a>
+    </span>
+  </span>
+
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-commitTime">
+    Published: Apr  7, 2026
+  </span>
+
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-licenses">
+    License: <a href="https://pkg.go.dev/strconv?tab=licenses" data-test-id="UnitHeader-license" data-gtmc="header link" aria-describedby="license-description">BSD-3-Clause</a>
+      
+    
+  </span>
+  <div class="screen-reader-only" id="license-description" hidden="">
+    Opens a new window with license information.
+  </div>
+
+      
+        
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-imports">
+    <a href="https://pkg.go.dev/strconv?tab=imports" aria-label="Imports: 5" data-gtmc="header link" aria-describedby="imports-description">
+      <span class="go-textSubtle">Imports: </span>5
+    </a>
+  </span>
+  <div class="screen-reader-only" id="imports-description" hidden="">
+    Opens a new window with list of imports.
+  </div>
+
+        
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-importedby">
+    <a href="https://pkg.go.dev/strconv?tab=importedby" aria-label="Imported By: 1,484,901" data-gtmc="header link" aria-describedby="importedby-description">
+       <span class="go-textSubtle">Imported by: </span>1,484,901
+    </a>
+  </span>
+  <div class="screen-reader-only" id="importedby-description" hidden="">
+    Opens a new window with list of known importers.
+  </div>
+
+      
+    
+  </div>
+  
+  <div class="UnitHeader-overflowContainer">
+    <svg class="UnitHeader-overflowImage" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+    </svg>
+    <select class="UnitHeader-overflowSelect js-selectNav" tabindex="-1">
+      <option value="/" selected="selected">Main</option>
+      <option value="/strconv?tab=versions">
+        Versions
+      </option>
+      <option value="/strconv?tab=licenses">
+        Licenses
+      </option>
+      
+        <option value="/strconv?tab=imports">
+          Imports
+        </option>
+        <option value="/strconv?tab=importedby">
+          Imported By
+        </option>
+      
+    </select>
+  </div>
+
+
+    
+  </div>
+
+</header>
+    
+      <aside class="go-Main-aside  js-mainAside"><div></div>
+  
+  <div class="UnitMeta">
+    <h2 class="go-textLabel">Details</h2>
+    
+  <ul class="UnitMeta-details">
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="strconv_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Valid <a href="https://cs.opensource.google/go/go/+/go1.26.2:src/go.mod" target="_blank" rel="noopener">go.mod</a> file
+          <img class="go-Icon" role="button" tabindex="0" src="strconv_files/help_gm_grey_24dp.svg" alt="" aria-label="Toggle go.mod validity tooltip" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">
+          The Go module system was introduced in Go 1.11 and is the official dependency management
+          solution for Go.
+        </p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="strconv_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Redistributable license
+          <img class="go-Icon" role="button" tabindex="0" src="strconv_files/help_gm_grey_24dp.svg" alt="" aria-label="Toggle redistributable help tooltip" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">
+          Redistributable licenses place minimal restrictions on how software can be used,
+          modified, and redistributed.
+        </p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="strconv_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Tagged version
+          <img class="go-Icon" role="button" tabindex="0" src="strconv_files/help_gm_grey_24dp.svg" alt="" aria-label="Toggle tagged version tooltip" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">Modules with tagged versions give importers more predictable builds.</p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="strconv_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Stable version
+          <img class="go-Icon" role="button" tabindex="0" aria-label="Toggle stable version tooltip" src="strconv_files/help_gm_grey_24dp.svg" alt="" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">When a project reaches major version v1 it is considered stable.</p>
+      </details>
+    </li>
+    <li class="UnitMeta-detailsLearn">
+      <a href="https://pkg.go.dev/about#best-practices" data-gtmc="meta link">Learn more about best practices</a>
+    </li>
+  </ul>
+
+    <h2 class="go-textLabel">Repository</h2>
+    <div class="UnitMeta-repo">
+      
+        <a href="https://cs.opensource.google/go/go" title="https://cs.opensource.google/go/go" target="_blank" rel="noopener">
+          cs.opensource.google/go/go
+        </a>
+      
+    </div>
+    
+      <h2 class="go-textLabel" data-test-id="links-heading">Links</h2>
+      <ul class="UnitMeta-links">
+        
+          <li>
+            <a href="https://go.dev/security/policy" title="Report security issues in the Go standard library and sub-repositories">
+              <img class="go-Icon" height="24" width="24" src="strconv_files/security_grey_24dp.svg" alt="">
+              Report a Vulnerability
+            </a>
+          </li>
+        
+        
+        
+        
+  
+
+        
+  
+
+        
+  
+
+      </ul>
+    
+  </div>
+
+</aside>
+    
+    <nav class="go-Main-nav go-Main-nav--sticky js-mainNav" aria-label="Outline"><div></div>
+  <div class="go-Main-navDesktop">
+    
+  <div class="UnitOutline-jumpTo">
+    <button class="UnitOutline-jumpToInput go-ShortcutKey js-jumpToInput" aria-controls="jump-to-modal" aria-label="Open Jump to Identifier" data-shortcut="f" data-shortcut-alt="find" data-test-id="jump-to-button" data-gtmc="outline button">
+      Jump to ...
+    </button>
+  </div>
+  <ul class="go-Tree js-tree" role="tree" aria-label="Outline" style="--js-tree-height: 92px;">
+    
+    
+      <li role="none">
+        <a href="#section-documentation" data-gtmc="outline link" tabindex="0" aria-level="1" aria-owns="_nav_group_Documentation" aria-expanded="true" role="treeitem" aria-selected="true">
+          Documentation
+        </a>
+        
+<ul role="group" id="_nav_group_Documentation">
+  
+    <li role="none">
+      <a href="#pkg-overview" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">Overview</a>
+    </li>
+  <li class="DocNav-overview" role="none">
+      <a href="#pkg-index" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">
+        Index
+      </a>
+    </li>
+      <li role="none">
+        <a href="#pkg-examples" data-gtmc="doc outline link" tabindex="-1" aria-level="2" aria-owns="Documentation_nav_group_Examples" aria-expanded="false" role="treeitem">
+          Examples
+        </a>
+        <ul role="group" id="Documentation_nav_group_Examples">
+            <li role="none">
+              <a href="#example-AppendBool" title="AppendBool" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendBool
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-AppendFloat" title="AppendFloat" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendFloat
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-AppendInt" title="AppendInt" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendInt
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-AppendQuote" title="AppendQuote" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuote
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-AppendQuoteRune" title="AppendQuoteRune" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteRune
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-AppendQuoteRuneToASCII" title="AppendQuoteRuneToASCII" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteRuneToASCII
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-AppendQuoteToASCII" title="AppendQuoteToASCII" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteToASCII
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-AppendUint" title="AppendUint" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendUint
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-Atoi" title="Atoi" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Atoi
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-CanBackquote" title="CanBackquote" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                CanBackquote
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-FormatBool" title="FormatBool" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatBool
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-FormatFloat" title="FormatFloat" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatFloat
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-FormatInt" title="FormatInt" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatInt
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-FormatUint" title="FormatUint" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatUint
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-IsGraphic" title="IsGraphic" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                IsGraphic
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-IsPrint" title="IsPrint" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                IsPrint
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-Itoa" title="Itoa" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Itoa
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-NumError" title="NumError" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                NumError
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-ParseBool" title="ParseBool" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseBool
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-ParseFloat" title="ParseFloat" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseFloat
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-ParseInt" title="ParseInt" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseInt
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-ParseUint" title="ParseUint" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseUint
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-Quote" title="Quote" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Quote
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-QuoteRune" title="QuoteRune" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteRune
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-QuoteRuneToASCII" title="QuoteRuneToASCII" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteRuneToASCII
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-QuoteRuneToGraphic" title="QuoteRuneToGraphic" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteRuneToGraphic
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-QuoteToASCII" title="QuoteToASCII" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteToASCII
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-QuoteToGraphic" title="QuoteToGraphic" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteToGraphic
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-QuotedPrefix" title="QuotedPrefix" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuotedPrefix
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-Unquote" title="Unquote" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Unquote
+              </a>
+            </li>
+            <li role="none">
+              <a href="#example-UnquoteChar" title="UnquoteChar" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                UnquoteChar
+              </a>
+            </li>
+        </ul>
+      </li>
+    <li class="DocNav-constants" role="none">
+      <a href="#pkg-constants" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">
+        Constants
+      </a>
+    </li>
+    <li class="DocNav-variables" role="none">
+      <a href="#pkg-variables" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">
+        Variables
+      </a>
+    </li>
+    <li class="DocNav-functions" role="none">
+      <a href="#pkg-functions" data-gtmc="doc outline link" tabindex="-1" aria-level="2" aria-owns="Documentation_nav_group_Functions" aria-expanded="false" role="treeitem">
+        Functions
+      </a>
+      
+        <ul role="group" id="Documentation_nav_group_Functions">
+          
+            <li role="none">
+              <a href="#AppendBool" title="AppendBool(dst, b)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendBool(dst, b)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendFloat" title="AppendFloat(dst, f, fmt, prec, bitSize)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendFloat(dst, f, fmt, prec, bitSize)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendInt" title="AppendInt(dst, i, base)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendInt(dst, i, base)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendQuote" title="AppendQuote(dst, s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuote(dst, s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendQuoteRune" title="AppendQuoteRune(dst, r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteRune(dst, r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendQuoteRuneToASCII" title="AppendQuoteRuneToASCII(dst, r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteRuneToASCII(dst, r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendQuoteRuneToGraphic" title="AppendQuoteRuneToGraphic(dst, r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteRuneToGraphic(dst, r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendQuoteToASCII" title="AppendQuoteToASCII(dst, s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteToASCII(dst, s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendQuoteToGraphic" title="AppendQuoteToGraphic(dst, s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendQuoteToGraphic(dst, s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#AppendUint" title="AppendUint(dst, i, base)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                AppendUint(dst, i, base)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#Atoi" title="Atoi(s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Atoi(s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#CanBackquote" title="CanBackquote(s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                CanBackquote(s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#FormatBool" title="FormatBool(b)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatBool(b)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#FormatComplex" title="FormatComplex(c, fmt, prec, bitSize)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatComplex(c, fmt, prec, bitSize)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#FormatFloat" title="FormatFloat(f, fmt, prec, bitSize)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatFloat(f, fmt, prec, bitSize)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#FormatInt" title="FormatInt(i, base)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatInt(i, base)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#FormatUint" title="FormatUint(i, base)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                FormatUint(i, base)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#IsGraphic" title="IsGraphic(r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                IsGraphic(r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#IsPrint" title="IsPrint(r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                IsPrint(r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#Itoa" title="Itoa(i)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Itoa(i)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#ParseBool" title="ParseBool(str)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseBool(str)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#ParseComplex" title="ParseComplex(s, bitSize)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseComplex(s, bitSize)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#ParseFloat" title="ParseFloat(s, bitSize)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseFloat(s, bitSize)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#ParseInt" title="ParseInt(s, base, bitSize)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseInt(s, base, bitSize)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#ParseUint" title="ParseUint(s, base, bitSize)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ParseUint(s, base, bitSize)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#Quote" title="Quote(s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Quote(s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#QuoteRune" title="QuoteRune(r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteRune(r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#QuoteRuneToASCII" title="QuoteRuneToASCII(r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteRuneToASCII(r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#QuoteRuneToGraphic" title="QuoteRuneToGraphic(r)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteRuneToGraphic(r)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#QuoteToASCII" title="QuoteToASCII(s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteToASCII(s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#QuoteToGraphic" title="QuoteToGraphic(s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuoteToGraphic(s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#QuotedPrefix" title="QuotedPrefix(s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                QuotedPrefix(s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#Unquote" title="Unquote(s)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                Unquote(s)
+              </a>
+            </li>
+          
+            <li role="none">
+              <a href="#UnquoteChar" title="UnquoteChar(s, quote)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                UnquoteChar(s, quote)
+              </a>
+            </li>
+          
+        </ul>
+      
+    </li>
+    <li class="DocNav-types" role="none">
+      <a href="#pkg-types" data-gtmc="doc outline link" tabindex="-1" aria-level="2" aria-owns="Documentation_nav_group_Types" aria-expanded="false" role="treeitem">
+        Types
+      </a>
+      <ul role="group" id="Documentation_nav_group_Types">
+        
+          
+          <li role="none">
+            <a href="#NumError" title="type NumError" data-gtmc="doc outline link" tabindex="-1" aria-level="3" aria-owns="Types_nav_group_type_NumError" aria-expanded="false" role="treeitem">
+              type NumError
+            </a>
+            
+              <ul role="group" id="Types_nav_group_type_NumError">
+                
+                
+                  <li role="none">
+                    <a href="#NumError.Error" title="(e) Error()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) Error()
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#NumError.Unwrap" title="(e) Unwrap()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) Unwrap()
+                    </a>
+                  </li>
+                
+              </ul>
+             
+          </li>
+         
+      </ul>
+    </li>
+  
+  
+</ul>
+
+      </li>
+    
+    
+      <li role="none">
+        <a href="#section-sourcefiles" data-gtmc="outline link" tabindex="-1" aria-level="1" role="treeitem">
+          Source Files
+        </a>
+      </li>
+    
+    
+  </ul>
+
+  </div>
+  <div class="go-Main-navMobile js-mainNavMobile">
+    <label class="go-Label" aria-label="Menu"><select class="go-Select js-selectNav"><optgroup label="Outline"><option label="Documentation" value="strconv#section-documentation" selected="selected">Documentation</option><option label="Source Files" value="strconv#section-sourcefiles">Source Files</option></optgroup><optgroup label="Documentation"><option label="Overview" value="strconv#pkg-overview">Overview</option><option label="Index" value="strconv#pkg-index">Index</option><option label="Examples" value="strconv#pkg-examples">Examples</option><option label="Constants" value="strconv#pkg-constants">Constants</option><option label="Variables" value="strconv#pkg-variables">Variables</option><option label="Functions" value="strconv#pkg-functions">Functions</option><option label="Types" value="strconv#pkg-types">Types</option></optgroup><optgroup label="Examples"><option label="AppendBool" value="strconv#example-AppendBool">AppendBool</option><option label="AppendFloat" value="strconv#example-AppendFloat">AppendFloat</option><option label="AppendInt" value="strconv#example-AppendInt">AppendInt</option><option label="AppendQuote" value="strconv#example-AppendQuote">AppendQuote</option><option label="AppendQuoteRune" value="strconv#example-AppendQuoteRune">AppendQuoteRune</option><option label="AppendQuoteRuneToASCII" value="strconv#example-AppendQuoteRuneToASCII">AppendQuoteRuneToASCII</option><option label="AppendQuoteToASCII" value="strconv#example-AppendQuoteToASCII">AppendQuoteToASCII</option><option label="AppendUint" value="strconv#example-AppendUint">AppendUint</option><option label="Atoi" value="strconv#example-Atoi">Atoi</option><option label="CanBackquote" value="strconv#example-CanBackquote">CanBackquote</option><option label="FormatBool" value="strconv#example-FormatBool">FormatBool</option><option label="FormatFloat" value="strconv#example-FormatFloat">FormatFloat</option><option label="FormatInt" value="strconv#example-FormatInt">FormatInt</option><option label="FormatUint" value="strconv#example-FormatUint">FormatUint</option><option label="IsGraphic" value="strconv#example-IsGraphic">IsGraphic</option><option label="IsPrint" value="strconv#example-IsPrint">IsPrint</option><option label="Itoa" value="strconv#example-Itoa">Itoa</option><option label="NumError" value="strconv#example-NumError">NumError</option><option label="ParseBool" value="strconv#example-ParseBool">ParseBool</option><option label="ParseFloat" value="strconv#example-ParseFloat">ParseFloat</option><option label="ParseInt" value="strconv#example-ParseInt">ParseInt</option><option label="ParseUint" value="strconv#example-ParseUint">ParseUint</option><option label="Quote" value="strconv#example-Quote">Quote</option><option label="QuoteRune" value="strconv#example-QuoteRune">QuoteRune</option><option label="QuoteRuneToASCII" value="strconv#example-QuoteRuneToASCII">QuoteRuneToASCII</option><option label="QuoteRuneToGraphic" value="strconv#example-QuoteRuneToGraphic">QuoteRuneToGraphic</option><option label="QuoteToASCII" value="strconv#example-QuoteToASCII">QuoteToASCII</option><option label="QuoteToGraphic" value="strconv#example-QuoteToGraphic">QuoteToGraphic</option><option label="QuotedPrefix" value="strconv#example-QuotedPrefix">QuotedPrefix</option><option label="Unquote" value="strconv#example-Unquote">Unquote</option><option label="UnquoteChar" value="strconv#example-UnquoteChar">UnquoteChar</option></optgroup><optgroup label="Functions"><option label="AppendBool(dst, b)" value="strconv#AppendBool">AppendBool(dst, b)</option><option label="AppendFloat(dst, f, fmt, prec, bitSize)" value="strconv#AppendFloat">AppendFloat(dst, f, fmt, prec, bitSize)</option><option label="AppendInt(dst, i, base)" value="strconv#AppendInt">AppendInt(dst, i, base)</option><option label="AppendQuote(dst, s)" value="strconv#AppendQuote">AppendQuote(dst, s)</option><option label="AppendQuoteRune(dst, r)" value="strconv#AppendQuoteRune">AppendQuoteRune(dst, r)</option><option label="AppendQuoteRuneToASCII(dst, r)" value="strconv#AppendQuoteRuneToASCII">AppendQuoteRuneToASCII(dst, r)</option><option label="AppendQuoteRuneToGraphic(dst, r)" value="strconv#AppendQuoteRuneToGraphic">AppendQuoteRuneToGraphic(dst, r)</option><option label="AppendQuoteToASCII(dst, s)" value="strconv#AppendQuoteToASCII">AppendQuoteToASCII(dst, s)</option><option label="AppendQuoteToGraphic(dst, s)" value="strconv#AppendQuoteToGraphic">AppendQuoteToGraphic(dst, s)</option><option label="AppendUint(dst, i, base)" value="strconv#AppendUint">AppendUint(dst, i, base)</option><option label="Atoi(s)" value="strconv#Atoi">Atoi(s)</option><option label="CanBackquote(s)" value="strconv#CanBackquote">CanBackquote(s)</option><option label="FormatBool(b)" value="strconv#FormatBool">FormatBool(b)</option><option label="FormatComplex(c, fmt, prec, bitSize)" value="strconv#FormatComplex">FormatComplex(c, fmt, prec, bitSize)</option><option label="FormatFloat(f, fmt, prec, bitSize)" value="strconv#FormatFloat">FormatFloat(f, fmt, prec, bitSize)</option><option label="FormatInt(i, base)" value="strconv#FormatInt">FormatInt(i, base)</option><option label="FormatUint(i, base)" value="strconv#FormatUint">FormatUint(i, base)</option><option label="IsGraphic(r)" value="strconv#IsGraphic">IsGraphic(r)</option><option label="IsPrint(r)" value="strconv#IsPrint">IsPrint(r)</option><option label="Itoa(i)" value="strconv#Itoa">Itoa(i)</option><option label="ParseBool(str)" value="strconv#ParseBool">ParseBool(str)</option><option label="ParseComplex(s, bitSize)" value="strconv#ParseComplex">ParseComplex(s, bitSize)</option><option label="ParseFloat(s, bitSize)" value="strconv#ParseFloat">ParseFloat(s, bitSize)</option><option label="ParseInt(s, base, bitSize)" value="strconv#ParseInt">ParseInt(s, base, bitSize)</option><option label="ParseUint(s, base, bitSize)" value="strconv#ParseUint">ParseUint(s, base, bitSize)</option><option label="Quote(s)" value="strconv#Quote">Quote(s)</option><option label="QuoteRune(r)" value="strconv#QuoteRune">QuoteRune(r)</option><option label="QuoteRuneToASCII(r)" value="strconv#QuoteRuneToASCII">QuoteRuneToASCII(r)</option><option label="QuoteRuneToGraphic(r)" value="strconv#QuoteRuneToGraphic">QuoteRuneToGraphic(r)</option><option label="QuoteToASCII(s)" value="strconv#QuoteToASCII">QuoteToASCII(s)</option><option label="QuoteToGraphic(s)" value="strconv#QuoteToGraphic">QuoteToGraphic(s)</option><option label="QuotedPrefix(s)" value="strconv#QuotedPrefix">QuotedPrefix(s)</option><option label="Unquote(s)" value="strconv#Unquote">Unquote(s)</option><option label="UnquoteChar(s, quote)" value="strconv#UnquoteChar">UnquoteChar(s, quote)</option></optgroup><optgroup label="Types"><option label="type NumError" value="strconv#NumError">type NumError</option></optgroup><optgroup label="type NumError"><option label="(e) Error()" value="strconv#NumError.Error">(e) Error()</option><option label="(e) Unwrap()" value="strconv#NumError.Unwrap">(e) Unwrap()</option></optgroup></select></label>
+  </div>
+</nav>
+    <article class="go-Main-article js-mainContent">
+  <div class="UnitDetails" data-test-id="UnitDetails" style="display: block;">
+    <div class="UnitDetails-content js-unitDetailsContent" data-test-id="UnitDetails-content">
+      
+      
+        
+          
+  <div class="UnitDoc">
+    <h2 class="UnitDoc-title" id="section-documentation">
+      <img class="go-Icon" height="24" width="24" src="strconv_files/code_gm_grey_24dp.svg" alt="">
+      Documentation
+      <a class="UnitDoc-idLink" href="#section-documentation" title="Go to Documentation" aria-label="Go to Documentation">¶</a>
+    </h2>
+    
+  
+    
+  
+
+    <div class="Documentation js-documentation">
+      
+        
+
+<div class="Documentation-content js-docContent"> <section class="Documentation-overview">
+    <h3 tabindex="-1" id="pkg-overview" class="Documentation-overviewHeader">Overview <a href="#pkg-overview" title="Go to Overview" aria-label="Go to Overview">¶</a></h3>
+
+<div role="navigation" aria-label="Table of Contents">
+  <ul class="Documentation-toc">
+      <li class="Documentation-tocItem"><a href="#hdr-Numeric_Conversions">Numeric Conversions</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-String_Conversions">String Conversions</a></li>
+  </ul>
+</div>
+<p>Package strconv implements conversions to and from string representations
+of basic data types.
+</p><h4 id="hdr-Numeric_Conversions">Numeric Conversions <a class="Documentation-idLink" href="#hdr-Numeric_Conversions" title="Go to Numeric Conversions" aria-label="Go to Numeric Conversions">¶</a></h4><p>The most common numeric conversions are <a href="#Atoi">Atoi</a> (string to int) and <a href="#Itoa">Itoa</a> (int to string).
+</p><pre>i, err := strconv.Atoi("-42")
+s := strconv.Itoa(-42)
+</pre><p>These assume decimal and the Go int type.
+</p><p><a href="#ParseBool">ParseBool</a>, <a href="#ParseFloat">ParseFloat</a>, <a href="#ParseInt">ParseInt</a>, and <a href="#ParseUint">ParseUint</a> convert strings to values:
+</p><pre>b, err := strconv.ParseBool("true")
+f, err := strconv.ParseFloat("3.1415", 64)
+i, err := strconv.ParseInt("-42", 10, 64)
+u, err := strconv.ParseUint("42", 10, 64)
+</pre><p>The parse functions return the widest type (float64, int64, and uint64),
+but if the size argument specifies a narrower width the result can be
+converted to that narrower type without data loss:
+</p><pre>s := "2147483647" // biggest int32
+i64, err := strconv.ParseInt(s, 10, 32)
+...
+i := int32(i64)
+</pre><p><a href="#FormatBool">FormatBool</a>, <a href="#FormatFloat">FormatFloat</a>, <a href="#FormatInt">FormatInt</a>, and <a href="#FormatUint">FormatUint</a> convert values to strings:
+</p><pre>s := strconv.FormatBool(true)
+s := strconv.FormatFloat(3.1415, 'E', -1, 64)
+s := strconv.FormatInt(-42, 16)
+s := strconv.FormatUint(42, 16)
+</pre><p><a href="#AppendBool">AppendBool</a>, <a href="#AppendFloat">AppendFloat</a>, <a href="#AppendInt">AppendInt</a>, and <a href="#AppendUint">AppendUint</a> are similar but
+append the formatted value to a destination slice.
+</p><h4 id="hdr-String_Conversions">String Conversions <a class="Documentation-idLink" href="#hdr-String_Conversions" title="Go to String Conversions" aria-label="Go to String Conversions">¶</a></h4><p><a href="#Quote">Quote</a> and <a href="#QuoteToASCII">QuoteToASCII</a> convert strings to quoted Go string literals.
+The latter guarantees that the result is an ASCII string, by escaping
+any non-ASCII Unicode with \u:
+</p><pre>q := strconv.Quote("Hello, 世界")
+q := strconv.QuoteToASCII("Hello, 世界")
+</pre><p><a href="#QuoteRune">QuoteRune</a> and <a href="#QuoteRuneToASCII">QuoteRuneToASCII</a> are similar but accept runes and
+return quoted Go rune literals.
+</p><p><a href="#Unquote">Unquote</a> and <a href="#UnquoteChar">UnquoteChar</a> unquote Go string and rune literals.
+</p>
+</section><section class="Documentation-index">
+    <h3 id="pkg-index" class="Documentation-indexHeader">Index <a href="#pkg-index" title="Go to Index" aria-label="Go to Index">¶</a></h3>
+
+<ul class="Documentation-indexList">
+<li class="Documentation-indexConstants"><a href="#pkg-constants">Constants</a></li>
+<li class="Documentation-indexVariables"><a href="#pkg-variables">Variables</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendBool">func AppendBool(dst []byte, b bool) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendFloat">func AppendFloat(dst []byte, f float64, fmt byte, prec, bitSize int) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendInt">func AppendInt(dst []byte, i int64, base int) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendQuote">func AppendQuote(dst []byte, s string) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendQuoteRune">func AppendQuoteRune(dst []byte, r rune) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendQuoteRuneToASCII">func AppendQuoteRuneToASCII(dst []byte, r rune) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendQuoteRuneToGraphic">func AppendQuoteRuneToGraphic(dst []byte, r rune) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendQuoteToASCII">func AppendQuoteToASCII(dst []byte, s string) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendQuoteToGraphic">func AppendQuoteToGraphic(dst []byte, s string) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#AppendUint">func AppendUint(dst []byte, i uint64, base int) []byte</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#Atoi">func Atoi(s string) (int, error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#CanBackquote">func CanBackquote(s string) bool</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#FormatBool">func FormatBool(b bool) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#FormatComplex">func FormatComplex(c complex128, fmt byte, prec, bitSize int) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#FormatFloat">func FormatFloat(f float64, fmt byte, prec, bitSize int) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#FormatInt">func FormatInt(i int64, base int) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#FormatUint">func FormatUint(i uint64, base int) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#IsGraphic">func IsGraphic(r rune) bool</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#IsPrint">func IsPrint(r rune) bool</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#Itoa">func Itoa(i int) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#ParseBool">func ParseBool(str string) (bool, error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#ParseComplex">func ParseComplex(s string, bitSize int) (complex128, error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#ParseFloat">func ParseFloat(s string, bitSize int) (float64, error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#ParseInt">func ParseInt(s string, base int, bitSize int) (i int64, err error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#ParseUint">func ParseUint(s string, base int, bitSize int) (uint64, error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#Quote">func Quote(s string) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#QuoteRune">func QuoteRune(r rune) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#QuoteRuneToASCII">func QuoteRuneToASCII(r rune) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#QuoteRuneToGraphic">func QuoteRuneToGraphic(r rune) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#QuoteToASCII">func QuoteToASCII(s string) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#QuoteToGraphic">func QuoteToGraphic(s string) string</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#QuotedPrefix">func QuotedPrefix(s string) (string, error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#Unquote">func Unquote(s string) (string, error)</a></li>
+<li class="Documentation-indexFunction">
+        <a href="#UnquoteChar">func UnquoteChar(s string, quote byte) (value rune, multibyte bool, tail string, err error)</a></li>
+<li class="Documentation-indexType">
+          <a href="#NumError">type NumError</a></li>
+<li><ul class="Documentation-indexTypeMethods">
+<li>
+            <a href="#NumError.Error">func (e *NumError) Error() string</a></li>
+<li>
+            <a href="#NumError.Unwrap">func (e *NumError) Unwrap() error</a></li>
+</ul></li>
+</ul>
+</section><section class="Documentation-examples">
+    <h3 tabindex="-1" id="pkg-examples" class="Documentation-examplesHeader">Examples <a class="Documentation-idLink" href="#pkg-examples" title="Go to Examples" aria-label="Go to Examples">¶</a></h3>
+<ul class="Documentation-examplesList">
+<li><a href="#example-AppendBool" class="js-exampleHref">AppendBool</a></li>
+<li><a href="#example-AppendFloat" class="js-exampleHref">AppendFloat</a></li>
+<li><a href="#example-AppendInt" class="js-exampleHref">AppendInt</a></li>
+<li><a href="#example-AppendQuote" class="js-exampleHref">AppendQuote</a></li>
+<li><a href="#example-AppendQuoteRune" class="js-exampleHref">AppendQuoteRune</a></li>
+<li><a href="#example-AppendQuoteRuneToASCII" class="js-exampleHref">AppendQuoteRuneToASCII</a></li>
+<li><a href="#example-AppendQuoteToASCII" class="js-exampleHref">AppendQuoteToASCII</a></li>
+<li><a href="#example-AppendUint" class="js-exampleHref">AppendUint</a></li>
+<li><a href="#example-Atoi" class="js-exampleHref">Atoi</a></li>
+<li><a href="#example-CanBackquote" class="js-exampleHref">CanBackquote</a></li>
+<li><a href="#example-FormatBool" class="js-exampleHref">FormatBool</a></li>
+<li><a href="#example-FormatFloat" class="js-exampleHref">FormatFloat</a></li>
+<li><a href="#example-FormatInt" class="js-exampleHref">FormatInt</a></li>
+<li><a href="#example-FormatUint" class="js-exampleHref">FormatUint</a></li>
+<li><a href="#example-IsGraphic" class="js-exampleHref">IsGraphic</a></li>
+<li><a href="#example-IsPrint" class="js-exampleHref">IsPrint</a></li>
+<li><a href="#example-Itoa" class="js-exampleHref">Itoa</a></li>
+<li><a href="#example-NumError" class="js-exampleHref">NumError</a></li>
+<li><a href="#example-ParseBool" class="js-exampleHref">ParseBool</a></li>
+<li><a href="#example-ParseFloat" class="js-exampleHref">ParseFloat</a></li>
+<li><a href="#example-ParseInt" class="js-exampleHref">ParseInt</a></li>
+<li><a href="#example-ParseUint" class="js-exampleHref">ParseUint</a></li>
+<li><a href="#example-Quote" class="js-exampleHref">Quote</a></li>
+<li><a href="#example-QuoteRune" class="js-exampleHref">QuoteRune</a></li>
+<li><a href="#example-QuoteRuneToASCII" class="js-exampleHref">QuoteRuneToASCII</a></li>
+<li><a href="#example-QuoteRuneToGraphic" class="js-exampleHref">QuoteRuneToGraphic</a></li>
+<li><a href="#example-QuoteToASCII" class="js-exampleHref">QuoteToASCII</a></li>
+<li><a href="#example-QuoteToGraphic" class="js-exampleHref">QuoteToGraphic</a></li>
+<li><a href="#example-QuotedPrefix" class="js-exampleHref">QuotedPrefix</a></li>
+<li><a href="#example-Unquote" class="js-exampleHref">Unquote</a></li>
+<li><a href="#example-UnquoteChar" class="js-exampleHref">UnquoteChar</a></li>
+</ul>
+</section><h3 tabindex="-1" id="pkg-constants" class="Documentation-constantsHeader">Constants <a href="#pkg-constants" title="Go to Constants" aria-label="Go to Constants">¶</a></h3>
+
+  <section class="Documentation-constants">
+    <div class="Documentation-declaration">
+      <span class="Documentation-declarationLink"><a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=14">View Source</a></span>
+      <pre><span id="IntSize" data-kind="constant">const IntSize = <a href="https://pkg.go.dev/internal/strconv">strconv</a>.<a href="https://pkg.go.dev/internal/strconv#IntSize">IntSize</a></span></pre>
+    </div>
+  <p>IntSize is the size in bits of an int or uint value.
+</p>
+</section>
+
+  <h3 tabindex="-1" id="pkg-variables" class="Documentation-variablesHeader">Variables <a href="#pkg-variables" title="Go to Variables" aria-label="Go to Variables">¶</a></h3>
+
+  <section class="Documentation-variables">
+    <div class="Documentation-declaration">
+      <span class="Documentation-declarationLink"><a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=246">View Source</a></span>
+      <pre><span id="ErrRange" data-kind="variable">var ErrRange = <a href="https://pkg.go.dev/errors">errors</a>.<a href="https://pkg.go.dev/errors#New">New</a>("value out of range")</span></pre>
+    </div>
+  <p>ErrRange indicates that a value is out of range for the target type.
+</p>
+
+    <div class="Documentation-declaration">
+      <span class="Documentation-declarationLink"><a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=249">View Source</a></span>
+      <pre><span id="ErrSyntax" data-kind="variable">var ErrSyntax = <a href="https://pkg.go.dev/errors">errors</a>.<a href="https://pkg.go.dev/errors#New">New</a>("invalid syntax")</span></pre>
+    </div>
+  <p>ErrSyntax indicates that a value does not have the right syntax for the target type.
+</p>
+</section>
+
+  <h3 tabindex="-1" id="pkg-functions" class="Documentation-functionsHeader">Functions <a href="#pkg-functions" title="Go to Functions" aria-label="Go to Functions">¶</a></h3>
+
+  <section class="Documentation-functions"><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendBool" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=34">AppendBool</a> <a class="Documentation-idLink" href="#AppendBool" title="Go to AppendBool" aria-label="Go to AppendBool">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendBool(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, b <a href="https://pkg.go.dev/builtin#bool">bool</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendBool appends "true" or "false", according to the value of b,
+to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendBool" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendBool" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b := []byte("bool:")
+	b = strconv.AppendBool(b, true)
+	fmt.Println(string(b))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">bool:true
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendFloat" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=195">AppendFloat</a> <a class="Documentation-idLink" href="#AppendFloat" title="Go to AppendFloat" aria-label="Go to AppendFloat">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendFloat(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, f <a href="https://pkg.go.dev/builtin#float64">float64</a>, fmt <a href="https://pkg.go.dev/builtin#byte">byte</a>, prec, bitSize <a href="https://pkg.go.dev/builtin#int">int</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendFloat appends the string form of the floating-point number f,
+as generated by <a href="#FormatFloat">FormatFloat</a>, to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendFloat" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendFloat" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 23.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b32 := []byte("float32:")
+	b32 = strconv.AppendFloat(b32, 3.1415926535, 'E', -1, 32)
+	fmt.Println(string(b32))
+
+	b64 := []byte("float64:")
+	b64 = strconv.AppendFloat(b64, 3.1415926535, 'E', -1, 64)
+	fmt.Println(string(b64))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">float32:3.1415927E+00
+float64:3.1415926535E+00
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendInt" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=220">AppendInt</a> <a class="Documentation-idLink" href="#AppendInt" title="Go to AppendInt" aria-label="Go to AppendInt">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendInt(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, i <a href="https://pkg.go.dev/builtin#int64">int64</a>, base <a href="https://pkg.go.dev/builtin#int">int</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendInt appends the string form of the integer i,
+as generated by <a href="#FormatInt">FormatInt</a>, to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendInt" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendInt" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 23.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b10 := []byte("int (base 10):")
+	b10 = strconv.AppendInt(b10, -42, 10)
+	fmt.Println(string(b10))
+
+	b16 := []byte("int (base 16):")
+	b16 = strconv.AppendInt(b16, -42, 16)
+	fmt.Println(string(b16))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">int (base 10):-42
+int (base 16):-2a
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendQuote" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=127">AppendQuote</a> <a class="Documentation-idLink" href="#AppendQuote" title="Go to AppendQuote" aria-label="Go to AppendQuote">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendQuote(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, s <a href="https://pkg.go.dev/builtin#string">string</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendQuote appends a double-quoted Go string literal representing s,
+as generated by <a href="#Quote">Quote</a>, to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendQuote" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendQuote" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b := []byte("quote:")
+	b = strconv.AppendQuote(b, `"Fran &amp; Freddie's Diner"`)
+	fmt.Println(string(b))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">quote:"\"Fran &amp; Freddie's Diner\""
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendQuoteRune" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=169">AppendQuoteRune</a> <a class="Documentation-idLink" href="#AppendQuoteRune" title="Go to AppendQuoteRune" aria-label="Go to AppendQuoteRune">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendQuoteRune(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, r <a href="https://pkg.go.dev/builtin#rune">rune</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendQuoteRune appends a single-quoted Go character literal representing the rune,
+as generated by <a href="#QuoteRune">QuoteRune</a>, to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendQuoteRune" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendQuoteRune" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b := []byte("rune:")
+	b = strconv.AppendQuoteRune(b, '☺')
+	fmt.Println(string(b))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">rune:'☺'
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendQuoteRuneToASCII" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=185">AppendQuoteRuneToASCII</a> <a class="Documentation-idLink" href="#AppendQuoteRuneToASCII" title="Go to AppendQuoteRuneToASCII" aria-label="Go to AppendQuoteRuneToASCII">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendQuoteRuneToASCII(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, r <a href="https://pkg.go.dev/builtin#rune">rune</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendQuoteRuneToASCII appends a single-quoted Go character literal representing the rune,
+as generated by <a href="#QuoteRuneToASCII">QuoteRuneToASCII</a>, to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendQuoteRuneToASCII" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendQuoteRuneToASCII" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b := []byte("rune (ascii):")
+	b = strconv.AppendQuoteRuneToASCII(b, '☺')
+	fmt.Println(string(b))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">rune (ascii):'\u263a'
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendQuoteRuneToGraphic" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=201">AppendQuoteRuneToGraphic</a> <a class="Documentation-idLink" href="#AppendQuoteRuneToGraphic" title="Go to AppendQuoteRuneToGraphic" aria-label="Go to AppendQuoteRuneToGraphic">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.6</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendQuoteRuneToGraphic(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, r <a href="https://pkg.go.dev/builtin#rune">rune</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendQuoteRuneToGraphic appends a single-quoted Go character literal representing the rune,
+as generated by <a href="#QuoteRuneToGraphic">QuoteRuneToGraphic</a>, to dst and returns the extended buffer.
+</p>
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendQuoteToASCII" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=140">AppendQuoteToASCII</a> <a class="Documentation-idLink" href="#AppendQuoteToASCII" title="Go to AppendQuoteToASCII" aria-label="Go to AppendQuoteToASCII">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendQuoteToASCII(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, s <a href="https://pkg.go.dev/builtin#string">string</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendQuoteToASCII appends a double-quoted Go string literal representing s,
+as generated by <a href="#QuoteToASCII">QuoteToASCII</a>, to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendQuoteToASCII" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendQuoteToASCII" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b := []byte("quote (ascii):")
+	b = strconv.AppendQuoteToASCII(b, `"Fran &amp; Freddie's Diner"`)
+	fmt.Println(string(b))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">quote (ascii):"\"Fran &amp; Freddie's Diner\""
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendQuoteToGraphic" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=154">AppendQuoteToGraphic</a> <a class="Documentation-idLink" href="#AppendQuoteToGraphic" title="Go to AppendQuoteToGraphic" aria-label="Go to AppendQuoteToGraphic">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.6</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendQuoteToGraphic(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, s <a href="https://pkg.go.dev/builtin#string">string</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendQuoteToGraphic appends a double-quoted Go string literal representing s,
+as generated by <a href="#QuoteToGraphic">QuoteToGraphic</a>, to dst and returns the extended buffer.
+</p>
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="AppendUint" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=226">AppendUint</a> <a class="Documentation-idLink" href="#AppendUint" title="Go to AppendUint" aria-label="Go to AppendUint">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func AppendUint(dst []<a href="https://pkg.go.dev/builtin#byte">byte</a>, i <a href="https://pkg.go.dev/builtin#uint64">uint64</a>, base <a href="https://pkg.go.dev/builtin#int">int</a>) []<a href="https://pkg.go.dev/builtin#byte">byte</a></pre>
+    </div>
+  <p>AppendUint appends the string form of the unsigned integer i,
+as generated by <a href="#FormatUint">FormatUint</a>, to dst and returns the extended buffer.
+</p>
+<details tabindex="-1" id="example-AppendUint" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-AppendUint" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 23.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	b10 := []byte("uint (base 10):")
+	b10 = strconv.AppendUint(b10, 42, 10)
+	fmt.Println(string(b10))
+
+	b16 := []byte("uint (base 16):")
+	b16 = strconv.AppendUint(b16, 42, 16)
+	fmt.Println(string(b16))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">uint (base 10):42
+uint (base 16):2a
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="Atoi" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=146">Atoi</a> <a class="Documentation-idLink" href="#Atoi" title="Go to Atoi" aria-label="Go to Atoi">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func Atoi(s <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/builtin#int">int</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>Atoi is equivalent to ParseInt(s, 10, 0), converted to type int.
+</p>
+<details tabindex="-1" id="example-Atoi" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-Atoi" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 19.625rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := "10"
+	if s, err := strconv.Atoi(v); err == nil {
+		fmt.Printf("%T, %v", s, s)
+	}
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">int, 10
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="CanBackquote" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=208">CanBackquote</a> <a class="Documentation-idLink" href="#CanBackquote" title="Go to CanBackquote" aria-label="Go to CanBackquote">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func CanBackquote(s <a href="https://pkg.go.dev/builtin#string">string</a>) <a href="https://pkg.go.dev/builtin#bool">bool</a></pre>
+    </div>
+  <p>CanBackquote reports whether the string s can be represented
+unchanged as a single-line backquoted string without control
+characters other than tab.
+</p>
+<details tabindex="-1" id="example-CanBackquote" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-CanBackquote" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 17.125rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	fmt.Println(strconv.CanBackquote("Fran &amp; Freddie's Diner ☺"))
+	fmt.Println(strconv.CanBackquote("`can't backquote this`"))
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">true
+false
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="FormatBool" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=28">FormatBool</a> <a class="Documentation-idLink" href="#FormatBool" title="Go to FormatBool" aria-label="Go to FormatBool">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func FormatBool(b <a href="https://pkg.go.dev/builtin#bool">bool</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>FormatBool returns "true" or "false" according to the value of b.
+</p>
+<details tabindex="-1" id="example-FormatBool" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-FormatBool" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := true
+	s := strconv.FormatBool(v)
+	fmt.Printf("%T, %v\n", s, s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">string, true
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="FormatComplex" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=161">FormatComplex</a> <a class="Documentation-idLink" href="#FormatComplex" title="Go to FormatComplex" aria-label="Go to FormatComplex">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.15</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func FormatComplex(c <a href="https://pkg.go.dev/builtin#complex128">complex128</a>, fmt <a href="https://pkg.go.dev/builtin#byte">byte</a>, prec, bitSize <a href="https://pkg.go.dev/builtin#int">int</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>FormatComplex converts the complex number c to a string of the
+form (a+bi) where a and b are the real and imaginary parts,
+formatted according to the format fmt and precision prec.
+</p><p>The format fmt and precision prec have the same meaning as in <a href="#FormatFloat">FormatFloat</a>.
+It rounds the result assuming that the original was obtained from a complex
+value of bitSize bits, which must be 64 for complex64 and 128 for complex128.
+</p>
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="FormatFloat" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=189">FormatFloat</a> <a class="Documentation-idLink" href="#FormatFloat" title="Go to FormatFloat" aria-label="Go to FormatFloat">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func FormatFloat(f <a href="https://pkg.go.dev/builtin#float64">float64</a>, fmt <a href="https://pkg.go.dev/builtin#byte">byte</a>, prec, bitSize <a href="https://pkg.go.dev/builtin#int">int</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>FormatFloat converts the floating-point number f to a string,
+according to the format fmt and precision prec. It rounds the
+result assuming that the original was obtained from a floating-point
+value of bitSize bits (32 for float32, 64 for float64).
+</p><p>The format fmt is one of
+</p><ul class="Documentation-bulletList">
+  <li>'b' (-ddddp±ddd, a binary exponent),</li>
+  <li>'e' (-d.dddde±dd, a decimal exponent),</li>
+  <li>'E' (-d.ddddE±dd, a decimal exponent),</li>
+  <li>'f' (-ddd.dddd, no exponent),</li>
+  <li>'g' ('e' for large exponents, 'f' otherwise),</li>
+  <li>'G' ('E' for large exponents, 'f' otherwise),</li>
+  <li>'x' (-0xd.ddddp±ddd, a hexadecimal fraction and binary exponent), or</li>
+  <li>'X' (-0Xd.ddddP±ddd, a hexadecimal fraction and binary exponent).</li>
+</ul><p>The precision prec controls the number of digits (excluding the exponent)
+printed by the 'e', 'E', 'f', 'g', 'G', 'x', and 'X' formats.
+For 'e', 'E', 'f', 'x', and 'X', it is the number of digits after the decimal point.
+For 'g' and 'G' it is the maximum number of significant digits (trailing
+zeros are removed).
+The special precision -1 uses the smallest number of digits
+necessary such that ParseFloat will return f exactly.
+The exponent is written as a decimal integer;
+for all formats other than 'b', it will be at least two digits.
+</p>
+<details tabindex="-1" id="example-FormatFloat" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-FormatFloat" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 28.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := 3.1415926535
+
+	s32 := strconv.FormatFloat(v, 'E', -1, 32)
+	fmt.Printf("%T, %v\n", s32, s32)
+
+	s64 := strconv.FormatFloat(v, 'E', -1, 64)
+	fmt.Printf("%T, %v\n", s64, s64)
+
+	// fmt.Println uses these arguments to print floats
+	fmt64 := strconv.FormatFloat(v, 'g', -1, 64)
+	fmt.Printf("%T, %v\n", fmt64, fmt64)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">string, 3.1415927E+00
+string, 3.1415926535E+00
+string, 3.1415926535
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="FormatInt" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=209">FormatInt</a> <a class="Documentation-idLink" href="#FormatInt" title="Go to FormatInt" aria-label="Go to FormatInt">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func FormatInt(i <a href="https://pkg.go.dev/builtin#int64">int64</a>, base <a href="https://pkg.go.dev/builtin#int">int</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>FormatInt returns the string representation of i in the given base,
+for 2 &lt;= base &lt;= 36. The result uses the lower-case letters 'a' to 'z'
+for digit values &gt;= 10.
+</p>
+<details tabindex="-1" id="example-FormatInt" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-FormatInt" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 23.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := int64(-42)
+
+	s10 := strconv.FormatInt(v, 10)
+	fmt.Printf("%T, %v\n", s10, s10)
+
+	s16 := strconv.FormatInt(v, 16)
+	fmt.Printf("%T, %v\n", s16, s16)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">string, -42
+string, -2a
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="FormatUint" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=202">FormatUint</a> <a class="Documentation-idLink" href="#FormatUint" title="Go to FormatUint" aria-label="Go to FormatUint">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func FormatUint(i <a href="https://pkg.go.dev/builtin#uint64">uint64</a>, base <a href="https://pkg.go.dev/builtin#int">int</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>FormatUint returns the string representation of i in the given base,
+for 2 &lt;= base &lt;= 36. The result uses the lower-case letters 'a' to 'z'
+for digit values &gt;= 10.
+</p>
+<details tabindex="-1" id="example-FormatUint" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-FormatUint" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 23.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := uint64(42)
+
+	s10 := strconv.FormatUint(v, 10)
+	fmt.Printf("%T, %v\n", s10, s10)
+
+	s16 := strconv.FormatUint(v, 16)
+	fmt.Printf("%T, %v\n", s16, s16)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">string, 42
+string, 2a
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="IsGraphic" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=564">IsGraphic</a> <a class="Documentation-idLink" href="#IsGraphic" title="Go to IsGraphic" aria-label="Go to IsGraphic">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.6</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func IsGraphic(r <a href="https://pkg.go.dev/builtin#rune">rune</a>) <a href="https://pkg.go.dev/builtin#bool">bool</a></pre>
+    </div>
+  <p>IsGraphic reports whether the rune is defined as a Graphic by Unicode. Such
+characters include letters, marks, numbers, punctuation, symbols, and
+spaces, from categories L, M, N, P, S, and Zs.
+</p>
+<details tabindex="-1" id="example-IsGraphic" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-IsGraphic" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 24.625rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	shamrock := strconv.IsGraphic('☘')
+	fmt.Println(shamrock)
+
+	a := strconv.IsGraphic('a')
+	fmt.Println(a)
+
+	bel := strconv.IsGraphic('\007')
+	fmt.Println(bel)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">true
+true
+false
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="IsPrint" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=518">IsPrint</a> <a class="Documentation-idLink" href="#IsPrint" title="Go to IsPrint" aria-label="Go to IsPrint">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func IsPrint(r <a href="https://pkg.go.dev/builtin#rune">rune</a>) <a href="https://pkg.go.dev/builtin#bool">bool</a></pre>
+    </div>
+  <p>IsPrint reports whether the rune is defined as printable by Go, with
+the same definition as <a href="https://pkg.go.dev/unicode#IsPrint">unicode.IsPrint</a>: letters, numbers, punctuation,
+symbols and ASCII space.
+</p>
+<details tabindex="-1" id="example-IsPrint" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-IsPrint" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 20.875rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	c := strconv.IsPrint('\u263a')
+	fmt.Println(c)
+
+	bel := strconv.IsPrint('\007')
+	fmt.Println(bel)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">true
+false
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="Itoa" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=214">Itoa</a> <a class="Documentation-idLink" href="#Itoa" title="Go to Itoa" aria-label="Go to Itoa">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func Itoa(i <a href="https://pkg.go.dev/builtin#int">int</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>Itoa is equivalent to <a href="#FormatInt">FormatInt</a>(int64(i), 10).
+</p>
+<details tabindex="-1" id="example-Itoa" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-Itoa" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	i := 10
+	s := strconv.Itoa(i)
+	fmt.Printf("%T, %v\n", s, s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">string, 10
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="ParseBool" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=19">ParseBool</a> <a class="Documentation-idLink" href="#ParseBool" title="Go to ParseBool" aria-label="Go to ParseBool">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func ParseBool(str <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/builtin#bool">bool</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>ParseBool returns the boolean value represented by the string.
+It accepts 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False.
+Any other value returns an error.
+</p>
+<details tabindex="-1" id="example-ParseBool" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-ParseBool" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 19.625rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := "true"
+	if s, err := strconv.ParseBool(v); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">bool, true
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="ParseComplex" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=58">ParseComplex</a> <a class="Documentation-idLink" href="#ParseComplex" title="Go to ParseComplex" aria-label="Go to ParseComplex">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.15</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func ParseComplex(s <a href="https://pkg.go.dev/builtin#string">string</a>, bitSize <a href="https://pkg.go.dev/builtin#int">int</a>) (<a href="https://pkg.go.dev/builtin#complex128">complex128</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>ParseComplex converts the string s to a complex number
+with the precision specified by bitSize: 64 for complex64, or 128 for complex128.
+When bitSize=64, the result still has type complex128, but it will be
+convertible to complex64 without changing its value.
+</p><p>The number represented by s must be of the form N, Ni, or N±Ni, where N stands
+for a floating-point number as recognized by <a href="#ParseFloat">ParseFloat</a>, and i is the imaginary
+component. If the second N is unsigned, a + sign is required between the two components
+as indicated by the ±. If the second N is NaN, only a + sign is accepted.
+The form may be parenthesized and cannot contain any spaces.
+The resulting complex number consists of the two components converted by ParseFloat.
+</p><p>The errors that ParseComplex returns have concrete type <a href="#NumError">*NumError</a>
+and include err.Num = s.
+</p><p>If s is not syntactically well-formed, ParseComplex returns err.Err = ErrSyntax.
+</p><p>If s is syntactically well-formed but either component is more than 1/2 ULP
+away from the largest floating point number of the given component's size,
+ParseComplex returns err.Err = ErrRange and c = ±Inf for the respective component.
+</p>
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="ParseFloat" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=93">ParseFloat</a> <a class="Documentation-idLink" href="#ParseFloat" title="Go to ParseFloat" aria-label="Go to ParseFloat">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func ParseFloat(s <a href="https://pkg.go.dev/builtin#string">string</a>, bitSize <a href="https://pkg.go.dev/builtin#int">int</a>) (<a href="https://pkg.go.dev/builtin#float64">float64</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>ParseFloat converts the string s to a floating-point number
+with the precision specified by bitSize: 32 for float32, or 64 for float64.
+When bitSize=32, the result still has type float64, but it will be
+convertible to float32 without changing its value.
+</p><p>ParseFloat accepts decimal and hexadecimal floating-point numbers
+as defined by the Go syntax for <a href="https://go.dev/ref/spec#Floating-point_literals">floating-point literals</a>.
+If s is well-formed and near a valid floating-point number,
+ParseFloat returns the nearest floating-point number rounded
+using IEEE754 unbiased rounding.
+(Parsing a hexadecimal floating-point value only rounds when
+there are more bits in the hexadecimal representation than
+will fit in the mantissa.)
+</p><p>The errors that ParseFloat returns have concrete type *NumError
+and include err.Num = s.
+</p><p>If s is not syntactically well-formed, ParseFloat returns err.Err = ErrSyntax.
+</p><p>If s is syntactically well-formed but is more than 1/2 ULP
+away from the largest floating point number of the given size,
+ParseFloat returns f = ±Inf, err.Err = ErrRange.
+</p><p>ParseFloat recognizes the string "NaN", and the (possibly signed) strings "Inf" and "Infinity"
+as their respective special floating point values. It ignores case when matching.
+</p>
+<details tabindex="-1" id="example-ParseFloat" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-ParseFloat" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 50.875rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := "3.1415926535"
+	if s, err := strconv.ParseFloat(v, 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseFloat(v, 64); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseFloat("NaN", 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	// ParseFloat is case insensitive
+	if s, err := strconv.ParseFloat("nan", 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseFloat("inf", 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseFloat("+Inf", 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseFloat("-Inf", 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseFloat("-0", 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseFloat("+0", 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">float64, 3.1415927410125732
+float64, 3.1415926535
+float64, NaN
+float64, NaN
+float64, +Inf
+float64, +Inf
+float64, -Inf
+float64, -0
+float64, 0
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="ParseInt" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=137">ParseInt</a> <a class="Documentation-idLink" href="#ParseInt" title="Go to ParseInt" aria-label="Go to ParseInt">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func ParseInt(s <a href="https://pkg.go.dev/builtin#string">string</a>, base <a href="https://pkg.go.dev/builtin#int">int</a>, bitSize <a href="https://pkg.go.dev/builtin#int">int</a>) (i <a href="https://pkg.go.dev/builtin#int64">int64</a>, err <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>ParseInt interprets a string s in the given base (0, 2 to 36) and
+bit size (0 to 64) and returns the corresponding value i.
+</p><p>The string may begin with a leading sign: "+" or "-".
+</p><p>If the base argument is 0, the true base is implied by the string's
+prefix following the sign (if present): 2 for "0b", 8 for "0" or "0o",
+16 for "0x", and 10 otherwise. Also, for argument base 0 only,
+underscore characters are permitted as defined by the Go syntax for
+<a href="https://go.dev/ref/spec#Integer_literals">integer literals</a>.
+</p><p>The bitSize argument specifies the integer type
+that the result must fit into. Bit sizes 0, 8, 16, 32, and 64
+correspond to int, int8, int16, int32, and int64.
+If bitSize is below 0 or above 64, an error is returned.
+</p><p>The errors that ParseInt returns have concrete type <a href="#NumError">*NumError</a>
+and include err.Num = s. If s is empty or contains invalid
+digits, err.Err = <a href="#ErrSyntax">ErrSyntax</a> and the returned value is 0;
+if the value corresponding to s cannot be represented by a
+signed integer of the given size, err.Err = <a href="#ErrRange">ErrRange</a> and the
+returned value is the maximum magnitude integer of the
+appropriate bitSize and sign.
+</p>
+<details tabindex="-1" id="example-ParseInt" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-ParseInt" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 33.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v32 := "-354634382"
+	if s, err := strconv.ParseInt(v32, 10, 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseInt(v32, 16, 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+
+	v64 := "-3546343826724305832"
+	if s, err := strconv.ParseInt(v64, 10, 64); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseInt(v64, 16, 64); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">int64, -354634382
+int64, -3546343826724305832
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="ParseUint" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=104">ParseUint</a> <a class="Documentation-idLink" href="#ParseUint" title="Go to ParseUint" aria-label="Go to ParseUint">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func ParseUint(s <a href="https://pkg.go.dev/builtin#string">string</a>, base <a href="https://pkg.go.dev/builtin#int">int</a>, bitSize <a href="https://pkg.go.dev/builtin#int">int</a>) (<a href="https://pkg.go.dev/builtin#uint64">uint64</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>ParseUint is like <a href="#ParseInt">ParseInt</a> but for unsigned numbers.
+</p><p>A sign prefix is not permitted.
+</p>
+<details tabindex="-1" id="example-ParseUint" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-ParseUint" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 23.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	v := "42"
+	if s, err := strconv.ParseUint(v, 10, 32); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+	if s, err := strconv.ParseUint(v, 10, 64); err == nil {
+		fmt.Printf("%T, %v\n", s, s)
+	}
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">uint64, 42
+uint64, 42
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="Quote" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=121">Quote</a> <a class="Documentation-idLink" href="#Quote" title="Go to Quote" aria-label="Go to Quote">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func Quote(s <a href="https://pkg.go.dev/builtin#string">string</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>Quote returns a double-quoted Go string literal representing s. The
+returned string uses Go escape sequences (\t, \n, \xFF, \u0100) for
+control characters and non-printable characters as defined by
+<a href="#IsPrint">IsPrint</a>.
+</p>
+<details tabindex="-1" id="example-Quote" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-Quote" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	// This string literal contains a tab character.
+	s := strconv.Quote(`"Fran &amp; Freddie's Diner	☺"`)
+	fmt.Println(s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">"\"Fran &amp; Freddie's Diner\t☺\""
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="QuoteRune" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=163">QuoteRune</a> <a class="Documentation-idLink" href="#QuoteRune" title="Go to QuoteRune" aria-label="Go to QuoteRune">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func QuoteRune(r <a href="https://pkg.go.dev/builtin#rune">rune</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>QuoteRune returns a single-quoted Go character literal representing the
+rune. The returned string uses Go escape sequences (\t, \n, \xFF, \u0100)
+for control characters and non-printable characters as defined by <a href="#IsPrint">IsPrint</a>.
+If r is not a valid Unicode code point, it is interpreted as the Unicode
+replacement character U+FFFD.
+</p>
+<details tabindex="-1" id="example-QuoteRune" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-QuoteRune" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 17.125rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	s := strconv.QuoteRune('☺')
+	fmt.Println(s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">'☺'
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="QuoteRuneToASCII" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=179">QuoteRuneToASCII</a> <a class="Documentation-idLink" href="#QuoteRuneToASCII" title="Go to QuoteRuneToASCII" aria-label="Go to QuoteRuneToASCII">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func QuoteRuneToASCII(r <a href="https://pkg.go.dev/builtin#rune">rune</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>QuoteRuneToASCII returns a single-quoted Go character literal representing
+the rune. The returned string uses Go escape sequences (\t, \n, \xFF,
+\u0100) for non-ASCII characters and non-printable characters as defined
+by <a href="#IsPrint">IsPrint</a>.
+If r is not a valid Unicode code point, it is interpreted as the Unicode
+replacement character U+FFFD.
+</p>
+<details tabindex="-1" id="example-QuoteRuneToASCII" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-QuoteRuneToASCII" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 17.125rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	s := strconv.QuoteRuneToASCII('☺')
+	fmt.Println(s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">'\u263a'
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="QuoteRuneToGraphic" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=195">QuoteRuneToGraphic</a> <a class="Documentation-idLink" href="#QuoteRuneToGraphic" title="Go to QuoteRuneToGraphic" aria-label="Go to QuoteRuneToGraphic">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.6</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func QuoteRuneToGraphic(r <a href="https://pkg.go.dev/builtin#rune">rune</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>QuoteRuneToGraphic returns a single-quoted Go character literal representing
+the rune. If the rune is not a Unicode graphic character,
+as defined by <a href="#IsGraphic">IsGraphic</a>, the returned string will use a Go escape sequence
+(\t, \n, \xFF, \u0100).
+If r is not a valid Unicode code point, it is interpreted as the Unicode
+replacement character U+FFFD.
+</p>
+<details tabindex="-1" id="example-QuoteRuneToGraphic" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-QuoteRuneToGraphic" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 28.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	s := strconv.QuoteRuneToGraphic('☺')
+	fmt.Println(s)
+
+	s = strconv.QuoteRuneToGraphic('\u263a')
+	fmt.Println(s)
+
+	s = strconv.QuoteRuneToGraphic('\u000a')
+	fmt.Println(s)
+
+	s = strconv.QuoteRuneToGraphic('	') // tab character
+	fmt.Println(s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">'☺'
+'☺'
+'\n'
+'\t'
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="QuoteToASCII" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=134">QuoteToASCII</a> <a class="Documentation-idLink" href="#QuoteToASCII" title="Go to QuoteToASCII" aria-label="Go to QuoteToASCII">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func QuoteToASCII(s <a href="https://pkg.go.dev/builtin#string">string</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>QuoteToASCII returns a double-quoted Go string literal representing s.
+The returned string uses Go escape sequences (\t, \n, \xFF, \u0100) for
+non-ASCII characters and non-printable characters as defined by <a href="#IsPrint">IsPrint</a>.
+</p>
+<details tabindex="-1" id="example-QuoteToASCII" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-QuoteToASCII" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 18.375rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	// This string literal contains a tab character.
+	s := strconv.QuoteToASCII(`"Fran &amp; Freddie's Diner	☺"`)
+	fmt.Println(s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">"\"Fran &amp; Freddie's Diner\t\u263a\""
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="QuoteToGraphic" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=148">QuoteToGraphic</a> <a class="Documentation-idLink" href="#QuoteToGraphic" title="Go to QuoteToGraphic" aria-label="Go to QuoteToGraphic">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.6</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func QuoteToGraphic(s <a href="https://pkg.go.dev/builtin#string">string</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>QuoteToGraphic returns a double-quoted Go string literal representing s.
+The returned string leaves Unicode graphic characters, as defined by
+<a href="#IsGraphic">IsGraphic</a>, unchanged and uses Go escape sequences (\t, \n, \xFF, \u0100)
+for non-graphic characters.
+</p>
+<details tabindex="-1" id="example-QuoteToGraphic" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-QuoteToGraphic" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 25.875rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	s := strconv.QuoteToGraphic("☺")
+	fmt.Println(s)
+
+	// This string literal contains a tab character.
+	s = strconv.QuoteToGraphic("This is a \u263a	\u000a")
+	fmt.Println(s)
+
+	s = strconv.QuoteToGraphic(`" This is a ☺ \n "`)
+	fmt.Println(s)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">"☺"
+"This is a ☺\t\n"
+"\" This is a ☺ \\n \""
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="QuotedPrefix" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=368">QuotedPrefix</a> <a class="Documentation-idLink" href="#QuotedPrefix" title="Go to QuotedPrefix" aria-label="Go to QuotedPrefix">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.17</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func QuotedPrefix(s <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>QuotedPrefix returns the quoted string (as understood by <a href="#Unquote">Unquote</a>) at the prefix of s.
+If s does not start with a valid quoted string, QuotedPrefix returns an error.
+</p>
+<details tabindex="-1" id="example-QuotedPrefix" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-QuotedPrefix" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 24.625rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	s, err := strconv.QuotedPrefix("not a quoted string")
+	fmt.Printf("%q, %v\n", s, err)
+	s, err = strconv.QuotedPrefix("\"double-quoted string\" with trailing text")
+	fmt.Printf("%q, %v\n", s, err)
+	s, err = strconv.QuotedPrefix("`or backquoted` with more trailing text")
+	fmt.Printf("%q, %v\n", s, err)
+	s, err = strconv.QuotedPrefix("'\u263a' is also okay")
+	fmt.Printf("%q, %v\n", s, err)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">"", invalid syntax
+"\"double-quoted string\"", &lt;nil&gt;
+"`or backquoted`", &lt;nil&gt;
+"'☺'", &lt;nil&gt;
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="Unquote" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=379">Unquote</a> <a class="Documentation-idLink" href="#Unquote" title="Go to Unquote" aria-label="Go to Unquote">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func Unquote(s <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>Unquote interprets s as a single-quoted, double-quoted,
+or backquoted Go string literal, returning the string value
+that s quotes.  (If s is single-quoted, it would be a Go
+character literal; Unquote returns the corresponding
+one-character string. For an empty character literal
+Unquote returns the empty string.)
+</p>
+<details tabindex="-1" id="example-Unquote" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-Unquote" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 27.125rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	s, err := strconv.Unquote("You can't unquote a string without quotes")
+	fmt.Printf("%q, %v\n", s, err)
+	s, err = strconv.Unquote("\"The string must be either double-quoted\"")
+	fmt.Printf("%q, %v\n", s, err)
+	s, err = strconv.Unquote("`or backquoted.`")
+	fmt.Printf("%q, %v\n", s, err)
+	s, err = strconv.Unquote("'\u263a'") // single character only allowed in single quotes
+	fmt.Printf("%q, %v\n", s, err)
+	s, err = strconv.Unquote("'\u2639\u2639'")
+	fmt.Printf("%q, %v\n", s, err)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">"", invalid syntax
+"The string must be either double-quoted", &lt;nil&gt;
+"or backquoted.", &lt;nil&gt;
+"☺", &lt;nil&gt;
+"", invalid syntax
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="UnquoteChar" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go;l=255">UnquoteChar</a> <a class="Documentation-idLink" href="#UnquoteChar" title="Go to UnquoteChar" aria-label="Go to UnquoteChar">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func UnquoteChar(s <a href="https://pkg.go.dev/builtin#string">string</a>, quote <a href="https://pkg.go.dev/builtin#byte">byte</a>) (value <a href="https://pkg.go.dev/builtin#rune">rune</a>, multibyte <a href="https://pkg.go.dev/builtin#bool">bool</a>, tail <a href="https://pkg.go.dev/builtin#string">string</a>, err <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>UnquoteChar decodes the first character or byte in the escaped string
+or character literal represented by the string s.
+It returns four values:
+</p><ol class="Documentation-numberList">
+  <li value="1">value, the decoded Unicode code point or byte value;</li>
+  <li value="2">multibyte, a boolean indicating whether the decoded character requires a multibyte UTF-8 representation;</li>
+  <li value="3">tail, the remainder of the string after the character; and</li>
+  <li value="4">an error that will be nil if the character is syntactically valid.</li>
+</ol><p>The second argument, quote, specifies the type of literal being parsed
+and therefore which escaped quote character is permitted.
+If set to a single quote, it permits the sequence \' and disallows unescaped '.
+If set to a double quote, it permits \" and disallows unescaped ".
+If set to zero, it does not permit either escape and allows both quote characters to appear unescaped.
+</p>
+<details tabindex="-1" id="example-UnquoteChar" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-UnquoteChar" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 25.875rem;">package main
+
+import (
+	"fmt"
+	"log"
+	"strconv"
+)
+
+func main() {
+	v, mb, t, err := strconv.UnquoteChar(`\"Fran &amp; Freddie's Diner\"`, '"')
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("value:", string(v))
+	fmt.Println("multibyte:", mb)
+	fmt.Println("tail:", t)
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">value: "
+multibyte: false
+tail: Fran &amp; Freddie's Diner\"
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+
+  
+
+        </div></section>
+
+  <h3 tabindex="-1" id="pkg-types" class="Documentation-typesHeader">Types <a href="#pkg-types" title="Go to Types" aria-label="Go to Types">¶</a></h3>
+
+  <section class="Documentation-types"><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="NumError" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=252">NumError</a> <a class="Documentation-idLink" href="#NumError" title="Go to NumError" aria-label="Go to NumError">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type NumError struct {
+<span id="NumError.Func" data-kind="field">	Func <a href="https://pkg.go.dev/builtin#string">string</a> <span class="comment">// the failing function (ParseBool, ParseInt, ParseUint, ParseFloat, ParseComplex)</span>
+</span><span id="NumError.Num" data-kind="field">	Num  <a href="https://pkg.go.dev/builtin#string">string</a> <span class="comment">// the input</span>
+</span><span id="NumError.Err" data-kind="field">	Err  <a href="https://pkg.go.dev/builtin#error">error</a>  <span class="comment">// the reason the conversion failed (e.g. ErrRange, ErrSyntax, etc.)</span>
+</span>}</pre>
+    </div>
+  <p>A NumError records a failed conversion.
+</p>
+<details tabindex="-1" id="example-NumError" class="Documentation-exampleDetails js-exampleContainer">
+<summary class="Documentation-exampleDetailsHeader">Example <a href="#example-NumError" title="Go to Example" aria-label="Go to Example">¶</a></summary>
+<div class="Documentation-exampleDetailsBody">
+
+<textarea class="Documentation-exampleCode code" spellcheck="false" style="height: 24.625rem;">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	str := "Not a number"
+	if _, err := strconv.ParseFloat(str, 64); err != nil {
+		e := err.(*strconv.NumError)
+		fmt.Println("Func:", e.Func)
+		fmt.Println("Num:", e.Num)
+		fmt.Println("Err:", e.Err)
+		fmt.Println(err)
+	}
+
+}
+</textarea>
+
+<pre class="Documentation-exampleOutputContainer js-exampleOutputContainer"><span class="Documentation-exampleOutputLabel">Output:</span>
+<span class="Documentation-exampleOutput">Func: ParseFloat
+Num: Not a number
+Err: invalid syntax
+strconv.ParseFloat: parsing "Not a number": invalid syntax
+</span></pre>
+</div>
+<div class="Documentation-exampleButtonsContainer">
+        <p class="Documentation-exampleError" role="alert" aria-atomic="true"></p>
+        <button class="Documentation-exampleShareButton" aria-label="Share Code">Share</button>
+        <button class="Documentation-exampleFormatButton" aria-label="Format Code">Format</button>
+        <button class="Documentation-exampleRunButton" aria-label="Run Code">Run</button>
+      </div></details>
+
+<div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="NumError.Error" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*NumError) <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=258">Error</a> <a class="Documentation-idLink" href="#NumError.Error" title="Go to NumError.Error" aria-label="Go to NumError.Error">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#NumError">NumError</a>) Error() <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="NumError.Unwrap" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*NumError) <a class="Documentation-source" href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go;l=262">Unwrap</a> <a class="Documentation-idLink" href="#NumError.Unwrap" title="Go to NumError.Unwrap" aria-label="Go to NumError.Unwrap">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">go1.14</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#NumError">NumError</a>) Unwrap() <a href="https://pkg.go.dev/builtin#error">error</a></pre>
+    </div>
+  
+
+  
+
+  </div>
+  
+
+    </div></section></div> 
+
+
+
+
+
+
+
+      
+    </div>
+  </div>
+
+        
+      
+      
+        
+  <div class="UnitFiles js-unitFiles">
+    <h2 class="UnitFiles-title" id="section-sourcefiles">
+      <img class="go-Icon" height="24" width="24" src="strconv_files/insert_drive_file_gm_grey_24dp.svg" alt="">
+      Source Files
+      <a class="UnitFiles-idLink" href="#section-sourcefiles" title="Go to Source Files" aria-label="Go to Source Files">¶</a>
+    </h2><div class="UnitFiles-titleLink">
+      <a href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv" target="_blank" rel="noopener">View all Source files</a>
+    </div><div>
+      <ul class="UnitFiles-fileList"><li><a href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/bytealg.go" target="_blank" rel="noopener" title="bytealg.go">bytealg.go</a></li><li><a href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/doc.go" target="_blank" rel="noopener" title="doc.go">doc.go</a></li><li><a href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/isprint.go" target="_blank" rel="noopener" title="isprint.go">isprint.go</a></li><li><a href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/number.go" target="_blank" rel="noopener" title="number.go">number.go</a></li><li><a href="https://cs.opensource.google/go/go/+/go1.26.2:src/strconv/quote.go" target="_blank" rel="noopener" title="quote.go">quote.go</a></li></ul>
+    </div>
+  </div>
+
+      
+      
+    </div>
+  </div>
+  <div id="showInternal-description" hidden=""> Click to show internal directories. </div>
+  <div id="hideInternal-description" hidden=""> Click to hide internal directories. </div>
+</article>
+    <footer class="go-Main-footer"></footer>
+  </main>
+
+    
+  <footer class="go-Footer">
+    
+    <div class="go-Footer-links">
+      <div class="go-Footer-linkColumn">
+        <a href="https://go.dev/solutions" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Why Go
+        </a>
+        <a href="https://go.dev/solutions#use-cases" class="go-Footer-link" data-gtmc="footer link">
+          Use Cases
+        </a>
+        <a href="https://go.dev/solutions#case-studies" class="go-Footer-link" data-gtmc="footer link">
+          Case Studies
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://learn.go.dev/" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Get Started
+        </a>
+        <a href="https://play.golang.org/" class="go-Footer-link" data-gtmc="footer link">
+          Playground
+        </a>
+        <a href="https://tour.golang.org/" class="go-Footer-link" data-gtmc="footer link">
+          Tour
+        </a>
+        <a href="https://stackoverflow.com/questions/tagged/go?tab=Newest" class="go-Footer-link" data-gtmc="footer link">
+          Stack Overflow
+        </a>
+        <a href="https://go.dev/help" class="go-Footer-link" data-gtmc="footer link">
+          Help
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://pkg.go.dev/" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Packages
+        </a>
+        <a href="https://pkg.go.dev/std" class="go-Footer-link" data-gtmc="footer link">
+          Standard Library
+        </a>
+        <a href="https://pkg.go.dev/golang.org/x" class="go-Footer-link" data-gtmc="footer link">
+          Sub-repositories
+        </a>
+        <a href="https://pkg.go.dev/about" class="go-Footer-link" data-gtmc="footer link">
+          About Go Packages
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://go.dev/project" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          About
+        </a>
+        <a href="https://go.dev/dl/" class="go-Footer-link" data-gtmc="footer link">Download</a>
+        <a href="https://go.dev/blog" class="go-Footer-link" data-gtmc="footer link">Blog</a>
+        <a href="https://github.com/golang/go/issues" class="go-Footer-link" data-gtmc="footer link">
+          Issue Tracker
+        </a>
+        <a href="https://go.dev/doc/devel/release.html" class="go-Footer-link" data-gtmc="footer link">
+          Release Notes
+        </a>
+        <a href="https://go.dev/brand" class="go-Footer-link" data-gtmc="footer link">
+          Brand Guidelines
+        </a>
+        <a href="https://go.dev/conduct" class="go-Footer-link" data-gtmc="footer link">
+          Code of Conduct
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://www.twitter.com/golang" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Connect
+        </a>
+        <a href="https://www.twitter.com/golang" class="go-Footer-link" data-gtmc="footer link">
+          Twitter
+        </a>
+        <a href="https://github.com/golang" class="go-Footer-link" data-gtmc="footer link">GitHub</a>
+        <a href="https://invite.slack.golangbridge.org/" class="go-Footer-link" data-gtmc="footer link">
+          Slack
+        </a>
+        <a href="https://reddit.com/r/golang" class="go-Footer-link" data-gtmc="footer link">
+          r/golang
+        </a>
+        <a href="https://www.meetup.com/pro/go" class="go-Footer-link" data-gtmc="footer link">
+          Meetup
+        </a>
+        <a href="https://golangweekly.com/" class="go-Footer-link" data-gtmc="footer link">
+          Golang Weekly
+        </a>
+      </div>
+    </div>
+    <div class="go-Footer-bottom">
+      <img class="go-Footer-gopher" width="1431" height="901" src="strconv_files/pilot-bust-1431x901.svg" alt="Gopher in flight goggles">
+      <ul class="go-Footer-listRow">
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/copyright" data-gtmc="footer link">Copyright</a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/tos" data-gtmc="footer link">Terms of Service</a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="http://www.google.com/intl/en/policies/privacy/" data-gtmc="footer link" target="_blank" rel="noopener">
+            Privacy Policy
+          </a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/s/pkgsite-feedback" target="_blank" rel="noopener" data-gtmc="footer link">
+            Report an Issue
+          </a>
+        </li>
+        <li class="go-Footer-listItem">
+          <button class="go-Button go-Button--text go-Footer-toggleTheme js-toggleTheme" aria-label="Theme Toggle">
+            <img data-value="auto" class="go-Icon go-Icon--inverted" height="24" width="24" src="strconv_files/brightness_6_gm_grey_24dp.svg" alt="System theme">
+            <img data-value="dark" class="go-Icon go-Icon--inverted" height="24" width="24" src="strconv_files/brightness_2_gm_grey_24dp.svg" alt="Dark theme">
+            <img data-value="light" class="go-Icon go-Icon--inverted" height="24" width="24" src="strconv_files/light_mode_gm_grey_24dp.svg" alt="Light theme">
+            <p> Theme Toggle </p>
+          </button>
+        </li>
+        <li class="go-Footer-listItem">
+          <button class="go-Button go-Button--text go-Footer-keyboard js-openShortcuts" aria-label="Shorcuts Modal">
+            <img class="go-Icon go-Icon--inverted" height="24" width="24" src="strconv_files/keyboard_grey_24dp.svg" alt="">
+            <p> Shortcuts Modal </p>
+          </button>
+        </li>
+      </ul>
+      <a class="go-Footer-googleLogo" href="https://google.com/" target="_blank" rel="noopener" data-gtmc="footer link">
+        <img class="go-Footer-googleLogoImg" height="24" width="72" src="strconv_files/google-white.svg" alt="Google logo">
+      </a>
+    </div>
+  </footer>
+
+    
+  <dialog id="jump-to-modal" class="JumpDialog go-Modal go-Modal--md js-modal">
+    <form method="dialog" data-gmtc="jump to form" aria-label="Jump to Identifier">
+      <div class="Dialog-title go-Modal-header">
+        <h2>Jump to</h2>
+        <button class="go-Button go-Button--inline" type="button" data-modal-close="" data-gtmc="modal button" aria-label="Close">
+          <img class="go-Icon" height="24" width="24" src="strconv_files/close_gm_grey_24dp.svg" alt="">
+        </button>
+      </div>
+      <div class="JumpDialog-filter">
+        <input class="JumpDialog-input go-Input" autocomplete="off" type="text">
+      </div>
+      <div class="JumpDialog-body go-Modal-body">
+        <div class="JumpDialog-list"></div>
+      </div>
+      <div class="go-Modal-actions">
+        <button class="go-Button" data-test-id="close-dialog">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="ShortcutsDialog go-Modal go-Modal--sm js-modal">
+    <form method="dialog">
+      <div class="go-Modal-header">
+        <h2>Keyboard shortcuts</h2>
+        <button class="go-Button go-Button--inline" type="button" data-modal-close="" data-gtmc="modal button" aria-label="Close">
+          <img class="go-Icon" height="24" width="24" src="strconv_files/close_gm_grey_24dp.svg" alt="">
+        </button>
+      </div>
+      <div class="go-Modal-body">
+        <table>
+          <tbody>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>?</strong></td><td> : This menu</td>
+            </tr>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>/</strong></td><td> : Search site</td>
+            </tr>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>f</strong> or <strong>F</strong></td><td> : Jump to</td>
+            </tr>
+            <tr>
+              <td class="ShortcutsDialog-key"><strong>y</strong> or <strong>Y</strong></td>
+              <td> : Canonical URL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="go-Modal-actions">
+        <button class="go-Button" data-test-id="close-dialog">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+    
+      <section class="Cookie-notice js-cookieNotice Cookie-notice--visible">
+        <div>go.dev uses cookies from Google to deliver and enhance the quality of its services and to
+        analyze traffic. <a target="_blank" href="https://policies.google.com/technologies/cookies">Learn more.</a></div>
+        <div><button class="go-Button">Okay</button></div>
+      </section>
+    
+    
+      <script>
+        // this will throw if the querySelector can’t find the element
+        const gtmId = document.querySelector('.js-gtmID').dataset.gtmid;
+        if (!gtmId) {
+          throw new Error('Google Tag Manager ID not found');
+        }
+        loadScript(`https://www.googletagmanager.com/gtm.js?id=${gtmId}`);
+      </script>
+      <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8MVQXG"
+                height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+      </noscript>
+    
+    
+  
+  <div class="js-canonicalURLPath" data-canonical-url-path="/strconv@go1.26.2" hidden=""></div>
+  <div class="js-playgroundVars" data-modulepath="std" data-version="v1.26.2" hidden=""></div>
+  <script>
+    loadScript('/static/frontend/unit/main/main.js')
+  </script>
+
+  <script>
+    loadScript('/static/frontend/unit/unit.js')
+  </script>
+
+  
+
+</body></html>

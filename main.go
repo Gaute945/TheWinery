@@ -43,8 +43,6 @@ func main() {
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("Templates/root.html"))
 		err, wines := ReadAll()
-		err, a := ReadOne(1)
-		println(*a.Vintage)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -58,7 +56,7 @@ func main() {
 		}
 
 		if err := tmpl.Execute(w, data); err != nil {
-			log.Println(err)
+			log.Fatal(err)
 		}
 	})
 
@@ -107,14 +105,12 @@ func main() {
 			return
 		}
 
-		println("post request")
-
 		err, wine := FormToWine(r)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		success, err := Update(wine)
+		err, success := Update(wine, Id)
 		if err != nil || !success {
 			log.Fatal(err)
 		}
@@ -124,6 +120,6 @@ func main() {
 
 	port := "8080"
 
-	fmt.Print("Listing on port " + port)
+	fmt.Print("Listing on port " + port + "\n")
 	http.ListenAndServe(":"+port, r)
 }

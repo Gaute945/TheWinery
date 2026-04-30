@@ -189,13 +189,29 @@ func ReadAll() (err error, wines []Wine) {
 	return err, wines
 }
 
-func Update(wine Wine) (bool success, err error) {
-	// db.exec(insert into wines where id = ?, id)
-	// return err
+func Update(wine Wine, Id int64) (err error, success bool) {
+	Fining(wine)
+	result, err := db.Exec(
+		`UPDATE wines SET Id = ?, Title = ?, Grape = ?, Origin = ?, Producer = ?, 
+		Vintage = ?, Taste = ?, Color = ?, Aroma = ?, Acidity = ?, 
+		Sweetness = ?, Price = ?, ISWineScale = ? WHERE Id = ?`,
+		Id, wine.Title, wine.Grape, wine.Origin,
+		wine.Producer, wine.Vintage, wine.Taste,
+		wine.Color, wine.Aroma, wine.Acidity,
+		wine.Sweetness, wine.Price, wine.ISWineScale, Id,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	success = false
-	err = nil
-	return err
+	rowsAffected, err := result.RowsAffected()
+	if (rowsAffected != 0) && (err == nil) {
+		success = true
+	} else {
+		log.Fatal(err)
+	}
+
+	return err, success
 }
 
 func Delete(id int64) (err error) {

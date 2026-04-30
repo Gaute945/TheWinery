@@ -1,0 +1,2918 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="responsive" data-local="" style="--js-unit-header-height: 8.807291984558105rem; --js-sticky-header-height: 3.5rem; --js-unit-header-top: -5.3072919845581055rem;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <script>
+      window.addEventListener('error', window.__err=function f(e){f.p=f.p||[];f.p.push(e)});
+    </script>
+    <script>
+      (function() {
+        const theme = document.cookie.match(/prefers-color-scheme=(light|dark|auto)/)?.[1]
+        if (theme) {
+          document.querySelector('html').setAttribute('data-theme', theme);
+        }
+      }())
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Package form Decodes url.Values into Go value(s) and Encodes Go value(s) into url.Values.">
+    
+    <meta class="js-gtmID" data-gtmid="GTM-W8MVQXG">
+    <link rel="shortcut icon" href="https://pkg.go.dev/static/shared/icon/favicon.ico">
+    
+  
+    <link rel="canonical" href="https://pkg.go.dev/github.com/go-playground/form/v4">
+  
+
+    <link href="form_files/frontend.min.css" rel="stylesheet">
+    
+    <link rel="search" type="application/opensearchdescription+xml" href="https://pkg.go.dev/opensearch.xml" title="Go Packages">
+    
+    
+  <title>form package - github.com/go-playground/form/v4 - Go Packages</title>
+
+    
+  <link href="form_files/unit.min.css" rel="stylesheet">
+  
+  <link href="form_files/main.min.css" rel="stylesheet">
+
+
+  <script src="form_files/dialog-polyfill.js"></script><script src="form_files/frontend.js" type="module" async="" defer="defer"></script><script src="form_files/google-analytics_analytics.js" type="module" async="" defer="defer"></script><script src="form_files/main.js" type="module" async="" defer="defer"></script><script src="form_files/unit.js" type="module" async="" defer="defer"></script></head>
+  <body>
+    
+    <script>
+      function loadScript(src, mod = true) {
+        let s = document.createElement('script');
+        s.src = src;
+        if (mod) {
+          s.type = 'module';
+          s.async = true;
+          s.defer = true
+        }
+        document.head.appendChild(s);
+      }
+      loadScript("/third_party/dialog-polyfill/dialog-polyfill.js", false)
+      loadScript("/static/frontend/frontend.js");
+    </script>
+    
+  <header class="go-Header go-Header--full js-siteHeader"><div></div>
+    <div class="go-Header-inner go-Header-inner--dark">
+      <nav class="go-Header-nav">
+        <a href="https://go.dev/" class="js-headerLogo" data-gtmc="nav link" data-test-id="go-header-logo-link" role="heading" aria-level="1">
+          <img class="go-Header-logo" src="form_files/go-white.svg" alt="Go">
+        </a>
+         <div class="skip-navigation-wrapper">
+            <a class="skip-to-content-link" aria-label="Skip to main content" href="#main-content"> Skip to Main Content </a>
+          </div>
+        <div class="go-Header-rightContent">
+          
+<div class="go-SearchForm js-searchForm">
+  <form class="go-InputGroup go-ShortcutKey go-SearchForm-form" action="/search" data-shortcut="/" data-shortcut-alt="search" data-gtmc="search form" aria-label="Search for a package" role="search">
+    <input name="q" class="go-Input js-searchFocus" aria-label="Search for a package" type="search" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search packages or symbols">
+    <input name="m" hidden="">
+    <button class="go-Button go-Button--inverted" aria-label="Submit search">
+      <img class="go-Icon" height="24" width="24" src="form_files/search_gm_grey_24dp.svg" alt="">
+    </button>
+  </form>
+  <button class="go-SearchForm-expandSearch js-expandSearch" data-gtmc="nav button" aria-label="Open search" data-test-id="expand-search">
+    <img class="go-Icon go-Icon--inverted" height="24" width="24" src="form_files/search_gm_grey_24dp.svg" alt="">
+
+  </button>
+</div>
+
+          <ul class="go-Header-menu">
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="#" data-gtmc="nav link">
+                Why Go
+                <img class="go-Icon" height="24" width="24" src="form_files/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon">
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--why js-desktop-submenu-hover" aria-label="submenu">
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/solutions#case-studies">
+                        <span>Case Studies</span>
+                      </a>
+                    </div>
+                    <p>Common problems companies solve with Go</p>
+                  </li>
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/solutions#use-cases">
+                        <span>Use Cases</span>
+                      </a>
+                    </div>
+                    <p>Stories about how and why companies use Go</p>
+                  </li>
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/security/">
+                        <span>Security</span>
+                      </a>
+                    </div>
+                    <p>How Go can help keep you secure by default</p>
+                  </li>
+              </ul>
+            </li>
+            <li class="go-Header-menuItem">
+              <a href="https://go.dev/learn/" data-gtmc="nav link">Learn</a>
+            </li>
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="#" data-gtmc="nav link">
+                Docs
+                <img class="go-Icon" height="24" width="24" src="form_files/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon">
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--docs js-desktop-submenu-hover" aria-label="submenu">
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/effective_go">
+                      <span>Effective Go</span>
+                    </a>
+                  </div>
+                  <p>Tips for writing clear, performant, and idiomatic Go code</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/">
+                      <span>Go User Manual</span>
+                    </a>
+                  </div>
+                  <p>A complete introduction to building software with Go</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://pkg.go.dev/std">
+                      <span>Standard library</span>
+                    </a>
+                  </div>
+                  <p>Reference documentation for Go's standard library</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/devel/release">
+                      <span>Release Notes</span>
+                    </a>
+                  </div>
+                  <p>Learn what's new in each Go release</p>
+                </li>
+              </ul>
+            </li>
+            <li class="go-Header-menuItem go-Header-menuItem--active">
+              <a href="https://pkg.go.dev/" data-gtmc="nav link">Packages</a>
+            </li>
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="#" data-gtmc="nav link">
+                Community
+                <img class="go-Icon" height="24" width="24" src="form_files/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon">
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--community js-desktop-submenu-hover" aria-label="submenu">
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/talks/">
+                      <span>Recorded Talks</span>
+                    </a>
+                  </div>
+                  <p>Videos from prior events</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://www.meetup.com/pro/go">
+                      <span>Meetups</span>
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="form_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </div>
+                  <p>Meet other local Go developers</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://github.com/golang/go/wiki/Conferences">
+                      <span>Conferences</span>
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="form_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </div>
+                  <p>Learn and network with Go developers from around the world</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/blog">
+                      <span>Go blog</span>
+                    </a>
+                  </div>
+                  <p>The Go project's official blog.</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/help">
+                      <span>Go project</span>
+                    </a>
+                  </div>
+                  <p>Get help and stay informed from Go</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    Get connected
+                  </div>
+                  <p></p>
+                  <div class="go-Header-socialIcons">
+                      <a class="go-Header-socialIcon" aria-label="Get connected with google-groups (Opens in new window)" title="Get connected with google-groups (Opens in new window)" href="https://groups.google.com/g/golang-nuts">
+                        <img src="form_files/google-groups.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with github (Opens in new window)" title="Get connected with github (Opens in new window)" href="https://github.com/golang">
+                        <img src="form_files/github.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with twitter (Opens in new window)" title="Get connected with twitter (Opens in new window)" href="https://twitter.com/golang">
+                        <img src="form_files/twitter.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with reddit (Opens in new window)" title="Get connected with reddit (Opens in new window)" href="https://www.reddit.com/r/golang/">
+                        <img src="form_files/reddit.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with slack (Opens in new window)" title="Get connected with slack (Opens in new window)" href="https://invite.slack.golangbridge.org/">
+                        <img src="form_files/slack.svg">
+                      </a>
+                      <a class="go-Header-socialIcon" aria-label="Get connected with stack-overflow (Opens in new window)" title="" href="https://stackoverflow.com/collectives/go">
+                        <img src="form_files/stack-overflow.svg">
+                      </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <button class="go-Header-navOpen js-headerMenuButton go-Header-navOpen--white" data-gtmc="nav button" aria-label="Open navigation">
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <aside class="go-NavigationDrawer js-header">
+    <nav class="go-NavigationDrawer-nav">
+      <div class="go-NavigationDrawer-header">
+        <a href="https://go.dev/" tabindex="-1">
+          <img class="go-NavigationDrawer-logo" src="form_files/go-blue.svg" alt="Go.">
+        </a>
+      </div>
+      <ul class="go-NavigationDrawer-list">
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="#" tabindex="-1">
+              <span>Why Go</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="form_files/navigate_next_gm_grey_24dp.svg" alt="">
+              </i>
+            </a>
+
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="#" tabindex="-1">
+                    <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="form_files/navigate_before_gm_grey_24dp.svg" alt="">
+                      </i>
+                      Why Go
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/solutions#case-studies" tabindex="-1">
+                      Case Studies
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/solutions#use-cases" tabindex="-1">
+                      Use Cases
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/security/" tabindex="-1">
+                      Security
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="go-NavigationDrawer-listItem">
+            <a href="https://go.dev/learn/" tabindex="-1">Learn</a>
+          </li>
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="#" tabindex="-1">
+              <span>Docs</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="form_files/navigate_next_gm_grey_24dp.svg" alt="">
+              </i>
+            </a>
+
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="#" tabindex="-1"><i class="material-icons">
+                    <img class="go-Icon" height="24" width="24" src="form_files/navigate_before_gm_grey_24dp.svg" alt="">
+                    </i>
+                    Docs
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/effective_go" tabindex="-1">
+                      Effective Go
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/" tabindex="-1">
+                      Go User Manual
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://pkg.go.dev/std" tabindex="-1">
+                      Standard library
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/devel/release" tabindex="-1">
+                      Release Notes
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="go-NavigationDrawer-listItem go-NavigationDrawer-listItem--active">
+            <a href="https://pkg.go.dev/" tabindex="-1">Packages</a>
+          </li>
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="#" tabindex="-1">
+              <span>Community</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="form_files/navigate_next_gm_grey_24dp.svg" alt="">
+              </i>
+            </a>
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="#" tabindex="-1">
+                    <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="form_files/navigate_before_gm_grey_24dp.svg" alt="">
+                    </i>
+                    Community
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/talks/" tabindex="-1">
+                      Recorded Talks
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://www.meetup.com/pro/go" tabindex="-1">
+                      Meetups
+                      <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="form_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://github.com/golang/go/wiki/Conferences" tabindex="-1">
+                      Conferences
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="form_files/launch_gm_grey_24dp.svg" alt="">
+                      </i>
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/blog" tabindex="-1">
+                      Go blog
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/help" tabindex="-1">
+                      Go project
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <div>Get connected</div>
+                    <div class="go-Header-socialIcons">
+                        <a class="go-Header-socialIcon" href="https://groups.google.com/g/golang-nuts" tabindex="-1"><img src="form_files/google-groups.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://github.com/golang" tabindex="-1"><img src="form_files/github.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://twitter.com/golang" tabindex="-1"><img src="form_files/twitter.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://www.reddit.com/r/golang/" tabindex="-1"><img src="form_files/reddit.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://invite.slack.golangbridge.org/" tabindex="-1"><img src="form_files/slack.svg"></a>
+                        <a class="go-Header-socialIcon" href="https://stackoverflow.com/collectives/go" tabindex="-1"><img src="form_files/stack-overflow.svg"></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="go-NavigationDrawer-scrim js-scrim" role="presentation"></div>
+
+    
+  <main class="go-Main" id="main-content">
+    <div class="go-Main-banner" role="alert"></div>
+    <header class="go-Main-header js-mainHeader">
+  
+  
+  <nav class="go-Main-headerBreadcrumb go-Breadcrumb" aria-label="Breadcrumb" data-test-id="UnitHeader-breadcrumb">
+    <ol>
+      
+        
+          <li data-test-id="UnitHeader-breadcrumbItem">
+            <a href="https://pkg.go.dev/" data-gtmc="breadcrumb link">Discover Packages</a>
+          </li>
+        
+        <li>
+          <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0" data-gtmc="breadcrumb link" aria-current="location" data-test-id="UnitHeader-breadcrumbCurrent">
+            github.com/go-playground/form/v4
+          </a>
+          
+            <button class="go-Button go-Button--inline go-Clipboard js-clipboard" title="Copy path to clipboard.
+
+github.com/go-playground/form/v4" aria-label="Copy Path to Clipboard" data-to-copy="github.com/go-playground/form/v4" data-gtmc="breadcrumbs button">
+              <img class="go-Icon go-Icon--accented" height="24" width="24" src="form_files/content_copy_gm_grey_24dp.svg" alt="">
+            </button>
+          
+        
+      </li>
+    </ol>
+  </nav>
+
+  <div class="go-Main-headerContent">
+    
+  <div class="go-Main-headerTitle js-stickyHeader">
+    <a class="go-Main-headerLogo" href="https://go.dev/" aria-hidden="true" tabindex="-1" data-gtmc="header link" aria-label="Link to Go Homepage">
+      <img height="78" width="207" src="form_files/go-blue.svg" alt="Go">
+    </a>
+    <h1 class="UnitHeader-titleHeading" data-test-id="UnitHeader-title">form</h1>
+    
+      <span class="go-Chip go-Chip--inverted">package</span>
+    
+      <span class="go-Chip go-Chip--inverted">module</span>
+    
+    
+      
+        <button class="go-Button go-Button--inline go-Clipboard js-clipboard" title="Copy path to clipboard.
+
+github.com/go-playground/form/v4" aria-label="Copy Path to Clipboard" data-to-copy="github.com/go-playground/form/v4" data-gtmc="title button" tabindex="-1">
+          <img class="go-Icon go-Icon--accented" height="24" width="24" src="form_files/content_copy_gm_grey_24dp.svg" alt="">
+        </button>
+      
+    
+  </div>
+
+    
+      
+  <div class="go-Main-headerDetails">
+    
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-version">
+    <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0?tab=versions" aria-label="Version: v4.3.0" data-gtmc="header link" aria-describedby="version-description">
+      <span class="go-textSubtle" aria-hidden="true">Version: </span>
+        v4.3.0
+    </a>
+    <div class="screen-reader-only" id="version-description" hidden="">
+      Opens a new window with list of versions in this module.
+    </div>
+    
+    <span class="DetailsHeader-badge--latest" data-test-id="UnitHeader-minorVersionBanner">
+      <span class="go-Chip DetailsHeader-span--latest">Latest</span>
+      <span class="go-Chip DetailsHeader-span--notAtLatest">
+        Latest
+        
+  <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+    <summary>
+      <img class="go-Icon go-Icon--inverted" height="24" width="24" src="form_files/alert_gm_grey_24dp.svg" alt="Warning">
+    </summary>
+    <p>This package is not in the latest version of its module.</p>
+  </details>
+
+      </span>
+      <a href="https://pkg.go.dev/github.com/go-playground/form/v4" aria-label="Go to Latest Version" data-gtmc="header link">
+        <span class="go-Chip go-Chip--alert DetailsHeader-span--goToLatest">Go to latest</span>
+      </a>
+    </span>
+  </span>
+
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-commitTime">
+    Published: Oct 11, 2025
+  </span>
+
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-licenses">
+    License: <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0?tab=licenses" data-test-id="UnitHeader-license" data-gtmc="header link" aria-describedby="license-description">MIT</a>
+      
+    
+  </span>
+  <div class="screen-reader-only" id="license-description" hidden="">
+    Opens a new window with license information.
+  </div>
+
+      
+        
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-imports">
+    <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0?tab=imports" aria-label="Imports: 11" data-gtmc="header link" aria-describedby="imports-description">
+      <span class="go-textSubtle">Imports: </span>11
+    </a>
+  </span>
+  <div class="screen-reader-only" id="imports-description" hidden="">
+    Opens a new window with list of imports.
+  </div>
+
+        
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-importedby">
+    <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0?tab=importedby" aria-label="Imported By: 637" data-gtmc="header link" aria-describedby="importedby-description">
+       <span class="go-textSubtle">Imported by: </span>637
+    </a>
+  </span>
+  <div class="screen-reader-only" id="importedby-description" hidden="">
+    Opens a new window with list of known importers.
+  </div>
+
+      
+    
+  </div>
+  
+  <div class="UnitHeader-overflowContainer">
+    <svg class="UnitHeader-overflowImage" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+    </svg>
+    <select class="UnitHeader-overflowSelect js-selectNav" tabindex="-1">
+      <option value="/" selected="selected">Main</option>
+      <option value="/github.com/go-playground/form/v4@v4.3.0?tab=versions">
+        Versions
+      </option>
+      <option value="/github.com/go-playground/form/v4@v4.3.0?tab=licenses">
+        Licenses
+      </option>
+      
+        <option value="/github.com/go-playground/form/v4@v4.3.0?tab=imports">
+          Imports
+        </option>
+        <option value="/github.com/go-playground/form/v4@v4.3.0?tab=importedby">
+          Imported By
+        </option>
+      
+    </select>
+  </div>
+
+
+    
+  </div>
+
+</header>
+    
+      <aside class="go-Main-aside  js-mainAside"><div></div>
+  
+  <div class="UnitMeta">
+    <h2 class="go-textLabel">Details</h2>
+    
+  <ul class="UnitMeta-details">
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="form_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Valid <a href="https://github.com/go-playground/form/tree/v4.3.0/go.mod" target="_blank" rel="noopener">go.mod</a> file
+          <img class="go-Icon" role="button" tabindex="0" src="form_files/help_gm_grey_24dp.svg" alt="" aria-label="Toggle go.mod validity tooltip" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">
+          The Go module system was introduced in Go 1.11 and is the official dependency management
+          solution for Go.
+        </p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="form_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Redistributable license
+          <img class="go-Icon" role="button" tabindex="0" src="form_files/help_gm_grey_24dp.svg" alt="" aria-label="Toggle redistributable help tooltip" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">
+          Redistributable licenses place minimal restrictions on how software can be used,
+          modified, and redistributed.
+        </p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="form_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Tagged version
+          <img class="go-Icon" role="button" tabindex="0" src="form_files/help_gm_grey_24dp.svg" alt="" aria-label="Toggle tagged version tooltip" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">Modules with tagged versions give importers more predictable builds.</p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" tabindex="0" role="button" src="form_files/check_circle_gm_grey_24dp.svg" alt="checked" aria-label="Valid file, toggle tooltip" height="24" width="24">
+
+          Stable version
+          <img class="go-Icon" role="button" tabindex="0" aria-label="Toggle stable version tooltip" src="form_files/help_gm_grey_24dp.svg" alt="" height="24" width="24">
+        </summary>
+        <p aria-live="polite" role="tooltip">When a project reaches major version v1 it is considered stable.</p>
+      </details>
+    </li>
+    <li class="UnitMeta-detailsLearn">
+      <a href="https://pkg.go.dev/about#best-practices" data-gtmc="meta link">Learn more about best practices</a>
+    </li>
+  </ul>
+
+    <h2 class="go-textLabel">Repository</h2>
+    <div class="UnitMeta-repo">
+      
+        <a href="https://github.com/go-playground/form" title="https://github.com/go-playground/form" target="_blank" rel="noopener">
+          github.com/go-playground/form
+        </a>
+      
+    </div>
+    
+      <h2 class="go-textLabel" data-test-id="links-heading">Links</h2>
+      <ul class="UnitMeta-links">
+        
+        
+          <li>
+            <a href="https://deps.dev/go/github.com%2Fgo-playground%2Fform%2Fv4/v4.3.0" title="View this module on Open Source Insights" target="_blank" rel="noopener" data-test-id="meta-link-depsdev">
+              <img class="link-Icon" src="form_files/depsdev-logo.svg" alt="Open Source Insights Logo">
+              Open Source Insights
+            </a>
+          </li>
+        
+        
+        
+  
+
+        
+  
+
+        
+  
+
+      </ul>
+    
+  </div>
+
+</aside>
+    
+    <nav class="go-Main-nav go-Main-nav--sticky js-mainNav" aria-label="Outline"><div></div>
+  <div class="go-Main-navDesktop">
+    
+  <div class="UnitOutline-jumpTo">
+    <button class="UnitOutline-jumpToInput go-ShortcutKey js-jumpToInput" aria-controls="jump-to-modal" aria-label="Open Jump to Identifier" data-shortcut="f" data-shortcut-alt="find" data-test-id="jump-to-button" data-gtmc="outline button">
+      Jump to ...
+    </button>
+  </div>
+  <ul class="go-Tree js-tree" role="tree" aria-label="Outline" style="--js-tree-height: 172px;">
+    
+      <li class="js-readmeOutline" role="none">
+        <a href="#section-readme" data-gtmc="outline link" tabindex="0" aria-level="1" aria-owns="_nav_group_README" aria-expanded="true" role="treeitem" aria-selected="true">
+          README
+        </a>
+        
+  <ul id="_nav_group_README" role="group">
+    
+      <li role="none">
+        <a href="#readme-supported-types-out-of-the-box" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Supported Types ( out of the box )
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-installation" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Installation
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-usage" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Usage
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-examples" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Examples
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-registering-custom-types" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Registering Custom Types
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-ignoring-fields" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Ignoring Fields
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-omitempty" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Omitempty
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-notes" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Notes
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-benchmarks" data-gtmc="readme outline link" tabindex="-1" aria-level="2" aria-owns="README_nav_group_Benchmarks" aria-expanded="false" role="treeitem">
+          Benchmarks
+        </a>
+        
+          <ul role="group" id="README_nav_group_Benchmarks">
+            
+              <li role="none">
+                <a href="#readme-run-on-m1-macbook-pro-using-go-version-go1-20-6-darwin-amd64" data-gtmc="readme outline link" tabindex="-1" aria-level="3" role="treeitem">
+                  Run on M1 MacBook Pro using go version go1.20.6 darwin/amd64
+                </a>
+                 
+              </li>
+             
+          </ul>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-maintenance-and-support-for-sdk-major-versions" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Maintenance and support for SDK major versions
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-complimentary-software" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          Complimentary Software
+        </a>
+         
+      </li>
+    
+      <li role="none">
+        <a href="#readme-license" data-gtmc="readme outline link" tabindex="-1" aria-level="2" role="treeitem">
+          License
+        </a>
+         
+      </li>
+     
+  </ul>
+
+      </li>
+    
+    
+      <li role="none">
+        <a href="#section-documentation" data-gtmc="outline link" tabindex="-1" aria-level="1" aria-owns="_nav_group_Documentation" aria-expanded="false" role="treeitem">
+          Documentation
+        </a>
+        
+<ul role="group" id="_nav_group_Documentation">
+  
+    <li role="none">
+      <a href="#pkg-overview" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">Overview</a>
+    </li>
+  <li class="DocNav-overview" role="none">
+      <a href="#pkg-index" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">
+        Index
+      </a>
+    </li>
+    <li class="DocNav-constants" role="none">
+      <a href="#pkg-constants" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">
+        Constants
+      </a>
+    </li>
+    <li class="DocNav-variables" role="none">
+      <a href="#pkg-variables" data-gtmc="doc outline link" tabindex="-1" aria-level="2" role="treeitem">
+        Variables
+      </a>
+    </li>
+    <li class="DocNav-functions" role="none">
+      <a href="#pkg-functions" data-gtmc="doc outline link" tabindex="-1" aria-level="2" aria-owns="Documentation_nav_group_Functions" aria-expanded="false" role="treeitem">
+        Functions
+      </a>
+      
+        <ul role="group" id="Documentation_nav_group_Functions">
+          
+            <li role="none">
+              <a href="#ExtractType" title="ExtractType(current)" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+                ExtractType(current)
+              </a>
+            </li>
+          
+        </ul>
+      
+    </li>
+    <li class="DocNav-types" role="none">
+      <a href="#pkg-types" data-gtmc="doc outline link" tabindex="-1" aria-level="2" aria-owns="Documentation_nav_group_Types" aria-expanded="false" role="treeitem">
+        Types
+      </a>
+      <ul role="group" id="Documentation_nav_group_Types">
+        
+          
+          <li role="none">
+            <a href="#AnonymousMode" title="type AnonymousMode" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+              type AnonymousMode
+            </a>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#DecodeCustomTypeFunc" title="type DecodeCustomTypeFunc" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+              type DecodeCustomTypeFunc
+            </a>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#DecodeErrors" title="type DecodeErrors" data-gtmc="doc outline link" tabindex="-1" aria-level="3" aria-owns="Types_nav_group_type_DecodeErrors" aria-expanded="false" role="treeitem">
+              type DecodeErrors
+            </a>
+            
+              <ul role="group" id="Types_nav_group_type_DecodeErrors">
+                
+                
+                  <li role="none">
+                    <a href="#DecodeErrors.Error" title="(d) Error()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) Error()
+                    </a>
+                  </li>
+                
+              </ul>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#Decoder" title="type Decoder" data-gtmc="doc outline link" tabindex="-1" aria-level="3" aria-owns="Types_nav_group_type_Decoder" aria-expanded="false" role="treeitem">
+              type Decoder
+            </a>
+            
+              <ul role="group" id="Types_nav_group_type_Decoder">
+                
+                  <li role="none">
+                    <a href="#NewDecoder" title="NewDecoder()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      NewDecoder()
+                    </a>
+                  </li>
+                
+                
+                  <li role="none">
+                    <a href="#Decoder.Decode" title="(d) Decode(v, values)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) Decode(v, values)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Decoder.RegisterCustomTypeFunc" title="(d) RegisterCustomTypeFunc(fn, types)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) RegisterCustomTypeFunc(fn, types)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Decoder.RegisterTagNameFunc" title="(d) RegisterTagNameFunc(fn)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) RegisterTagNameFunc(fn)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Decoder.SetMaxArraySize" title="(d) SetMaxArraySize(size)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) SetMaxArraySize(size)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Decoder.SetMode" title="(d) SetMode(mode)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) SetMode(mode)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Decoder.SetNamespacePrefix" title="(d) SetNamespacePrefix(namespacePrefix)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) SetNamespacePrefix(namespacePrefix)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Decoder.SetNamespaceSuffix" title="(d) SetNamespaceSuffix(namespaceSuffix)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) SetNamespaceSuffix(namespaceSuffix)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Decoder.SetTagName" title="(d) SetTagName(tagName)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (d) SetTagName(tagName)
+                    </a>
+                  </li>
+                
+              </ul>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#EncodeCustomTypeFunc" title="type EncodeCustomTypeFunc" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+              type EncodeCustomTypeFunc
+            </a>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#EncodeErrors" title="type EncodeErrors" data-gtmc="doc outline link" tabindex="-1" aria-level="3" aria-owns="Types_nav_group_type_EncodeErrors" aria-expanded="false" role="treeitem">
+              type EncodeErrors
+            </a>
+            
+              <ul role="group" id="Types_nav_group_type_EncodeErrors">
+                
+                
+                  <li role="none">
+                    <a href="#EncodeErrors.Error" title="(e) Error()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) Error()
+                    </a>
+                  </li>
+                
+              </ul>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#Encoder" title="type Encoder" data-gtmc="doc outline link" tabindex="-1" aria-level="3" aria-owns="Types_nav_group_type_Encoder" aria-expanded="false" role="treeitem">
+              type Encoder
+            </a>
+            
+              <ul role="group" id="Types_nav_group_type_Encoder">
+                
+                  <li role="none">
+                    <a href="#NewEncoder" title="NewEncoder()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      NewEncoder()
+                    </a>
+                  </li>
+                
+                
+                  <li role="none">
+                    <a href="#Encoder.Encode" title="(e) Encode(v)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) Encode(v)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Encoder.RegisterCustomTypeFunc" title="(e) RegisterCustomTypeFunc(fn, types)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) RegisterCustomTypeFunc(fn, types)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Encoder.RegisterTagNameFunc" title="(e) RegisterTagNameFunc(fn)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) RegisterTagNameFunc(fn)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Encoder.SetAnonymousMode" title="(e) SetAnonymousMode(mode)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) SetAnonymousMode(mode)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Encoder.SetMode" title="(e) SetMode(mode)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) SetMode(mode)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Encoder.SetNamespacePrefix" title="(e) SetNamespacePrefix(namespacePrefix)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) SetNamespacePrefix(namespacePrefix)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Encoder.SetNamespaceSuffix" title="(e) SetNamespaceSuffix(namespaceSuffix)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) SetNamespaceSuffix(namespaceSuffix)
+                    </a>
+                  </li>
+                
+                  <li role="none">
+                    <a href="#Encoder.SetTagName" title="(e) SetTagName(tagName)" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) SetTagName(tagName)
+                    </a>
+                  </li>
+                
+              </ul>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#InvalidDecoderError" title="type InvalidDecoderError" data-gtmc="doc outline link" tabindex="-1" aria-level="3" aria-owns="Types_nav_group_type_InvalidDecoderError" aria-expanded="false" role="treeitem">
+              type InvalidDecoderError
+            </a>
+            
+              <ul role="group" id="Types_nav_group_type_InvalidDecoderError">
+                
+                
+                  <li role="none">
+                    <a href="#InvalidDecoderError.Error" title="(e) Error()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) Error()
+                    </a>
+                  </li>
+                
+              </ul>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#InvalidEncodeError" title="type InvalidEncodeError" data-gtmc="doc outline link" tabindex="-1" aria-level="3" aria-owns="Types_nav_group_type_InvalidEncodeError" aria-expanded="false" role="treeitem">
+              type InvalidEncodeError
+            </a>
+            
+              <ul role="group" id="Types_nav_group_type_InvalidEncodeError">
+                
+                
+                  <li role="none">
+                    <a href="#InvalidEncodeError.Error" title="(e) Error()" data-gtmc="doc outline link" tabindex="-1" aria-level="4" role="treeitem">
+                      (e) Error()
+                    </a>
+                  </li>
+                
+              </ul>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#Mode" title="type Mode" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+              type Mode
+            </a>
+             
+          </li>
+        
+          
+          <li role="none">
+            <a href="#TagNameFunc" title="type TagNameFunc" data-gtmc="doc outline link" tabindex="-1" aria-level="3" role="treeitem">
+              type TagNameFunc
+            </a>
+             
+          </li>
+         
+      </ul>
+    </li>
+  
+  
+</ul>
+
+      </li>
+    
+    
+      <li role="none">
+        <a href="#section-sourcefiles" data-gtmc="outline link" tabindex="-1" aria-level="1" role="treeitem">
+          Source Files
+        </a>
+      </li>
+    
+    
+      <li role="none">
+        <a href="#section-directories" data-gtmc="outline link" tabindex="-1" aria-level="1" role="treeitem">
+          Directories
+        </a>
+      </li>
+    
+  </ul>
+
+  </div>
+  <div class="go-Main-navMobile js-mainNavMobile">
+    <label class="go-Label" aria-label="Menu"><select class="go-Select js-selectNav"><optgroup label="Outline"><option label="README" value="github.com/go-playground/form/v4@v4.3.0#section-readme" selected="selected">README</option><option label="Documentation" value="github.com/go-playground/form/v4@v4.3.0#section-documentation">Documentation</option><option label="Source Files" value="github.com/go-playground/form/v4@v4.3.0#section-sourcefiles">Source Files</option><option label="Directories" value="github.com/go-playground/form/v4@v4.3.0#section-directories">Directories</option></optgroup><optgroup label="README"><option label="Supported Types ( out of the box )" value="github.com/go-playground/form/v4@v4.3.0#readme-supported-types-out-of-the-box">Supported Types ( out of the box )</option><option label="Installation" value="github.com/go-playground/form/v4@v4.3.0#readme-installation">Installation</option><option label="Usage" value="github.com/go-playground/form/v4@v4.3.0#readme-usage">Usage</option><option label="Examples" value="github.com/go-playground/form/v4@v4.3.0#readme-examples">Examples</option><option label="Registering Custom Types" value="github.com/go-playground/form/v4@v4.3.0#readme-registering-custom-types">Registering Custom Types</option><option label="Ignoring Fields" value="github.com/go-playground/form/v4@v4.3.0#readme-ignoring-fields">Ignoring Fields</option><option label="Omitempty" value="github.com/go-playground/form/v4@v4.3.0#readme-omitempty">Omitempty</option><option label="Notes" value="github.com/go-playground/form/v4@v4.3.0#readme-notes">Notes</option><option label="Benchmarks" value="github.com/go-playground/form/v4@v4.3.0#readme-benchmarks">Benchmarks</option><option label="Maintenance and support for SDK major versions" value="github.com/go-playground/form/v4@v4.3.0#readme-maintenance-and-support-for-sdk-major-versions">Maintenance and support for SDK major versions</option><option label="Complimentary Software" value="github.com/go-playground/form/v4@v4.3.0#readme-complimentary-software">Complimentary Software</option><option label="License" value="github.com/go-playground/form/v4@v4.3.0#readme-license">License</option></optgroup><optgroup label="Benchmarks"><option label="Run on M1 MacBook Pro using go version go1.20.6 darwin/amd64" value="github.com/go-playground/form/v4@v4.3.0#readme-run-on-m1-macbook-pro-using-go-version-go1-20-6-darwin-amd64">Run on M1 MacBook Pro using go version go1.20.6 darwin/amd64</option></optgroup><optgroup label="Documentation"><option label="Overview" value="github.com/go-playground/form/v4@v4.3.0#pkg-overview">Overview</option><option label="Index" value="github.com/go-playground/form/v4@v4.3.0#pkg-index">Index</option><option label="Constants" value="github.com/go-playground/form/v4@v4.3.0#pkg-constants">Constants</option><option label="Variables" value="github.com/go-playground/form/v4@v4.3.0#pkg-variables">Variables</option><option label="Functions" value="github.com/go-playground/form/v4@v4.3.0#pkg-functions">Functions</option><option label="Types" value="github.com/go-playground/form/v4@v4.3.0#pkg-types">Types</option></optgroup><optgroup label="Functions"><option label="ExtractType(current)" value="github.com/go-playground/form/v4@v4.3.0#ExtractType">ExtractType(current)</option></optgroup><optgroup label="Types"><option label="type AnonymousMode" value="github.com/go-playground/form/v4@v4.3.0#AnonymousMode">type AnonymousMode</option><option label="type DecodeCustomTypeFunc" value="github.com/go-playground/form/v4@v4.3.0#DecodeCustomTypeFunc">type DecodeCustomTypeFunc</option><option label="type DecodeErrors" value="github.com/go-playground/form/v4@v4.3.0#DecodeErrors">type DecodeErrors</option><option label="type Decoder" value="github.com/go-playground/form/v4@v4.3.0#Decoder">type Decoder</option><option label="type EncodeCustomTypeFunc" value="github.com/go-playground/form/v4@v4.3.0#EncodeCustomTypeFunc">type EncodeCustomTypeFunc</option><option label="type EncodeErrors" value="github.com/go-playground/form/v4@v4.3.0#EncodeErrors">type EncodeErrors</option><option label="type Encoder" value="github.com/go-playground/form/v4@v4.3.0#Encoder">type Encoder</option><option label="type InvalidDecoderError" value="github.com/go-playground/form/v4@v4.3.0#InvalidDecoderError">type InvalidDecoderError</option><option label="type InvalidEncodeError" value="github.com/go-playground/form/v4@v4.3.0#InvalidEncodeError">type InvalidEncodeError</option><option label="type Mode" value="github.com/go-playground/form/v4@v4.3.0#Mode">type Mode</option><option label="type TagNameFunc" value="github.com/go-playground/form/v4@v4.3.0#TagNameFunc">type TagNameFunc</option></optgroup><optgroup label="type DecodeErrors"><option label="(d) Error()" value="github.com/go-playground/form/v4@v4.3.0#DecodeErrors.Error">(d) Error()</option></optgroup><optgroup label="type Decoder"><option label="NewDecoder()" value="github.com/go-playground/form/v4@v4.3.0#NewDecoder">NewDecoder()</option><option label="(d) Decode(v, values)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.Decode">(d) Decode(v, values)</option><option label="(d) RegisterCustomTypeFunc(fn, types)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.RegisterCustomTypeFunc">(d) RegisterCustomTypeFunc(fn, types)</option><option label="(d) RegisterTagNameFunc(fn)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.RegisterTagNameFunc">(d) RegisterTagNameFunc(fn)</option><option label="(d) SetMaxArraySize(size)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.SetMaxArraySize">(d) SetMaxArraySize(size)</option><option label="(d) SetMode(mode)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.SetMode">(d) SetMode(mode)</option><option label="(d) SetNamespacePrefix(namespacePrefix)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.SetNamespacePrefix">(d) SetNamespacePrefix(namespacePrefix)</option><option label="(d) SetNamespaceSuffix(namespaceSuffix)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.SetNamespaceSuffix">(d) SetNamespaceSuffix(namespaceSuffix)</option><option label="(d) SetTagName(tagName)" value="github.com/go-playground/form/v4@v4.3.0#Decoder.SetTagName">(d) SetTagName(tagName)</option></optgroup><optgroup label="type EncodeErrors"><option label="(e) Error()" value="github.com/go-playground/form/v4@v4.3.0#EncodeErrors.Error">(e) Error()</option></optgroup><optgroup label="type Encoder"><option label="NewEncoder()" value="github.com/go-playground/form/v4@v4.3.0#NewEncoder">NewEncoder()</option><option label="(e) Encode(v)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.Encode">(e) Encode(v)</option><option label="(e) RegisterCustomTypeFunc(fn, types)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.RegisterCustomTypeFunc">(e) RegisterCustomTypeFunc(fn, types)</option><option label="(e) RegisterTagNameFunc(fn)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.RegisterTagNameFunc">(e) RegisterTagNameFunc(fn)</option><option label="(e) SetAnonymousMode(mode)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.SetAnonymousMode">(e) SetAnonymousMode(mode)</option><option label="(e) SetMode(mode)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.SetMode">(e) SetMode(mode)</option><option label="(e) SetNamespacePrefix(namespacePrefix)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.SetNamespacePrefix">(e) SetNamespacePrefix(namespacePrefix)</option><option label="(e) SetNamespaceSuffix(namespaceSuffix)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.SetNamespaceSuffix">(e) SetNamespaceSuffix(namespaceSuffix)</option><option label="(e) SetTagName(tagName)" value="github.com/go-playground/form/v4@v4.3.0#Encoder.SetTagName">(e) SetTagName(tagName)</option></optgroup><optgroup label="type InvalidDecoderError"><option label="(e) Error()" value="github.com/go-playground/form/v4@v4.3.0#InvalidDecoderError.Error">(e) Error()</option></optgroup><optgroup label="type InvalidEncodeError"><option label="(e) Error()" value="github.com/go-playground/form/v4@v4.3.0#InvalidEncodeError.Error">(e) Error()</option></optgroup></select></label>
+  </div>
+</nav>
+    <article class="go-Main-article js-mainContent">
+  <div class="UnitDetails" data-test-id="UnitDetails" style="display: block;">
+    <div class="UnitDetails-content js-unitDetailsContent" data-test-id="UnitDetails-content">
+      
+        
+  <div class="UnitReadme js-readme UnitReadme--toggle">
+    <h2 class="UnitReadme-title" id="section-readme">
+      <img class="go-Icon" height="24" width="24" src="form_files/chrome_reader_mode_gm_grey_24dp.svg" alt="">
+      README
+      <a class="UnitReadme-idLink" href="#section-readme" title="Go to Readme" aria-label="Go to Readme">¶</a>
+    </h2>
+    
+      <div class="UnitReadme-content" data-test-id="Unit-readmeContent">
+        <div class="Overview-readmeContent js-readmeContent"><h3 class="h1" id="readme-package-form">Package form</h3>
+<p><img align="right" src="form_files/logo.jpg"><a href="https://github.com/go-playground/form/releases" rel="nofollow"><img src="form_files/form.svg" alt="GitHub release (latest SemVer)"></a>
+<a href="https://github.com/go-playground/form/actions/workflows/workflow.yml" rel="nofollow"><img src="form_files/badge.svg" alt="Build Status"></a>
+<a href="https://coveralls.io/github/go-playground/form?branch=master" rel="nofollow"><img src="form_files/coveralls_100.svg" alt="Coverage Status"></a>
+<a href="https://goreportcard.com/report/github.com/go-playground/form" rel="nofollow"><img src="form_files/go%20report-A+-brightgreen.svg" alt="Go Report Card"></a>
+<a href="https://godoc.org/github.com/go-playground/form" rel="nofollow"><img src="form_files/form_002.svg" alt="GoDoc"></a>
+<img src="form_files/vibe-d.svg" alt="License">
+<a href="https://gitter.im/go-playground/form?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge" rel="nofollow"><img src="form_files/repo.svg" alt="Gitter"></a></p>
+<p>Package form Decodes url.Values into Go value(s) and Encodes Go value(s) into url.Values.</p>
+<p>It has the following features:</p>
+<ul>
+<li>Supports map of almost all types.</li>
+<li>Supports both Numbered and Normal arrays eg. <code>"Array[0]"</code> and just <code>"Array"</code> with multiple values passed.</li>
+<li>Slice honours the specified index. eg. if "Slice[2]" is the only 
+Slice value passed down, it will be put at index 2; if slice isn't big 
+enough it will be expanded.</li>
+<li>Array honours the specified index. eg. if "Array[2]" is the only 
+Array value passed down, it will be put at index 2; if array isn't big 
+enough a warning will be printed and value ignored.</li>
+<li>Only creates objects as necessary eg. if no <code>array</code> or <code>map</code> values are passed down, the <code>array</code> and <code>map</code> are left as their default values in the struct.</li>
+<li>Allows for Custom Type registration.</li>
+<li>Handles time.Time using RFC3339 time format by default, but can easily be changed by registering a Custom Type, see below.</li>
+<li>Handles Encoding &amp; Decoding of almost all Go types eg. can 
+Decode into struct, array, map, int... and Encode a struct, array, map, 
+int...</li>
+</ul>
+<p>Common Questions</p>
+<ul>
+<li>Does it support encoding.TextUnmarshaler? No because TextUnmarshaler
+ only accepts []byte but posted values can have multiple values, so is 
+not suitable.</li>
+<li>Mixing <code>array/slice</code> with <code>array[idx]/slice[idx]</code>, in which order are they parsed? <code>array/slice</code> then <code>array[idx]/slice[idx]</code></li>
+</ul>
+<h4 class="h2" id="readme-supported-types-out-of-the-box">Supported Types ( out of the box )</h4>
+<ul>
+<li><code>string</code></li>
+<li><code>bool</code></li>
+<li><code>int</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code></li>
+<li><code>uint</code>, <code>uint8</code>, <code>uint16</code>, <code>uint32</code>, <code>uint64</code></li>
+<li><code>float32</code>, <code>float64</code></li>
+<li><code>struct</code> and <code>anonymous struct</code></li>
+<li><code>interface{}</code></li>
+<li><code>time.Time</code> - by default using RFC3339</li>
+<li>a <code>pointer</code> to one of the above types</li>
+<li><code>slice</code>, <code>array</code></li>
+<li><code>map</code></li>
+<li><code>custom types</code> can override any of the above types</li>
+<li>many other types may be supported inherently</li>
+</ul>
+<p><strong>NOTE</strong>: <code>map</code>, <code>struct</code> and <code>slice</code> nesting are ad infinitum.</p>
+<h4 class="h2" id="readme-installation">Installation</h4>
+<p>Use go get.</p>
+<pre><code>go get github.com/go-playground/form
+</code></pre>
+<p>Then import the form package into your own code.</p>
+<pre><code>import "github.com/go-playground/form/v4"
+</code></pre>
+<h4 class="h2" id="readme-usage">Usage</h4>
+<ul>
+<li>Use symbol <code>.</code> for separating fields/structs. (eg. <code>structfield.field</code>)</li>
+<li>Use <code>[index or key]</code> for access to index of a slice/array or key for map. (eg. <code>arrayfield[0]</code>, <code>mapfield[keyvalue]</code>)</li>
+</ul>
+<pre><code>&lt;form method="POST"&gt;
+  &lt;input type="text" name="Name" value="joeybloggs"/&gt;
+  &lt;input type="text" name="Age" value="3"/&gt;
+  &lt;input type="text" name="Gender" value="Male"/&gt;
+  &lt;input type="text" name="Address[0].Name" value="26 Here Blvd."/&gt;
+  &lt;input type="text" name="Address[0].Phone" value="9(999)999-9999"/&gt;
+  &lt;input type="text" name="Address[1].Name" value="26 There Blvd."/&gt;
+  &lt;input type="text" name="Address[1].Phone" value="1(111)111-1111"/&gt;
+  &lt;input type="text" name="active" value="true"/&gt;
+  &lt;input type="text" name="MapExample[key]" value="value"/&gt;
+  &lt;input type="text" name="NestedMap[key][key]" value="value"/&gt;
+  &lt;input type="text" name="NestedArray[0][0]" value="value"/&gt;
+  &lt;input type="submit"/&gt;
+&lt;/form&gt;
+</code></pre>
+<h4 class="h2" id="readme-examples">Examples</h4>
+<p>Decoding</p>
+<pre><code>package main
+
+import (
+	"fmt"
+	"log"
+	"net/url"
+
+	"github.com/go-playground/form/v4"
+)
+
+// Address contains address information
+type Address struct {
+	Name  string
+	Phone string
+}
+
+// User contains user information
+type User struct {
+	Name        string
+	Age         uint8
+	Gender      string
+	Address     []Address
+	Active      bool `form:"active"`
+	MapExample  map[string]string
+	NestedMap   map[string]map[string]string
+	NestedArray [][]string
+}
+
+// use a single instance of Decoder, it caches struct info
+var decoder *form.Decoder
+
+func main() {
+	decoder = form.NewDecoder()
+
+	// this simulates the results of http.Request's ParseForm() function
+	values := parseForm()
+
+	var user User
+
+	// must pass a pointer
+	err := decoder.Decode(&amp;user, values)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	fmt.Printf("%#v\n", user)
+}
+
+// this simulates the results of http.Request's ParseForm() function
+func parseForm() url.Values {
+	return url.Values{
+		"Name":                []string{"joeybloggs"},
+		"Age":                 []string{"3"},
+		"Gender":              []string{"Male"},
+		"Address[0].Name":     []string{"26 Here Blvd."},
+		"Address[0].Phone":    []string{"9(999)999-9999"},
+		"Address[1].Name":     []string{"26 There Blvd."},
+		"Address[1].Phone":    []string{"1(111)111-1111"},
+		"active":              []string{"true"},
+		"MapExample[key]":     []string{"value"},
+		"NestedMap[key][key]": []string{"value"},
+		"NestedArray[0][0]":   []string{"value"},
+	}
+}
+</code></pre>
+<p>Encoding</p>
+<pre><code>package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/go-playground/form/v4"
+)
+
+// Address contains address information
+type Address struct {
+	Name  string
+	Phone string
+}
+
+// User contains user information
+type User struct {
+	Name        string
+	Age         uint8
+	Gender      string
+	Address     []Address
+	Active      bool `form:"active"`
+	MapExample  map[string]string
+	NestedMap   map[string]map[string]string
+	NestedArray [][]string
+}
+
+// use a single instance of Encoder, it caches struct info
+var encoder *form.Encoder
+
+func main() {
+	encoder = form.NewEncoder()
+
+	user := User{
+		Name:   "joeybloggs",
+		Age:    3,
+		Gender: "Male",
+		Address: []Address{
+			{Name: "26 Here Blvd.", Phone: "9(999)999-9999"},
+			{Name: "26 There Blvd.", Phone: "1(111)111-1111"},
+		},
+		Active:      true,
+		MapExample:  map[string]string{"key": "value"},
+		NestedMap:   map[string]map[string]string{"key": {"key": "value"}},
+		NestedArray: [][]string{{"value"}},
+	}
+
+	// must pass a pointer
+	values, err := encoder.Encode(&amp;user)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	fmt.Printf("%#v\n", values)
+}
+</code></pre>
+<h4 class="h2" id="readme-registering-custom-types">Registering Custom Types</h4>
+<p>Decoder</p>
+<pre><code>decoder.RegisterCustomTypeFunc(func(vals []string) (interface{}, error) {
+	return time.Parse("2006-01-02", vals[0])
+}, time.Time{})
+</code></pre>
+<p>ADDITIONAL: if a struct type is registered, the function will only be called if a url.Value exists for
+the struct and not just the struct fields eg. url.Values{"User":"Name%3Djoeybloggs"} will call the
+custom type function with 'User' as the type, however url.Values{"User.Name":"joeybloggs"} will not.</p>
+<p>Encoder</p>
+<pre><code>encoder.RegisterCustomTypeFunc(func(x interface{}) ([]string, error) {
+	return []string{x.(time.Time).Format("2006-01-02")}, nil
+}, time.Time{})
+</code></pre>
+<h4 class="h2" id="readme-ignoring-fields">Ignoring Fields</h4>
+<p>you can tell form to ignore fields using <code>-</code> in the tag</p>
+<pre><code>type MyStruct struct {
+	Field string `form:"-"`
+}
+</code></pre>
+<h4 class="h2" id="readme-omitempty">Omitempty</h4>
+<p>you can tell form to omit empty fields using <code>,omitempty</code> or <code>FieldName,omitempty</code> in the tag</p>
+<pre><code>type MyStruct struct {
+	Field  string `form:",omitempty"`
+	Field2 string `form:"CustomFieldName,omitempty"`
+}
+</code></pre>
+<h4 class="h2" id="readme-notes">Notes</h4>
+<p>To maximize compatibility with other systems the Encoder attempts
+to avoid using array indexes in url.Values if at all possible.</p>
+<p>eg.</p>
+<pre><code>// A struct field of
+Field []string{"1", "2", "3"}
+
+// will be output a url.Value as
+"Field": []string{"1", "2", "3"}
+
+and not
+"Field[0]": []string{"1"}
+"Field[1]": []string{"2"}
+"Field[2]": []string{"3"}
+
+// however there are times where it is unavoidable, like with pointers
+i := int(1)
+Field []*string{nil, nil, &amp;i}
+
+// to avoid index 1 and 2 must use index
+"Field[2]": []string{"1"}
+</code></pre>
+<h4 class="h2" id="readme-benchmarks">Benchmarks</h4>
+<div role="heading" aria-level="6" id="readme-run-on-m1-macbook-pro-using-go-version-go1-20-6-darwin-amd64">Run on M1 MacBook Pro using go version go1.20.6 darwin/amd64</div>
+<p>NOTE: the 1 allocation and B/op in the first 4 decodes is actually 
+the struct allocating when passing it in, so primitives are actually 
+zero allocation.</p>
+<pre><code>go test -run=NONE -bench=. -benchmem ./...
+goos: darwin
+goarch: arm64
+pkg: github.com/go-playground/form/v4
+cpu: Apple M3 Max
+BenchmarkNestedArrayDecode100-16     	      75	  15782643 ns/op	18754349 B/op	  360810 allocs/op
+BenchmarkNestedArrayDecode1000-16    	       1	2227892458 ns/op	1877558216 B/op	36011385 allocs/op
+PASS
+ok  	github.com/go-playground/form/v4	4.251s
+goos: darwin
+goarch: arm64
+pkg: github.com/go-playground/form/v4/benchmarks
+cpu: Apple M3 Max
+BenchmarkSimpleUserDecodeStruct-16                              	12669696	        94.60 ns/op	      64 B/op	       1 allocs/op
+BenchmarkSimpleUserDecodeStructParallel-16                      	46715631	        27.79 ns/op	      64 B/op	       1 allocs/op
+BenchmarkSimpleUserEncodeStruct-16                              	 4624094	       256.7 ns/op	     485 B/op	      10 allocs/op
+BenchmarkSimpleUserEncodeStructParallel-16                      	 7386290	       166.2 ns/op	     485 B/op	      10 allocs/op
+BenchmarkPrimitivesDecodeStructAllPrimitivesTypes-16            	 3533421	       332.3 ns/op	      96 B/op	       1 allocs/op
+BenchmarkPrimitivesDecodeStructAllPrimitivesTypesParallel-16    	20706642	        59.43 ns/op	      96 B/op	       1 allocs/op
+BenchmarkPrimitivesEncodeStructAllPrimitivesTypes-16            	 1228750	       966.4 ns/op	    1465 B/op	      34 allocs/op
+BenchmarkPrimitivesEncodeStructAllPrimitivesTypesParallel-16    	 1962678	       607.2 ns/op	    1465 B/op	      34 allocs/op
+BenchmarkComplexArrayDecodeStructAllTypes-16                    	  213568	      5361 ns/op	    2081 B/op	     121 allocs/op
+BenchmarkComplexArrayDecodeStructAllTypesParallel-16            	  960226	      1314 ns/op	    2087 B/op	     121 allocs/op
+BenchmarkComplexArrayEncodeStructAllTypes-16                    	  271944	      4017 ns/op	    6788 B/op	     107 allocs/op
+BenchmarkComplexArrayEncodeStructAllTypesParallel-16            	  441998	      2829 ns/op	    6791 B/op	     107 allocs/op
+BenchmarkComplexMapDecodeStructAllTypes-16                      	  179220	      6359 ns/op	    5300 B/op	     130 allocs/op
+BenchmarkComplexMapDecodeStructAllTypesParallel-16              	  412233	      2933 ns/op	    5310 B/op	     130 allocs/op
+BenchmarkComplexMapEncodeStructAllTypes-16                      	  262464	      4122 ns/op	    4083 B/op	     106 allocs/op
+BenchmarkComplexMapEncodeStructAllTypesParallel-16              	  622110	      2084 ns/op	    4084 B/op	     106 allocs/op
+BenchmarkDecodeNestedStruct-16                                  	  823956	      1247 ns/op	     344 B/op	      14 allocs/op
+BenchmarkDecodeNestedStructParallel-16                          	 4689418	       267.5 ns/op	     344 B/op	      14 allocs/op
+BenchmarkEncodeNestedStruct-16                                  	 1844667	       636.0 ns/op	     653 B/op	      16 allocs/op
+BenchmarkEncodeNestedStructParallel-16                          	 4302678	       278.8 ns/op	     653 B/op	      16 allocs/op
+</code></pre>
+<p>Competitor benchmarks can be found <a href="https://github.com/go-playground/form/blob/master/benchmarks/benchmarks.md" rel="nofollow">here</a></p>
+<h4 class="h2" id="readme-maintenance-and-support-for-sdk-major-versions">Maintenance and support for SDK major versions</h4>
+<p>This package is aligned with the <a href="https://go.dev/doc/devel/release" rel="nofollow">Go release policy</a> in that support is guaranteed for
+the two most recent major versions.</p>
+<p>This does not mean the package will not work with older versions of Go, only that we reserve the right to increase the
+MSGV(Minimum Supported Go Version) when the need arises to address Security issues/patches, OS issues &amp; support or newly
+introduced functionality that would greatly benefit the maintenance and/or usage of this package.</p>
+<p>If and when the MSGV is increased it will be done so in a minimum of a <code>Minor</code> release bump.</p>
+<h4 class="h2" id="readme-complimentary-software">Complimentary Software</h4>
+<p>Here is a list of software that compliments using this library post decoding.</p>
+<ul>
+<li><a href="https://github.com/go-playground/validator" rel="nofollow">Validator</a> - Go Struct and Field validation, including Cross Field, Cross Struct, Map, Slice and Array diving.</li>
+<li><a href="https://github.com/go-playground/mold" rel="nofollow">mold</a> - Is a general library to help modify or set data within data structures and other objects.</li>
+</ul>
+<h4 class="h2" id="readme-license">License</h4>
+<p>Distributed under MIT License, please see license file in code for more details.</p>
+</div>
+      </div>
+      <button class="UnitReadme-expandLink js-readmeExpand" data-test-id="readme-expand" data-gtmc="readme button" aria-label="Expand Readme">Expand ▾</button>
+      <button class="UnitReadme-collapseLink js-readmeCollapse" data-test-id="readme-collapse" data-gtmc="readme button" aria-label="Expand Readme">Collapse ▴</button>
+    
+  </div>
+
+      
+      
+        
+          
+  <div class="UnitDoc">
+    <h2 class="UnitDoc-title" id="section-documentation">
+      <img class="go-Icon" height="24" width="24" src="form_files/code_gm_grey_24dp.svg" alt="">
+      Documentation
+      <a class="UnitDoc-idLink" href="#section-documentation" title="Go to Documentation" aria-label="Go to Documentation">¶</a>
+    </h2>
+    
+  
+    
+  
+
+    <div class="Documentation js-documentation">
+      
+        
+
+<div class="Documentation-content js-docContent"> <section class="Documentation-overview">
+    <h3 tabindex="-1" id="pkg-overview" class="Documentation-overviewHeader">Overview <a href="#pkg-overview" title="Go to Overview" aria-label="Go to Overview">¶</a></h3>
+
+<div role="navigation" aria-label="Table of Contents">
+  <ul class="Documentation-toc Documentation-toc-columns">
+      <li class="Documentation-tocItem"><a href="#hdr-Common_Questions">Common Questions</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-Supported_Types">Supported Types</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-Usage">Usage</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-Example">Example</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-Registering_Custom_Types">Registering Custom Types</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-Ignoring_Fields">Ignoring Fields</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-Omitempty">Omitempty</a></li>
+      <li class="Documentation-tocItem"><a href="#hdr-Notes">Notes</a></li>
+  </ul>
+</div>
+<p>Package form Decodes url.Values into Go value(s) and Encodes Go value(s) into url.Values.
+</p><p>It has the following features:
+</p><ul class="Documentation-bulletList">
+  <li>Primitives types cause zero allocations.</li>
+  <li>Supports map of almost all types.</li>
+  <li>Supports both Numbered and Normal arrays eg. "Array[0]" and just "Array"
+with multiple values passed.</li>
+  <li>Slice honours the specified index. eg. if "Slice[2]" is the only Slice
+value passed down, it will be put at index 2; if slice isn't big enough
+it will be expanded.</li>
+  <li>Array honours the specified index. eg. if "Array[2]" is the only Array
+value passed down, it will be put at index 2; if array isn't big enough
+a warning will be printed and value ignored.</li>
+  <li>Only creates objects as necessary eg. if no `array` or `map` values are
+passed down, the `array` and `map` are left as their default values in
+the struct.</li>
+  <li>Allows for Custom Type registration.</li>
+  <li>Handles time.Time using RFC3339 time format by default,
+but can easily be changed by registering a Custom Type, see below.</li>
+  <li>Handles Encoding &amp; Decoding of almost all Go types eg. can Decode into
+struct, array, map, int... and Encode a struct, array, map, int...</li>
+</ul><h4 id="hdr-Common_Questions">Common Questions <a class="Documentation-idLink" href="#hdr-Common_Questions" title="Go to Common Questions" aria-label="Go to Common Questions">¶</a></h4><p>Questions
+</p><pre>    Does it support encoding.TextUnmarshaler?
+    No because TextUnmarshaler only accepts []byte but posted values can have
+    multiple values, so is not suitable.
+
+	Mixing array/slice with array[idx]/slice[idx], in which order are they parsed?
+	array/slice then array[idx]/slice[idx]
+</pre><h4 id="hdr-Supported_Types">Supported Types <a class="Documentation-idLink" href="#hdr-Supported_Types" title="Go to Supported Types" aria-label="Go to Supported Types">¶</a></h4><p>out of the box supported types
+</p><ul class="Documentation-bulletList">
+  <li><p>string
+</p></li>
+  <li><p>bool
+</p></li>
+  <li><p>int, int8, int16, int32, int64
+</p></li>
+  <li><p>uint, uint8, uint16, uint32, uint64
+</p></li>
+  <li><p>float32, float64
+</p></li>
+  <li><p>struct and anonymous struct
+</p></li>
+  <li><p>interface{}
+</p></li>
+  <li><p>time.Time` - by default using RFC3339
+</p></li>
+  <li><p>a `pointer` to one of the above types
+</p></li>
+  <li><p>slice, array
+</p></li>
+  <li><p>map
+</p></li>
+  <li><p>`custom types` can override any of the above types
+</p></li>
+  <li><p>many other types may be supported inherently (eg. bson.ObjectId is
+type ObjectId string, which will get populated by the string type
+</p><p>**NOTE**: map, struct and slice nesting are ad infinitum.
+</p></li>
+</ul><h4 id="hdr-Usage">Usage <a class="Documentation-idLink" href="#hdr-Usage" title="Go to Usage" aria-label="Go to Usage">¶</a></h4><p>symbols
+</p><ul class="Documentation-bulletList">
+  <li>Use symbol `.` for separating fields/structs. (eg. `structfield.field`)</li>
+  <li>Use `[index or key]` for access to index of a slice/array or key for map.
+(eg. `arrayfield[0]`, `mapfield[keyvalue]`)</li>
+</ul><p>html
+</p><pre>&lt;form method="POST"&gt;
+    &lt;input type="text" name="Name" value="joeybloggs"/&gt;
+    &lt;input type="text" name="Age" value="3"/&gt;
+    &lt;input type="text" name="Gender" value="Male"/&gt;
+    &lt;input type="text" name="Address[0].Name" value="26 Here Blvd."/&gt;
+    &lt;input type="text" name="Address[0].Phone" value="9(999)999-9999"/&gt;
+    &lt;input type="text" name="Address[1].Name" value="26 There Blvd."/&gt;
+    &lt;input type="text" name="Address[1].Phone" value="1(111)111-1111"/&gt;
+    &lt;input type="text" name="active" value="true"/&gt;
+    &lt;input type="text" name="MapExample[key]" value="value"/&gt;
+    &lt;input type="text" name="NestedMap[key][key]" value="value"/&gt;
+    &lt;input type="text" name="NestedArray[0][0]" value="value"/&gt;
+    &lt;input type="submit"/&gt;
+&lt;/form&gt;
+</pre><h4 id="hdr-Example">Example <a class="Documentation-idLink" href="#hdr-Example" title="Go to Example" aria-label="Go to Example">¶</a></h4><p>example decoding the above HTML
+</p><pre>package main
+
+import (
+    "fmt"
+    "log"
+    "net/url"
+
+    "github.com/go-playground/form/v4"
+)
+
+// Address contains address information
+type Address struct {
+    Name  string
+    Phone string
+}
+
+// User contains user information
+type User struct {
+    Name        string
+    Age         uint8
+    Gender      string
+    Address     []Address
+    Active      bool `form:"active"`
+    MapExample  map[string]string
+    NestedMap   map[string]map[string]string
+    NestedArray [][]string
+}
+
+// use a single instance of Decoder, it caches struct info
+var decoder *form.Decoder
+
+func main() {
+    decoder = form.NewDecoder()
+
+    // this simulates the results of http.Request's ParseForm() function
+    values := parseForm()
+
+    var user User
+
+    // must pass a pointer
+    err := decoder.Decode(&amp;user, values)
+    if err != nil {
+        log.Panic(err)
+    }
+
+    fmt.Printf("%#v\n", user)
+}
+
+// this simulates the results of http.Request's ParseForm() function
+func parseForm() url.Values {
+    return url.Values{
+        "Name":                []string{"joeybloggs"},
+        "Age":                 []string{"3"},
+        "Gender":              []string{"Male"},
+        "Address[0].Name":     []string{"26 Here Blvd."},
+        "Address[0].Phone":    []string{"9(999)999-9999"},
+        "Address[1].Name":     []string{"26 There Blvd."},
+        "Address[1].Phone":    []string{"1(111)111-1111"},
+        "active":              []string{"true"},
+        "MapExample[key]":     []string{"value"},
+        "NestedMap[key][key]": []string{"value"},
+        "NestedArray[0][0]":   []string{"value"},
+    }
+}
+</pre><p>example encoding
+</p><pre>package main
+
+import (
+    "fmt"
+    "log"
+
+    "github.com/go-playground/form/v4"
+)
+
+// Address contains address information
+type Address struct {
+    Name  string
+    Phone string
+}
+
+// User contains user information
+type User struct {
+    Name        string
+    Age         uint8
+    Gender      string
+    Address     []Address
+    Active      bool `form:"active"`
+    MapExample  map[string]string
+    NestedMap   map[string]map[string]string
+    NestedArray [][]string
+}
+
+// use a single instance of Encoder, it caches struct info
+var encoder *form.Encoder
+
+func main() {
+    encoder = form.NewEncoder()
+
+    user := User{
+        Name:   "joeybloggs",
+        Age:    3,
+        Gender: "Male",
+        Address: []Address{
+            {Name: "26 Here Blvd.", Phone: "9(999)999-9999"},
+            {Name: "26 There Blvd.", Phone: "1(111)111-1111"},
+        },
+        Active:      true,
+        MapExample:  map[string]string{"key": "value"},
+        NestedMap:   map[string]map[string]string{"key": {"key": "value"}},
+        NestedArray: [][]string{{"value"}},
+    }
+
+    // must pass a pointer
+    values, err := encoder.Encode(&amp;user)
+    if err != nil {
+        log.Panic(err)
+    }
+
+    fmt.Printf("%#v\n", values)
+}
+</pre><h4 id="hdr-Registering_Custom_Types">Registering Custom Types <a class="Documentation-idLink" href="#hdr-Registering_Custom_Types" title="Go to Registering Custom Types" aria-label="Go to Registering Custom Types">¶</a></h4><p>Decoder
+</p><pre>decoder.RegisterCustomTypeFunc(func(vals []string) (interface{}, error) {
+        return time.Parse("2006-01-02", vals[0])
+    }, time.Time{})
+
+ADDITIONAL: if a struct type is registered, the function will only be called
+if a url.Value exists for the struct and not just the struct fields
+eg. url.Values{"User":"Name%3Djoeybloggs"} will call the custom type function
+with 'User' as the type, however url.Values{"User.Name":"joeybloggs"} will not.
+</pre><p>Encoder
+</p><pre>encoder.RegisterCustomTypeFunc(func(x interface{}) ([]string, error) {
+        return []string{x.(time.Time).Format("2006-01-02")}, nil
+    }, time.Time{})
+</pre><h4 id="hdr-Ignoring_Fields">Ignoring Fields <a class="Documentation-idLink" href="#hdr-Ignoring_Fields" title="Go to Ignoring Fields" aria-label="Go to Ignoring Fields">¶</a></h4><p>you can tell form to ignore fields using `-` in the tag
+</p><pre>type MyStruct struct {
+    Field string `form:"-"`
+}
+</pre><h4 id="hdr-Omitempty">Omitempty <a class="Documentation-idLink" href="#hdr-Omitempty" title="Go to Omitempty" aria-label="Go to Omitempty">¶</a></h4><p>you can tell form to omit empty fields using `,omitempty` or `FieldName,omitempty` in the tag
+</p><pre>type MyStruct struct {
+    Field  string `form:",omitempty"`
+    Field2 string `form:"CustomFieldName,omitempty"`
+}
+</pre><h4 id="hdr-Notes">Notes <a class="Documentation-idLink" href="#hdr-Notes" title="Go to Notes" aria-label="Go to Notes">¶</a></h4><p>To maximize compatibility with other systems the Encoder attempts
+to avoid using array indexes in url.Values if at all possible.
+</p><pre>eg.
+
+// A struct field of
+Field []string{"1", "2", "3"}
+
+// will be output a url.Value as
+"Field": []string{"1", "2", "3"}
+
+and not
+"Field[0]": []string{"1"}
+"Field[1]": []string{"2"}
+"Field[2]": []string{"3"}
+
+// however there are times where it is unavoidable, like with pointers
+i := int(1)
+Field []*string{nil, nil, &amp;i}
+
+// to avoid index 1 and 2 must use index
+"Field[2]": []string{"1"}
+</pre>
+</section><section class="Documentation-index">
+    <h3 id="pkg-index" class="Documentation-indexHeader">Index <a href="#pkg-index" title="Go to Index" aria-label="Go to Index">¶</a></h3>
+
+<ul class="Documentation-indexList">
+<li class="Documentation-indexFunction">
+        <a href="#ExtractType">func ExtractType(current reflect.Value) (reflect.Value, reflect.Kind)</a></li>
+<li class="Documentation-indexType">
+          <a href="#AnonymousMode">type AnonymousMode</a></li>
+<li class="Documentation-indexType">
+          <a href="#DecodeCustomTypeFunc">type DecodeCustomTypeFunc</a></li>
+<li class="Documentation-indexType">
+          <a href="#DecodeErrors">type DecodeErrors</a></li>
+<li><ul class="Documentation-indexTypeMethods">
+<li>
+            <a href="#DecodeErrors.Error">func (d DecodeErrors) Error() string</a></li>
+</ul></li>
+<li class="Documentation-indexType">
+          <a href="#Decoder">type Decoder</a></li>
+<li><ul class="Documentation-indexTypeFunctions">
+<li>
+            <a href="#NewDecoder">func NewDecoder() *Decoder</a></li>
+</ul></li>
+<li><ul class="Documentation-indexTypeMethods">
+<li>
+            <a href="#Decoder.Decode">func (d *Decoder) Decode(v interface{}, values url.Values) (err error)</a></li>
+<li>
+            <a href="#Decoder.RegisterCustomTypeFunc">func (d *Decoder) RegisterCustomTypeFunc(fn DecodeCustomTypeFunc, types ...interface{})</a></li>
+<li>
+            <a href="#Decoder.RegisterTagNameFunc">func (d *Decoder) RegisterTagNameFunc(fn TagNameFunc)</a></li>
+<li>
+            <a href="#Decoder.SetMaxArraySize">func (d *Decoder) SetMaxArraySize(size uint)</a></li>
+<li>
+            <a href="#Decoder.SetMode">func (d *Decoder) SetMode(mode Mode)</a></li>
+<li>
+            <a href="#Decoder.SetNamespacePrefix">func (d *Decoder) SetNamespacePrefix(namespacePrefix string)</a></li>
+<li>
+            <a href="#Decoder.SetNamespaceSuffix">func (d *Decoder) SetNamespaceSuffix(namespaceSuffix string)</a></li>
+<li>
+            <a href="#Decoder.SetTagName">func (d *Decoder) SetTagName(tagName string)</a></li>
+</ul></li>
+<li class="Documentation-indexType">
+          <a href="#EncodeCustomTypeFunc">type EncodeCustomTypeFunc</a></li>
+<li class="Documentation-indexType">
+          <a href="#EncodeErrors">type EncodeErrors</a></li>
+<li><ul class="Documentation-indexTypeMethods">
+<li>
+            <a href="#EncodeErrors.Error">func (e EncodeErrors) Error() string</a></li>
+</ul></li>
+<li class="Documentation-indexType">
+          <a href="#Encoder">type Encoder</a></li>
+<li><ul class="Documentation-indexTypeFunctions">
+<li>
+            <a href="#NewEncoder">func NewEncoder() *Encoder</a></li>
+</ul></li>
+<li><ul class="Documentation-indexTypeMethods">
+<li>
+            <a href="#Encoder.Encode">func (e *Encoder) Encode(v interface{}) (values url.Values, err error)</a></li>
+<li>
+            <a href="#Encoder.RegisterCustomTypeFunc">func (e *Encoder) RegisterCustomTypeFunc(fn EncodeCustomTypeFunc, types ...interface{})</a></li>
+<li>
+            <a href="#Encoder.RegisterTagNameFunc">func (e *Encoder) RegisterTagNameFunc(fn TagNameFunc)</a></li>
+<li>
+            <a href="#Encoder.SetAnonymousMode">func (e *Encoder) SetAnonymousMode(mode AnonymousMode)</a></li>
+<li>
+            <a href="#Encoder.SetMode">func (e *Encoder) SetMode(mode Mode)</a></li>
+<li>
+            <a href="#Encoder.SetNamespacePrefix">func (e *Encoder) SetNamespacePrefix(namespacePrefix string)</a></li>
+<li>
+            <a href="#Encoder.SetNamespaceSuffix">func (e *Encoder) SetNamespaceSuffix(namespaceSuffix string)</a></li>
+<li>
+            <a href="#Encoder.SetTagName">func (e *Encoder) SetTagName(tagName string)</a></li>
+</ul></li>
+<li class="Documentation-indexType">
+          <a href="#InvalidDecoderError">type InvalidDecoderError</a></li>
+<li><ul class="Documentation-indexTypeMethods">
+<li>
+            <a href="#InvalidDecoderError.Error">func (e *InvalidDecoderError) Error() string</a></li>
+</ul></li>
+<li class="Documentation-indexType">
+          <a href="#InvalidEncodeError">type InvalidEncodeError</a></li>
+<li><ul class="Documentation-indexTypeMethods">
+<li>
+            <a href="#InvalidEncodeError.Error">func (e *InvalidEncodeError) Error() string</a></li>
+</ul></li>
+<li class="Documentation-indexType">
+          <a href="#Mode">type Mode</a></li>
+<li class="Documentation-indexType">
+          <a href="#TagNameFunc">type TagNameFunc</a></li>
+</ul>
+</section><h3 tabindex="-1" id="pkg-constants" class="Documentation-constantsHeader">Constants <a href="#pkg-constants" title="Go to Constants" aria-label="Go to Constants">¶</a></h3>
+
+  <section class="Documentation-constants"><p class="Documentation-empty">This section is empty.</p></section>
+
+  <h3 tabindex="-1" id="pkg-variables" class="Documentation-variablesHeader">Variables <a href="#pkg-variables" title="Go to Variables" aria-label="Go to Variables">¶</a></h3>
+
+  <section class="Documentation-variables"><p class="Documentation-empty">This section is empty.</p></section>
+
+  <h3 tabindex="-1" id="pkg-functions" class="Documentation-functionsHeader">Functions <a href="#pkg-functions" title="Go to Functions" aria-label="Go to Functions">¶</a></h3>
+
+  <section class="Documentation-functions"><div class="Documentation-function">
+	  
+  
+  
+    <h4 tabindex="-1" id="ExtractType" data-kind="function" class="Documentation-functionHeader">
+      <span>func <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/util.go#L10">ExtractType</a> <a class="Documentation-idLink" href="#ExtractType" title="Go to ExtractType" aria-label="Go to ExtractType">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func ExtractType(current <a href="https://pkg.go.dev/reflect">reflect</a>.<a href="https://pkg.go.dev/reflect#Value">Value</a>) (<a href="https://pkg.go.dev/reflect">reflect</a>.<a href="https://pkg.go.dev/reflect#Value">Value</a>, <a href="https://pkg.go.dev/reflect">reflect</a>.<a href="https://pkg.go.dev/reflect#Kind">Kind</a>)</pre>
+    </div>
+  <p>ExtractType gets the actual underlying type of field value.
+it is exposed for use within you Custom Functions
+</p>
+
+  
+
+        </div></section>
+
+  <h3 tabindex="-1" id="pkg-types" class="Documentation-typesHeader">Types <a href="#pkg-types" title="Go to Types" aria-label="Go to Types">¶</a></h3>
+
+  <section class="Documentation-types"><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="AnonymousMode" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form.go#L35">AnonymousMode</a> <a class="Documentation-idLink" href="#AnonymousMode" title="Go to AnonymousMode" aria-label="Go to AnonymousMode">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type AnonymousMode <a href="https://pkg.go.dev/builtin#uint8">uint8</a></pre>
+    </div>
+  <p>AnonymousMode specifies how data should be rolled up
+or separated from anonymous structs
+</p>
+<div class="Documentation-typeConstant">
+    <div class="Documentation-declaration">
+      <pre>const (
+<span id="AnonymousEmbed" data-kind="constant">	<span class="comment">// AnonymousEmbed embeds anonymous data when encoding</span>
+</span>	<span class="comment">// eg. type A struct { Field string }</span>
+	<span class="comment">//     type B struct { A, Field string }</span>
+	<span class="comment">//     encode results: url.Values{"Field":[]string{"B FieldVal", "A FieldVal"}}</span>
+	AnonymousEmbed <a href="#AnonymousMode">AnonymousMode</a> = <a href="https://pkg.go.dev/builtin#iota">iota</a>
+
+<span id="AnonymousSeparate" data-kind="constant">	<span class="comment">// AnonymousSeparate does not embed anonymous data when encoding</span>
+</span>	<span class="comment">// eg. type A struct { Field string }</span>
+	<span class="comment">//     type B struct { A, Field string }</span>
+	<span class="comment">//     encode results: url.Values{"Field":[]string{"B FieldVal"}, "A.Field":[]string{"A FieldVal"}}</span>
+	AnonymousSeparate
+)</pre>
+    </div>
+  
+</div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="DecodeCustomTypeFunc" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L12">DecodeCustomTypeFunc</a> <a class="Documentation-idLink" href="#DecodeCustomTypeFunc" title="Go to DecodeCustomTypeFunc" aria-label="Go to DecodeCustomTypeFunc">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type DecodeCustomTypeFunc func([]<a href="https://pkg.go.dev/builtin#string">string</a>) (interface{}, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>DecodeCustomTypeFunc allows for registering/overriding types to be parsed.
+</p>
+
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="DecodeErrors" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L15">DecodeErrors</a> <a class="Documentation-idLink" href="#DecodeErrors" title="Go to DecodeErrors" aria-label="Go to DecodeErrors">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type DecodeErrors map[<a href="https://pkg.go.dev/builtin#string">string</a>]<a href="https://pkg.go.dev/builtin#error">error</a></pre>
+    </div>
+  <p>DecodeErrors is a map of errors encountered during form decoding
+</p>
+<div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="DecodeErrors.Error" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (DecodeErrors) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L17">Error</a> <a class="Documentation-idLink" href="#DecodeErrors.Error" title="Go to DecodeErrors.Error" aria-label="Go to DecodeErrors.Error">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d <a href="#DecodeErrors">DecodeErrors</a>) Error() <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  
+
+  
+
+  </div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="Decoder" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L65">Decoder</a> <a class="Documentation-idLink" href="#Decoder" title="Go to Decoder" aria-label="Go to Decoder">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type Decoder struct {
+	<span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+    </div>
+  <p>Decoder is the main decode instance
+</p>
+<div class="Documentation-typeFunc">
+    
+  
+  
+    <h4 tabindex="-1" id="NewDecoder" data-kind="function" class="Documentation-typeFuncHeader">
+      <span>func <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L77">NewDecoder</a> <a class="Documentation-idLink" href="#NewDecoder" title="Go to NewDecoder" aria-label="Go to NewDecoder">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func NewDecoder() *<a href="#Decoder">Decoder</a></pre>
+    </div>
+  <p>NewDecoder creates a new decoder instance with sane defaults
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.Decode" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L158">Decode</a> <a class="Documentation-idLink" href="#Decoder.Decode" title="Go to Decoder.Decode" aria-label="Go to Decoder.Decode">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) Decode(v interface{}, values <a href="https://pkg.go.dev/net/url">url</a>.<a href="https://pkg.go.dev/net/url#Values">Values</a>) (err <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>Decode parses the given values and sets the corresponding struct and/or type values
+</p><p>Decode returns an InvalidDecoderError if interface passed is invalid.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.RegisterCustomTypeFunc" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L144">RegisterCustomTypeFunc</a> <a class="Documentation-idLink" href="#Decoder.RegisterCustomTypeFunc" title="Go to Decoder.RegisterCustomTypeFunc" aria-label="Go to Decoder.RegisterCustomTypeFunc">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) RegisterCustomTypeFunc(fn <a href="#DecodeCustomTypeFunc">DecodeCustomTypeFunc</a>, types ...interface{})</pre>
+    </div>
+  <p>RegisterCustomTypeFunc registers a CustomTypeFunc against a number of types.
+NOTE: This method is not thread-safe it is intended that these all be registered prior to any parsing
+</p><p>ADDITIONAL: if a struct type is registered, the function will only be called if a url.Value exists for
+the struct and not just the struct fields eg. url.Values{"User":"Name%3Djoeybloggs"} will call the
+custom type function with `User` as the type, however url.Values{"User.Name":"joeybloggs"} will not.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.RegisterTagNameFunc" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L134">RegisterTagNameFunc</a> <a class="Documentation-idLink" href="#Decoder.RegisterTagNameFunc" title="Go to Decoder.RegisterTagNameFunc" aria-label="Go to Decoder.RegisterTagNameFunc">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) RegisterTagNameFunc(fn <a href="#TagNameFunc">TagNameFunc</a>)</pre>
+    </div>
+  <p>RegisterTagNameFunc registers a custom tag name parser function
+NOTE: This method is not thread-safe it is intended that these all be registered prior to any parsing
+</p><p>ADDITIONAL: once a custom function has been registered the default, or custom set, tag name is ignored
+and relies 100% on the function for the name data. The return value WILL BE CACHED and so return value
+must be consistent.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.SetMaxArraySize" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L124">SetMaxArraySize</a> <a class="Documentation-idLink" href="#Decoder.SetMaxArraySize" title="Go to Decoder.SetMaxArraySize" aria-label="Go to Decoder.SetMaxArraySize">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) SetMaxArraySize(size <a href="https://pkg.go.dev/builtin#uint">uint</a>)</pre>
+    </div>
+  <p>SetMaxArraySize sets maximum array size that can be created.
+This limit is for the array indexing this library supports to
+avoid potential DOS or man-in-the-middle attacks using an unusually
+high number.
+DEFAULT: 10000
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.SetMode" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L105">SetMode</a> <a class="Documentation-idLink" href="#Decoder.SetMode" title="Go to Decoder.SetMode" aria-label="Go to Decoder.SetMode">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) SetMode(mode <a href="#Mode">Mode</a>)</pre>
+    </div>
+  <p>SetMode sets the mode the decoder should run
+Default is ModeImplicit
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.SetNamespacePrefix" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L110">SetNamespacePrefix</a> <a class="Documentation-idLink" href="#Decoder.SetNamespacePrefix" title="Go to Decoder.SetNamespacePrefix" aria-label="Go to Decoder.SetNamespacePrefix">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">v4.2.0</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) SetNamespacePrefix(namespacePrefix <a href="https://pkg.go.dev/builtin#string">string</a>)</pre>
+    </div>
+  <p>SetNamespacePrefix sets a struct namespace prefix.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.SetNamespaceSuffix" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L115">SetNamespaceSuffix</a> <a class="Documentation-idLink" href="#Decoder.SetNamespaceSuffix" title="Go to Decoder.SetNamespaceSuffix" aria-label="Go to Decoder.SetNamespaceSuffix">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">v4.2.0</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) SetNamespaceSuffix(namespaceSuffix <a href="https://pkg.go.dev/builtin#string">string</a>)</pre>
+    </div>
+  <p>SetNamespaceSuffix sets a struct namespace suffix.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Decoder.SetTagName" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Decoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L99">SetTagName</a> <a class="Documentation-idLink" href="#Decoder.SetTagName" title="Go to Decoder.SetTagName" aria-label="Go to Decoder.SetTagName">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (d *<a href="#Decoder">Decoder</a>) SetTagName(tagName <a href="https://pkg.go.dev/builtin#string">string</a>)</pre>
+    </div>
+  <p>SetTagName sets the given tag name to be used by the decoder.
+Default is "form"
+</p>
+
+  
+
+  </div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="EncodeCustomTypeFunc" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L12">EncodeCustomTypeFunc</a> <a class="Documentation-idLink" href="#EncodeCustomTypeFunc" title="Go to EncodeCustomTypeFunc" aria-label="Go to EncodeCustomTypeFunc">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type EncodeCustomTypeFunc func(x interface{}) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>EncodeCustomTypeFunc allows for registering/overriding types to be parsed.
+</p>
+
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="EncodeErrors" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L15">EncodeErrors</a> <a class="Documentation-idLink" href="#EncodeErrors" title="Go to EncodeErrors" aria-label="Go to EncodeErrors">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type EncodeErrors map[<a href="https://pkg.go.dev/builtin#string">string</a>]<a href="https://pkg.go.dev/builtin#error">error</a></pre>
+    </div>
+  <p>EncodeErrors is a map of errors encountered during form encoding
+</p>
+<div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="EncodeErrors.Error" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (EncodeErrors) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L17">Error</a> <a class="Documentation-idLink" href="#EncodeErrors.Error" title="Go to EncodeErrors.Error" aria-label="Go to EncodeErrors.Error">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e <a href="#EncodeErrors">EncodeErrors</a>) Error() <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  
+
+  
+
+  </div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="Encoder" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L46">Encoder</a> <a class="Documentation-idLink" href="#Encoder" title="Go to Encoder" aria-label="Go to Encoder">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type Encoder struct {
+	<span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+    </div>
+  <p>Encoder is the main encode instance
+</p>
+<div class="Documentation-typeFunc">
+    
+  
+  
+    <h4 tabindex="-1" id="NewEncoder" data-kind="function" class="Documentation-typeFuncHeader">
+      <span>func <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L58">NewEncoder</a> <a class="Documentation-idLink" href="#NewEncoder" title="Go to NewEncoder" aria-label="Go to NewEncoder">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func NewEncoder() *<a href="#Encoder">Encoder</a></pre>
+    </div>
+  <p>NewEncoder creates a new encoder instance with sane defaults
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.Encode" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L130">Encode</a> <a class="Documentation-idLink" href="#Encoder.Encode" title="Go to Encoder.Encode" aria-label="Go to Encoder.Encode">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) Encode(v interface{}) (values <a href="https://pkg.go.dev/net/url">url</a>.<a href="https://pkg.go.dev/net/url#Values">Values</a>, err <a href="https://pkg.go.dev/builtin#error">error</a>)</pre>
+    </div>
+  <p>Encode encodes the given values and sets the corresponding struct values
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.RegisterCustomTypeFunc" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L118">RegisterCustomTypeFunc</a> <a class="Documentation-idLink" href="#Encoder.RegisterCustomTypeFunc" title="Go to Encoder.RegisterCustomTypeFunc" aria-label="Go to Encoder.RegisterCustomTypeFunc">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) RegisterCustomTypeFunc(fn <a href="#EncodeCustomTypeFunc">EncodeCustomTypeFunc</a>, types ...interface{})</pre>
+    </div>
+  <p>RegisterCustomTypeFunc registers a CustomTypeFunc against a number of types
+NOTE: this method is not thread-safe it is intended that these all be registered prior to any parsing
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.RegisterTagNameFunc" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L112">RegisterTagNameFunc</a> <a class="Documentation-idLink" href="#Encoder.RegisterTagNameFunc" title="Go to Encoder.RegisterTagNameFunc" aria-label="Go to Encoder.RegisterTagNameFunc">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) RegisterTagNameFunc(fn <a href="#TagNameFunc">TagNameFunc</a>)</pre>
+    </div>
+  <p>RegisterTagNameFunc registers a custom tag name parser function
+NOTE: This method is not thread-safe it is intended that these all be registered prior to any parsing
+</p><p>ADDITIONAL: once a custom function has been registered the default, or custom set, tag name is ignored
+and relies 100% on the function for the name data. The return value WILL BE CACHED and so return value
+must be consistent.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.SetAnonymousMode" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L102">SetAnonymousMode</a> <a class="Documentation-idLink" href="#Encoder.SetAnonymousMode" title="Go to Encoder.SetAnonymousMode" aria-label="Go to Encoder.SetAnonymousMode">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) SetAnonymousMode(mode <a href="#AnonymousMode">AnonymousMode</a>)</pre>
+    </div>
+  <p>SetAnonymousMode sets the mode the encoder should run
+Default is AnonymousEmbed
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.SetMode" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L86">SetMode</a> <a class="Documentation-idLink" href="#Encoder.SetMode" title="Go to Encoder.SetMode" aria-label="Go to Encoder.SetMode">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) SetMode(mode <a href="#Mode">Mode</a>)</pre>
+    </div>
+  <p>SetMode sets the mode the encoder should run
+Default is ModeImplicit
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.SetNamespacePrefix" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L91">SetNamespacePrefix</a> <a class="Documentation-idLink" href="#Encoder.SetNamespacePrefix" title="Go to Encoder.SetNamespacePrefix" aria-label="Go to Encoder.SetNamespacePrefix">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">v4.2.0</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) SetNamespacePrefix(namespacePrefix <a href="https://pkg.go.dev/builtin#string">string</a>)</pre>
+    </div>
+  <p>SetNamespacePrefix sets a struct namespace prefix.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.SetNamespaceSuffix" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L96">SetNamespaceSuffix</a> <a class="Documentation-idLink" href="#Encoder.SetNamespaceSuffix" title="Go to Encoder.SetNamespaceSuffix" aria-label="Go to Encoder.SetNamespaceSuffix">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+      <span class="Documentation-sinceVersionLabel">added in</span>
+      <span class="Documentation-sinceVersionVersion">v4.2.0</span>
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) SetNamespaceSuffix(namespaceSuffix <a href="https://pkg.go.dev/builtin#string">string</a>)</pre>
+    </div>
+  <p>SetNamespaceSuffix sets a struct namespace suffix.
+</p>
+
+  
+
+  </div><div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="Encoder.SetTagName" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*Encoder) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L80">SetTagName</a> <a class="Documentation-idLink" href="#Encoder.SetTagName" title="Go to Encoder.SetTagName" aria-label="Go to Encoder.SetTagName">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#Encoder">Encoder</a>) SetTagName(tagName <a href="https://pkg.go.dev/builtin#string">string</a>)</pre>
+    </div>
+  <p>SetTagName sets the given tag name to be used by the encoder.
+Default is "form"
+</p>
+
+  
+
+  </div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="InvalidDecoderError" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L33">InvalidDecoderError</a> <a class="Documentation-idLink" href="#InvalidDecoderError" title="Go to InvalidDecoderError" aria-label="Go to InvalidDecoderError">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type InvalidDecoderError struct {
+<span id="InvalidDecoderError.Type" data-kind="field">	Type <a href="https://pkg.go.dev/reflect">reflect</a>.<a href="https://pkg.go.dev/reflect#Type">Type</a>
+</span>}</pre>
+    </div>
+  <p>An InvalidDecoderError describes an invalid argument passed to Decode.
+(The argument passed to Decode must be a non-nil pointer.)
+</p>
+<div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="InvalidDecoderError.Error" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*InvalidDecoderError) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go#L37">Error</a> <a class="Documentation-idLink" href="#InvalidDecoderError.Error" title="Go to InvalidDecoderError.Error" aria-label="Go to InvalidDecoderError.Error">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#InvalidDecoderError">InvalidDecoderError</a>) Error() <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  
+
+  
+
+  </div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="InvalidEncodeError" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L32">InvalidEncodeError</a> <a class="Documentation-idLink" href="#InvalidEncodeError" title="Go to InvalidEncodeError" aria-label="Go to InvalidEncodeError">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type InvalidEncodeError struct {
+<span id="InvalidEncodeError.Type" data-kind="field">	Type <a href="https://pkg.go.dev/reflect">reflect</a>.<a href="https://pkg.go.dev/reflect#Type">Type</a>
+</span>}</pre>
+    </div>
+  <p>An InvalidEncodeError describes an invalid argument passed to Encode.
+</p>
+<div class="Documentation-typeMethod">
+    
+  
+  
+    <h4 tabindex="-1" id="InvalidEncodeError.Error" data-kind="method" class="Documentation-typeMethodHeader">
+      <span>func (*InvalidEncodeError) <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go#L36">Error</a> <a class="Documentation-idLink" href="#InvalidEncodeError.Error" title="Go to InvalidEncodeError.Error" aria-label="Go to InvalidEncodeError.Error">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>func (e *<a href="#InvalidEncodeError">InvalidEncodeError</a>) Error() <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  
+
+  
+
+  </div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="Mode" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/form.go#L20">Mode</a> <a class="Documentation-idLink" href="#Mode" title="Go to Mode" aria-label="Go to Mode">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type Mode <a href="https://pkg.go.dev/builtin#uint8">uint8</a></pre>
+    </div>
+  <p>Mode specifies which mode the form decoder is to run
+</p>
+<div class="Documentation-typeConstant">
+    <div class="Documentation-declaration">
+      <pre>const (
+
+<span id="ModeImplicit" data-kind="constant">	<span class="comment">// ModeImplicit tries to parse values for all</span>
+</span>	<span class="comment">// fields that do not have an ignore '-' tag</span>
+	ModeImplicit <a href="#Mode">Mode</a> = <a href="https://pkg.go.dev/builtin#iota">iota</a>
+
+<span id="ModeExplicit" data-kind="constant">	<span class="comment">// ModeExplicit only parses values for field with a field tag</span>
+</span>	<span class="comment">// and that tag is not the ignore '-' tag</span>
+	ModeExplicit
+)</pre>
+    </div>
+  
+</div>
+  
+
+    </div><div class="Documentation-type">
+      
+  
+  
+    <h4 tabindex="-1" id="TagNameFunc" data-kind="type" class="Documentation-typeHeader">
+      <span>type <a class="Documentation-source" href="https://github.com/go-playground/form/blob/v4.3.0/cache.go#L43">TagNameFunc</a> <a class="Documentation-idLink" href="#TagNameFunc" title="Go to TagNameFunc" aria-label="Go to TagNameFunc">¶</a></span>
+  <span class="Documentation-sinceVersion">
+    
+  </span>
+</h4>
+
+    
+    <div class="Documentation-declaration">
+      <pre>type TagNameFunc func(field <a href="https://pkg.go.dev/reflect">reflect</a>.<a href="https://pkg.go.dev/reflect#StructField">StructField</a>) <a href="https://pkg.go.dev/builtin#string">string</a></pre>
+    </div>
+  <p>TagNameFunc allows for adding of a custom tag name parser
+</p>
+
+  
+
+    </div></section></div> 
+
+
+
+
+
+
+
+      
+    </div>
+  </div>
+
+        
+      
+      
+        
+  <div class="UnitFiles js-unitFiles">
+    <h2 class="UnitFiles-title" id="section-sourcefiles">
+      <img class="go-Icon" height="24" width="24" src="form_files/insert_drive_file_gm_grey_24dp.svg" alt="">
+      Source Files
+      <a class="UnitFiles-idLink" href="#section-sourcefiles" title="Go to Source Files" aria-label="Go to Source Files">¶</a>
+    </h2><div class="UnitFiles-titleLink">
+      <a href="https://github.com/go-playground/form/tree/v4.3.0" target="_blank" rel="noopener">View all Source files</a>
+    </div><div>
+      <ul class="UnitFiles-fileList"><li><a href="https://github.com/go-playground/form/blob/v4.3.0/cache.go" target="_blank" rel="noopener" title="cache.go">cache.go</a></li><li><a href="https://github.com/go-playground/form/blob/v4.3.0/decoder.go" target="_blank" rel="noopener" title="decoder.go">decoder.go</a></li><li><a href="https://github.com/go-playground/form/blob/v4.3.0/doc.go" target="_blank" rel="noopener" title="doc.go">doc.go</a></li><li><a href="https://github.com/go-playground/form/blob/v4.3.0/encoder.go" target="_blank" rel="noopener" title="encoder.go">encoder.go</a></li><li><a href="https://github.com/go-playground/form/blob/v4.3.0/form.go" target="_blank" rel="noopener" title="form.go">form.go</a></li><li><a href="https://github.com/go-playground/form/blob/v4.3.0/form_decoder.go" target="_blank" rel="noopener" title="form_decoder.go">form_decoder.go</a></li><li><a href="https://github.com/go-playground/form/blob/v4.3.0/form_encoder.go" target="_blank" rel="noopener" title="form_encoder.go">form_encoder.go</a></li><li><a href="https://github.com/go-playground/form/blob/v4.3.0/util.go" target="_blank" rel="noopener" title="util.go">util.go</a></li></ul>
+    </div>
+  </div>
+
+      
+      
+        
+  <div class="UnitDirectories js-unitDirectories">
+    <h2 class="UnitDirectories-title" id="section-directories">
+      <img class="go-Icon" height="24" width="24" src="form_files/folder_gm_grey_24dp.svg" alt="">
+      Directories
+      <a class="UnitDirectories-idLink" href="#section-directories" title="Go to Directories" aria-label="Go to Directories">¶</a>
+    </h2>
+    <div class="UnitDirectories-toggles">
+      <div class="UnitDirectories-toggleButtons">
+        <button class="js-showInternalDirectories" data-test-id="internal-directories-toggle" data-gtmc="directories button" aria-label="Show Internal Directories">
+          Show internal
+        </button>
+        <button class="js-expandAllDirectories" data-test-id="directories-toggle" data-gtmc="directories button" aria-label="Expand all directories" style="display: block;" aria-live="polite">Expand all</button>
+      </div>
+    </div>
+    <table class="UnitDirectories-table UnitDirectories-table--tree js-expandableTable" data-test-id="UnitDirectories-table">
+      <tbody><tr class="UnitDirectories-tableHeader UnitDirectories-tableHeader--tree">
+        <th>Path</th>
+        <th class="UnitDirectories-desktopSynopsis">Synopsis</th>
+      </tr>
+      
+          
+  
+  <tr class="" aria-controls="_examples-decoder _examples-decoder-embedded _examples-encoder _examples-encoder-embedded _examples-encoder-omitempty ">
+    <td data-aria-owns="_examples-decoder _examples-decoder-embedded _examples-encoder _examples-encoder-embedded _examples-encoder-omitempty " id="_examples">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="5 more from" aria-controls="_examples-decoder _examples-decoder-embedded _examples-encoder _examples-encoder-embedded _examples-encoder-omitempty " aria-labelledby="_examples-button _examples" id="_examples-button">
+              <img class="go-Icon" height="24" width="24" src="form_files/arrow_right_gm_grey_24dp.svg" alt="">
+            </button><span>_examples</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr class="hidden" id="_examples-decoder">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0/_examples/decoder">decoder</a>
+            
+            <span class="go-Chip go-Chip--inverted">command</span>
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr class="hidden" id="_examples-decoder-embedded">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0/_examples/decoder-embedded">decoder-embedded</a>
+            
+            <span class="go-Chip go-Chip--inverted">command</span>
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr class="hidden" id="_examples-encoder">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0/_examples/encoder">encoder</a>
+            
+            <span class="go-Chip go-Chip--inverted">command</span>
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr class="hidden" id="_examples-encoder-embedded">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0/_examples/encoder-embedded">encoder-embedded</a>
+            
+            <span class="go-Chip go-Chip--inverted">command</span>
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr class="hidden" id="_examples-encoder-omitempty">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="https://pkg.go.dev/github.com/go-playground/form/v4@v4.3.0/_examples/encoder-omitempty">encoder-omitempty</a>
+            
+            <span class="go-Chip go-Chip--inverted">command</span>
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr>
+
+      
+    </tbody></table>
+  </div>
+
+      
+    </div>
+  </div>
+  <div id="showInternal-description" hidden=""> Click to show internal directories. </div>
+  <div id="hideInternal-description" hidden=""> Click to hide internal directories. </div>
+</article>
+    <footer class="go-Main-footer"></footer>
+  </main>
+
+    
+  <footer class="go-Footer">
+    
+    <div class="go-Footer-links">
+      <div class="go-Footer-linkColumn">
+        <a href="https://go.dev/solutions" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Why Go
+        </a>
+        <a href="https://go.dev/solutions#use-cases" class="go-Footer-link" data-gtmc="footer link">
+          Use Cases
+        </a>
+        <a href="https://go.dev/solutions#case-studies" class="go-Footer-link" data-gtmc="footer link">
+          Case Studies
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://learn.go.dev/" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Get Started
+        </a>
+        <a href="https://play.golang.org/" class="go-Footer-link" data-gtmc="footer link">
+          Playground
+        </a>
+        <a href="https://tour.golang.org/" class="go-Footer-link" data-gtmc="footer link">
+          Tour
+        </a>
+        <a href="https://stackoverflow.com/questions/tagged/go?tab=Newest" class="go-Footer-link" data-gtmc="footer link">
+          Stack Overflow
+        </a>
+        <a href="https://go.dev/help" class="go-Footer-link" data-gtmc="footer link">
+          Help
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://pkg.go.dev/" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Packages
+        </a>
+        <a href="https://pkg.go.dev/std" class="go-Footer-link" data-gtmc="footer link">
+          Standard Library
+        </a>
+        <a href="https://pkg.go.dev/golang.org/x" class="go-Footer-link" data-gtmc="footer link">
+          Sub-repositories
+        </a>
+        <a href="https://pkg.go.dev/about" class="go-Footer-link" data-gtmc="footer link">
+          About Go Packages
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://go.dev/project" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          About
+        </a>
+        <a href="https://go.dev/dl/" class="go-Footer-link" data-gtmc="footer link">Download</a>
+        <a href="https://go.dev/blog" class="go-Footer-link" data-gtmc="footer link">Blog</a>
+        <a href="https://github.com/golang/go/issues" class="go-Footer-link" data-gtmc="footer link">
+          Issue Tracker
+        </a>
+        <a href="https://go.dev/doc/devel/release.html" class="go-Footer-link" data-gtmc="footer link">
+          Release Notes
+        </a>
+        <a href="https://go.dev/brand" class="go-Footer-link" data-gtmc="footer link">
+          Brand Guidelines
+        </a>
+        <a href="https://go.dev/conduct" class="go-Footer-link" data-gtmc="footer link">
+          Code of Conduct
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://www.twitter.com/golang" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Connect
+        </a>
+        <a href="https://www.twitter.com/golang" class="go-Footer-link" data-gtmc="footer link">
+          Twitter
+        </a>
+        <a href="https://github.com/golang" class="go-Footer-link" data-gtmc="footer link">GitHub</a>
+        <a href="https://invite.slack.golangbridge.org/" class="go-Footer-link" data-gtmc="footer link">
+          Slack
+        </a>
+        <a href="https://reddit.com/r/golang" class="go-Footer-link" data-gtmc="footer link">
+          r/golang
+        </a>
+        <a href="https://www.meetup.com/pro/go" class="go-Footer-link" data-gtmc="footer link">
+          Meetup
+        </a>
+        <a href="https://golangweekly.com/" class="go-Footer-link" data-gtmc="footer link">
+          Golang Weekly
+        </a>
+      </div>
+    </div>
+    <div class="go-Footer-bottom">
+      <img class="go-Footer-gopher" width="1431" height="901" src="form_files/pilot-bust-1431x901.svg" alt="Gopher in flight goggles">
+      <ul class="go-Footer-listRow">
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/copyright" data-gtmc="footer link">Copyright</a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/tos" data-gtmc="footer link">Terms of Service</a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="http://www.google.com/intl/en/policies/privacy/" data-gtmc="footer link" target="_blank" rel="noopener">
+            Privacy Policy
+          </a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/s/pkgsite-feedback" target="_blank" rel="noopener" data-gtmc="footer link">
+            Report an Issue
+          </a>
+        </li>
+        <li class="go-Footer-listItem">
+          <button class="go-Button go-Button--text go-Footer-toggleTheme js-toggleTheme" aria-label="Theme Toggle">
+            <img data-value="auto" class="go-Icon go-Icon--inverted" height="24" width="24" src="form_files/brightness_6_gm_grey_24dp.svg" alt="System theme">
+            <img data-value="dark" class="go-Icon go-Icon--inverted" height="24" width="24" src="form_files/brightness_2_gm_grey_24dp.svg" alt="Dark theme">
+            <img data-value="light" class="go-Icon go-Icon--inverted" height="24" width="24" src="form_files/light_mode_gm_grey_24dp.svg" alt="Light theme">
+            <p> Theme Toggle </p>
+          </button>
+        </li>
+        <li class="go-Footer-listItem">
+          <button class="go-Button go-Button--text go-Footer-keyboard js-openShortcuts" aria-label="Shorcuts Modal">
+            <img class="go-Icon go-Icon--inverted" height="24" width="24" src="form_files/keyboard_grey_24dp.svg" alt="">
+            <p> Shortcuts Modal </p>
+          </button>
+        </li>
+      </ul>
+      <a class="go-Footer-googleLogo" href="https://google.com/" target="_blank" rel="noopener" data-gtmc="footer link">
+        <img class="go-Footer-googleLogoImg" height="24" width="72" src="form_files/google-white.svg" alt="Google logo">
+      </a>
+    </div>
+  </footer>
+
+    
+  <dialog id="jump-to-modal" class="JumpDialog go-Modal go-Modal--md js-modal">
+    <form method="dialog" data-gmtc="jump to form" aria-label="Jump to Identifier">
+      <div class="Dialog-title go-Modal-header">
+        <h2>Jump to</h2>
+        <button class="go-Button go-Button--inline" type="button" data-modal-close="" data-gtmc="modal button" aria-label="Close">
+          <img class="go-Icon" height="24" width="24" src="form_files/close_gm_grey_24dp.svg" alt="">
+        </button>
+      </div>
+      <div class="JumpDialog-filter">
+        <input class="JumpDialog-input go-Input" autocomplete="off" type="text">
+      </div>
+      <div class="JumpDialog-body go-Modal-body">
+        <div class="JumpDialog-list"></div>
+      </div>
+      <div class="go-Modal-actions">
+        <button class="go-Button" data-test-id="close-dialog">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="ShortcutsDialog go-Modal go-Modal--sm js-modal">
+    <form method="dialog">
+      <div class="go-Modal-header">
+        <h2>Keyboard shortcuts</h2>
+        <button class="go-Button go-Button--inline" type="button" data-modal-close="" data-gtmc="modal button" aria-label="Close">
+          <img class="go-Icon" height="24" width="24" src="form_files/close_gm_grey_24dp.svg" alt="">
+        </button>
+      </div>
+      <div class="go-Modal-body">
+        <table>
+          <tbody>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>?</strong></td><td> : This menu</td>
+            </tr>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>/</strong></td><td> : Search site</td>
+            </tr>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>f</strong> or <strong>F</strong></td><td> : Jump to</td>
+            </tr>
+            <tr>
+              <td class="ShortcutsDialog-key"><strong>y</strong> or <strong>Y</strong></td>
+              <td> : Canonical URL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="go-Modal-actions">
+        <button class="go-Button" data-test-id="close-dialog">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+    
+      <section class="Cookie-notice js-cookieNotice Cookie-notice--visible">
+        <div>go.dev uses cookies from Google to deliver and enhance the quality of its services and to
+        analyze traffic. <a target="_blank" href="https://policies.google.com/technologies/cookies">Learn more.</a></div>
+        <div><button class="go-Button">Okay</button></div>
+      </section>
+    
+    
+      <script>
+        // this will throw if the querySelector can’t find the element
+        const gtmId = document.querySelector('.js-gtmID').dataset.gtmid;
+        if (!gtmId) {
+          throw new Error('Google Tag Manager ID not found');
+        }
+        loadScript(`https://www.googletagmanager.com/gtm.js?id=${gtmId}`);
+      </script>
+      <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8MVQXG"
+                height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+      </noscript>
+    
+    
+  
+  <div class="js-canonicalURLPath" data-canonical-url-path="/github.com/go-playground/form/v4@v4.3.0" hidden=""></div>
+  <div class="js-playgroundVars" data-modulepath="github.com/go-playground/form/v4" data-version="v4.3.0" hidden=""></div>
+  <script>
+    loadScript('/static/frontend/unit/main/main.js')
+  </script>
+
+  <script>
+    loadScript('/static/frontend/unit/unit.js')
+  </script>
+
+  
+
+</body></html>
