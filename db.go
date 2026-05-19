@@ -6,49 +6,15 @@ import (
 	"log"
 	"os"
 	"reflect"
-	"strconv"
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 )
 
-func IsEmptyString(s string) sql.NullString {
-	if s == "" {
-		return sql.NullString{Valid: false}
-	}
-	return sql.NullString{String: s, Valid: true}
-}
-
-func IsEmptyInt(i string) sql.NullInt64 {
-	if i == "" {
-		return sql.NullInt64{Valid: false}
-	}
-
-	a, err := strconv.ParseInt(i, 10, 64)
-	if err != nil {
-		log.Fatal(err)
-		return sql.NullInt64{Valid: false}
-	}
-	return sql.NullInt64{Int64: a, Valid: true}
-}
-
-func IsEmptyFloat(f string) sql.NullFloat64 {
-	if f == "" {
-		return sql.NullFloat64{Valid: false}
-	}
-
-	a, err := strconv.ParseFloat(f, 64)
-	if err != nil {
-		log.Fatal(err)
-		return sql.NullFloat64{Valid: false}
-	}
-	return sql.NullFloat64{Float64: a, Valid: true}
-}
-
 var db *sql.DB
 
-// functions is called by http handler
-// http methods is banned
+// functions are called by http handler
+// http methods are banned
 
 func ConnectToDb() (err error) {
 	err = godotenv.Load()
@@ -77,6 +43,7 @@ func ConnectToDb() (err error) {
 }
 
 // sanetize
+// idk what securrity to add here
 func Fining(wine Wine) (err error, finedWine Wine) {
 	v := reflect.ValueOf(wine)
 	t := v.Type()
@@ -191,7 +158,7 @@ func ReadAll() (err error, wines []Wine) {
 
 func Update(wine Wine, Id int64) (err error, success bool) {
 	Fining(wine)
-	result, err := db.Exec(
+	_, err = db.Exec(
 		`UPDATE wines SET Id = ?, Title = ?, Grape = ?, Origin = ?, Producer = ?, 
 		Vintage = ?, Taste = ?, Color = ?, Aroma = ?, Acidity = ?, 
 		Sweetness = ?, Price = ?, ISWineScale = ? WHERE Id = ?`,
@@ -202,21 +169,27 @@ func Update(wine Wine, Id int64) (err error, success bool) {
 	)
 	if err != nil {
 		log.Fatal(err)
-	}
-
-	rowsAffected, err := result.RowsAffected()
-	if (rowsAffected != 0) && (err == nil) {
-		success = true
 	} else {
-		log.Fatal(err)
+		success = true
 	}
 
 	return err, success
 }
 
-func Delete(id int64) (err error) {
+func Delete(Id int64) (err error, success bool) {
 	// db.exec(drop wine where id = ?, id)
 	// return err
 
-	return err
+	_, err = db.Exec(
+		`DELETE FROM wines WHERE Id = ?`,
+		Id,
+	)
+	if err != nil {
+		log.Fatal(err)
+		success = false
+	} else {
+		success = true
+	}
+
+	return err, success
 }

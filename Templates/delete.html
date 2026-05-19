@@ -1,0 +1,13 @@
+{{if .Success}}
+<h1>{{.PageTitle}}</h1>
+<p>Deletion succesful!</p>
+<button>
+    <a href="/">Return to homepage</a>
+</button>
+{{else}}
+<h1>{{.PageTitle}}</h1>
+<p>Deletion unsucsesful</p>
+<button>
+    <a href="/">Return to homepage</a>
+</button>
+{{end}}

@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -39,84 +37,10 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("Templates/root.html"))
-		err, wines := ReadAll()
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		data := struct {
-			PageTitle string
-			Wines     []Wine
-		}{
-			PageTitle: "Wineyard",
-			Wines:     wines,
-		}
-
-		if err := tmpl.Execute(w, data); err != nil {
-			log.Fatal(err)
-		}
-	})
-
-	r.HandleFunc("/add", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("Templates/add.html"))
-		if r.Method != http.MethodPost {
-			tmpl.Execute(w, nil)
-			return
-		}
-
-		err, wine := FormToWine(r)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		err, success := Create(wine)
-		if err != nil || !success {
-			log.Fatal(err)
-		}
-
-		tmpl.Execute(w, struct{ Success bool }{true})
-	})
-
-	// /edit/Id
-	r.HandleFunc("/edit/{Id}", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("Templates/edit.html"))
-		Id, err := strconv.ParseInt(mux.Vars(r)["Id"], 10, 64)
-
-		if r.Method != http.MethodPost {
-			err, wines := ReadOne(Id)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			data := struct {
-				PageTitle string
-				Wines     Wine
-				Success   bool
-			}{
-				PageTitle: "Edit the winyard",
-				Wines:     wines,
-				Success:   false,
-			}
-
-			tmpl.Execute(w, data)
-			return
-		}
-
-		err, wine := FormToWine(r)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		err, success := Update(wine, Id)
-		if err != nil || !success {
-			log.Fatal(err)
-		}
-
-		tmpl.Execute(w, struct{ Success bool }{true})
-	})
+	r.HandleFunc("/", Roothandler)
+	r.HandleFunc("/add", Addhandler).Methods("POST", "GET")
+	r.HandleFunc("/edit/{Id}", Edithandler).Methods("POST", "GET")
+	r.HandleFunc("/delete/{Id}", Deletehandler).Methods("POST", "GET")
 
 	port := "8080"
 

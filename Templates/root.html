@@ -1,23 +1,30 @@
 <h1>{{.PageTitle}}</h1>
+<button>
+    <a href="/add">Upload</a>
+</button>
 <ul>
     {{range .Wines}}
-        <li>
-            <p>Title: {{.Title}} <br>
-                Grape: {{.Grape}} <br>
-                Origin: {{.Origin}} <br>
-                Producer: {{.Producer}} <br>
-                Vintage: {{.Vintage}} <br>
-                Taste: {{.Taste}} <br>
-                Color: {{.Color}} <br>
-                Aroma: {{.Aroma}} <br>
-                Acidity: {{.Acidity}} g/ml <br>
-                Sweetness: {{.Sweetness}} g/ml <br>
-                Price: {{.Price}} kr <br>
-                ISWineScale: {{.ISWineScale}} <br>
-                Id: {{.Id}}
-            </p></li>
-            <button>
-                <a href="/edit/{{.Id}}">Edit</a>
-            </button>
+    <li>
+        <p>Title: {{.Title}} <br>
+            Grape: {{.Grape}} <br>
+            Origin: {{.Origin}} <br>
+            Producer: {{.Producer}} <br>
+            Vintage: {{.Vintage}} <br>
+            Taste: {{.Taste}} <br>
+            Color: {{.Color}} <br>
+            Aroma: {{.Aroma}} <br>
+            Acidity: {{.Acidity}} g/ml <br>
+            Sweetness: {{.Sweetness}} g/ml <br>
+            Price: {{.Price}} kr <br>
+            ISWineScale: {{.ISWineScale}} <br>
+            Id: {{.Id}}
+        </p>
+    </li>
+    <button>
+        <a href="/edit/{{.Id}}">Edit</a>
+    </button>
+    <button>
+        <a href="/delete/{{.Id}}">Delete</a>
+    </button>
     {{end}}
 </ul>
