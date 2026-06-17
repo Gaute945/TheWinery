@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"os"
 	"reflect"
@@ -10,6 +9,23 @@ import (
 	"github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 )
+
+// must be uppercase for global scope and pointer for nullable field
+type Wine struct {
+	Id          int64
+	Title       string          `form:"title"`
+	Grape       sql.NullString  `form:"grape"`
+	Origin      sql.NullString  `form:"origin"`
+	Producer    sql.NullString  `form:"producer"`
+	Vintage     sql.NullInt64   `form:"vintage"`
+	Taste       sql.NullString  `form:"taste"`
+	Color       sql.NullString  `form:"color"`
+	Aroma       sql.NullString  `form:"aroma"`
+	Acidity     sql.NullFloat64 `form:"acidity"`
+	Sweetness   sql.NullFloat64 `form:"sweetness"`
+	Price       sql.NullFloat64 `form:"price"`
+	ISWineScale float64         `form:"isWineScale"`
+}
 
 var db *sql.DB
 
@@ -39,26 +55,34 @@ func ConnectToDb() (err error) {
 	}
 
 	err = db.Ping()
+
 	return err
 }
 
-// sanetize
-// idk what securrity to add here
-func Fining(wine Wine) (err error, finedWine Wine) {
-	v := reflect.ValueOf(wine)
-	t := v.Type()
+func Fining(wine Wine) Wine {
+	v := reflect.ValueOf(&wine).Elem()
 
 	for i := 0; i < v.NumField(); i++ {
-		field := t.Field(i)
-		value := v.Field(i).Interface()
-		fmt.Printf("%s: %v\n", field.Name, value)
+		f := v.Field(i)
+		if f.Kind() != reflect.Struct {
+			continue
+		}
+
+		valid := f.FieldByName("Valid")
+		if !valid.IsValid() || !valid.CanSet() {
+			continue
+		}
+
+		inner := f.Field(0)
+		if !inner.IsZero() {
+			valid.SetBool(true)
+		}
 	}
 
-	return err, finedWine
+	return wine
 }
 
 func Create(wine Wine) (err error, success bool) {
-	Fining(wine)
 	result, err := db.Exec(
 		`INSERT INTO wines (
 		Title, Grape, Origin, Producer, Vintage, 
@@ -73,6 +97,8 @@ func Create(wine Wine) (err error, success bool) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	wine = Fining(wine)
 
 	rowsAffected, err := result.RowsAffected()
 	if (rowsAffected != 0) && (err == nil) {
@@ -157,7 +183,6 @@ func ReadAll() (err error, wines []Wine) {
 }
 
 func Update(wine Wine, Id int64) (err error, success bool) {
-	Fining(wine)
 	_, err = db.Exec(
 		`UPDATE wines SET Id = ?, Title = ?, Grape = ?, Origin = ?, Producer = ?, 
 		Vintage = ?, Taste = ?, Color = ?, Aroma = ?, Acidity = ?, 

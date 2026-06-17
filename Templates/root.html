@@ -6,16 +6,16 @@
     {{range .Wines}}
     <li>
         <p>Title: {{.Title}} <br>
-            Grape: {{.Grape}} <br>
-            Origin: {{.Origin}} <br>
-            Producer: {{.Producer}} <br>
-            Vintage: {{.Vintage}} <br>
-            Taste: {{.Taste}} <br>
-            Color: {{.Color}} <br>
-            Aroma: {{.Aroma}} <br>
-            Acidity: {{.Acidity}} g/ml <br>
-            Sweetness: {{.Sweetness}} g/ml <br>
-            Price: {{.Price}} kr <br>
+            Grape: {{if .Grape.Valid}}{{.Grape.String}}{{end}} <br>
+            Origin: {{if .Origin.Valid}}{{.Origin.String}}{{end}} <br>
+            Producer: {{if .Producer.Valid}}{{.Producer.String}}{{end}} <br>
+            Vintage: {{if .Vintage.Valid}}{{.Vintage.Int64}}{{end}} <br>
+            Taste: {{if .Taste.Valid}}{{.Taste.String}}{{end}} <br>
+            Color: {{if .Color.Valid}}{{.Color.String}}{{end}} <br>
+            Aroma: {{if .Aroma.Valid}}{{.Aroma.String}}{{end}} <br>
+            Acidity: {{if .Acidity.Valid}}{{.Acidity.Float64}}{{end}} g/ml <br>
+            Sweetness: {{if .Sweetness.Valid}}{{.Sweetness.Float64}}{{end}} g/ml <br>
+            Price: {{if .Price.Valid}}{{.Price.Float64}}{{end}} kr <br>
             ISWineScale: {{.ISWineScale}} <br>
             Id: {{.Id}}
         </p>
